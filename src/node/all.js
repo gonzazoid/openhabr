@@ -3,6 +3,8 @@ var fs = require("fs");
 var pg = require("pg");
 var mustache = require("mustache");
 
+var config = require("./config");
+
 var pattern = fs.readFileSync("./tpl/all.tpl", "utf-8");
 
 var worker = function(request, response){
