@@ -13,6 +13,8 @@ gulp.task("draft", function(){
     gulp.src("src/node/*.js")
 //	.pipe(nano(config.draft))
         .pipe(gulp.dest("build/node/"));
+    gulp.src("src/node/tpl/*.tpl")
+        .pipe(gulp.dest("build/node/tpl/"));
 //экстеншины просто скопируем (можно это и deploy.sh засунуть, но если что то изменится - надо будет еще вспомнить что они в deploe затрагиваются
 });
 
