@@ -17,6 +17,8 @@ gulp.task("draft", function(){
         .pipe(gulp.dest("build/node/tpl/"));
     gulp.src("src/static/css/*.*")
         .pipe(gulp.dest("build/static/css/"));
+    gulp.src("src/static/fonts/*.*")
+        .pipe(gulp.dest("build/static/fonts/"));
 });
 
 gulp.task("master", function(){
