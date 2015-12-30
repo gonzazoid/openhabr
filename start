@@ -1,13 +1,13 @@
 #!/usr/local/bin/bash
 
 #usage start branch
-cd "/www/openhabr.net.$1/src/"
+cd "/www/openhabr.net.$1/node/"
 
 pids="/www/openhabr.net.$1/pids"
 logs="/www/openhabr.net.$1/logs"
 #если draft - сбросить логи
 
-forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/all.log"       --pidFile "$pids/all.pid"       start node/all.js
+forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/all.log"       --pidFile "$pids/all.pid"       start all.js
 
 # в prod-сборке этого быть не должно. Как это сделать?
 #forever -a -l "$logs/$1/test.log"       --pidFile "$pids/$1/test.pid"       start test.server.js
