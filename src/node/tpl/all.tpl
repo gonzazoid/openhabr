@@ -11,19 +11,19 @@
       <div class="post shortcuts_item" id="post_270673">
         <div class="published">сегодня в 20:15</div>
           <h1 class="title">
-            <a href="http://habrahabr.ru/post/270673/" class="post_title">{{title}}</a>
+            <a href="/post/270673/" class="post_title">{{title}}</a>
           </h1>
           <div class="hubs">
-            <a href="http://habrahabr.ru/hub/programming/" class="hub " title="Вы не подписаны на этот хаб" >Программирование</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
-            <a href="http://habrahabr.ru/hub/ui/" class="hub " title="Вы не подписаны на этот хаб" >Интерфейсы</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
-            <a href="http://habrahabr.ru/hub/webdev/" class="hub subscribed" title="Вы подписаны на этот хаб" >Веб-разработка</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
-            <a href="http://habrahabr.ru/hub/ReactJS/" class="hub " title="Вы не подписаны на этот хаб" >ReactJS</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
-            <a href="http://habrahabr.ru/hub/javascript/" class="hub " title="Вы не подписаны на этот хаб" >JavaScript</a><span class="profiled_hub" title="Профильный хаб">*</span>
+            <a href="/hub/programming/" class="hub " title="Вы не подписаны на этот хаб" >Программирование</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+            <a href="/hub/ui/" class="hub " title="Вы не подписаны на этот хаб" >Интерфейсы</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+            <a href="/hub/webdev/" class="hub subscribed" title="Вы подписаны на этот хаб" >Веб-разработка</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+            <a href="/hub/ReactJS/" class="hub " title="Вы не подписаны на этот хаб" >ReactJS</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+            <a href="/hub/javascript/" class="hub " title="Вы не подписаны на этот хаб" >JavaScript</a><span class="profiled_hub" title="Профильный хаб">*</span>
           </div>
           <div class="content html_format">
             {{cut}} 
             <div class="buttons">
-              <a class="button habracut" href="http://habrahabr.ru/post/270673/#habracut">И как его правильно использовать?</a>
+              <a class="button habracut" href="/post/270673/#habracut">И как его правильно использовать?</a>
             </div>
             <div class="clear"></div>
           </div>
@@ -56,13 +56,13 @@
               </div>
             </li>
             <li class="postinfo-panel__item post-author">
-              <a title="Автор публикации" class="post-author__link" href="http://habrahabr.ru/users/ekubyshin/" >
-                <img src="//habrastorage.org/getpro/habr/avatars/a15/01d/305/a1501d305b24b29765a9a63b93970230.jpg" class="post-author__pic"/>@ekubyshin
+              <a title="Автор публикации" class="post-author__link" href="/users/ekubyshin/" >
+                <img src="/getpro/habr/avatars/a15/01d/305/a1501d305b24b29765a9a63b93970230.jpg" class="post-author__pic"/>@ekubyshin
               </a>
             </li>
             <li class="postinfo-panel__item postinfo-panel__item_comments">
               <div class="post-comments">
-                <a href="http://habrahabr.ru/post/270673/#comments" class="post-comments__link" title="Комментировать">
+                <a href="/post/270673/#comments" class="post-comments__link" title="Комментировать">
                   <span class="post-comments_all">Комментировать</span>
                 </a>
               </div>
