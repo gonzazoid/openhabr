@@ -12,6 +12,8 @@
 </head>
 <body>
 <b>hella, {{user.name}}</b>
+<div id="layout">
+<div class="column-wrapper">
 <div class="posts_list">
 {{#articles}}
     <div class="posts shortcuts_items">
@@ -78,6 +80,8 @@
         </div>
       </div>
 {{/articles}}
+</div>
+</div>
 </div>
 </body>
 </html>
