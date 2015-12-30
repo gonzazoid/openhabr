@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="css/post_common_css.css" rel="stylesheet" media="all" />
+<link href="/css/post_common_css.css" rel="stylesheet" media="all" />
 </head>
 <body>
 <b>hella, {{user.name}}</b>
