@@ -1,6 +1,9 @@
 var http = require("http");
+var fs = require("fs");
 var pg = require("pg");
 var mustache = require("mustache");
+
+var pattern = fs.readFileSync("./tpl/all.tpl");
 
 var worker = function(request, response){
         var headers = {};
@@ -12,7 +15,7 @@ var worker = function(request, response){
         //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
 
         response.writeHead(200, "Ok", headers);
-    response.write("__hella!!!");
+    response.write(pattern);
     response.end();
 };
 
