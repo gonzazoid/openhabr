@@ -1,0 +1,31 @@
+#!/usr/local/bin/bash
+
+#здесь надо скопировать репу в /www/seogearbox.net.$branch
+cd ../
+rm -rf "/www/openhabr.net.$1"
+cp -R "./openhabr.net.$1" /www/
+cd  "/www/openhabr.net.$1"
+# обновим модули ноды, вдруг что поменялось в package.json
+npm install
+exit
+#запустить gulp
+gulp "$1"
+
+#и растасовать результаты сборки
+cp -R build/io.js ./
+cp -R build/static ./
+
+#также, если изменились конфиги - перезапустить соотв. службы
+df=$(diff "/usr/local/etc/nginx/nginx.$1.config" "build/configs/nginx.$1.config" | wc -L | sed 's/^[ \t]*//;s/[ \t]*$//')
+echo "nginx config diff: $df"
+if [ "$df" != "0" ]
+then
+cp "build/configs/nginx.$1.config"  "/usr/local/etc/nginx/"
+/usr/local/etc/rc.d/nginx restart
+fi
+
+#перезапустим ноды
+./restart $1
+
+#а здесь неплохо бы почистить все лишнее
+exit
