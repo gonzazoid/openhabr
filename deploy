@@ -15,7 +15,7 @@ gulp "$1"
 
 #и растасовать результаты сборки
 cp -R build/node ./
-cp -R node_modeles ./node/
+cp -R node_modules ./node/
 
 cp -R build/static ./
 
