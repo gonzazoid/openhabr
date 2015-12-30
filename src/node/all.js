@@ -9,6 +9,11 @@ var pattern = fs.readFileSync("./tpl/all.tpl", "utf-8");
 
 var worker = function(request, response){
     pg.connect(config.common.postgres, function (err, pgClient, done) {
+	if(err){
+            console.log(err);
+            response.end();
+    	    return;
+	}
         var sql = "SELECT * FROM (SELECT * FROM articles WHERE draft != false ORDER BY stamp DESC LIMIT 10) t ORDER BY t.stamp ASC;";
         pgClient.query({
             text: sql
