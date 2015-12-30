@@ -13,6 +13,8 @@
 <body>
 <b>hella, {{user.name}}</b>
 <div id="layout">
+<div id="navbar"></div>
+
 <div class="column-wrapper">
 <div class="posts_list">
 {{#articles}}
