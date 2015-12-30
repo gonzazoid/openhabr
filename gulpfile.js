@@ -11,7 +11,7 @@ gulp.task("draft", function(){
 	//конфигурации (пока только nginx)
 	//все что в static, io.js и configs
     gulp.src("src/node/*.js")
-	.pipe(nano(config.draft))
+//	.pipe(nano(config.draft))
         .pipe(gulp.dest("build/node/"));
 //экстеншины просто скопируем (можно это и deploy.sh засунуть, но если что то изменится - надо будет еще вспомнить что они в deploe затрагиваются
 });
