@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 
 #usage start branch
-cd "/www/openhabr.net.$1/node"
+cd "/www/openhabr.net.$1/src/"
 
 pids="/www/openhabr.net.$1/pids"
 logs="/www/openhabr.net.$1/logs"
@@ -11,7 +11,7 @@ then
  > "$logs/all.log"
 fi
 
-forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/all.log"       --pidFile "$pids/all.pid"       start all.js
+forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/all.log"       --pidFile "$pids/all.pid"       start node/all.js
 
 # в prod-сборке этого быть не должно. Как это сделать?
 #forever -a -l "$logs/$1/test.log"       --pidFile "$pids/$1/test.pid"       start test.server.js
