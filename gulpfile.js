@@ -15,7 +15,8 @@ gulp.task("draft", function(){
         .pipe(gulp.dest("build/node/"));
     gulp.src("src/node/tpl/*.tpl")
         .pipe(gulp.dest("build/node/tpl/"));
-//экстеншины просто скопируем (можно это и deploy.sh засунуть, но если что то изменится - надо будет еще вспомнить что они в deploe затрагиваются
+    gulp.src("src/static/css/*.*")
+        .pipe(gulp.dest("build/static/css/"));
 });
 
 gulp.task("master", function(){
