@@ -8,6 +8,7 @@
 <link href="/css/forms.css" rel="stylesheet" media="all" />
 <link href="/css/posts.css" rel="stylesheet" media="all" />
 <link href="/css/hubs_all.css" rel="stylesheet" media="all" />
+<link href="/css/main.css" rel="stylesheet" media="all" />
 </head>
 <body>
 <b>hella, {{user.name}}</b>
