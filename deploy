@@ -7,6 +7,7 @@ cp -R "./openhabr.net.$1" /www/
 cd  "/www/openhabr.net.$1"
 mkdir logs
 mkdir pids
+mkdir build
 # обновим модули ноды, вдруг что поменялось в package.json
 npm install
 #запустить gulp
