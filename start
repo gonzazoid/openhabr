@@ -6,10 +6,6 @@ cd "/www/openhabr.net.$1/src/"
 pids="/www/openhabr.net.$1/pids"
 logs="/www/openhabr.net.$1/logs"
 #если draft - сбросить логи
-if [ $1 == 'draft' ]
-then
- > "$logs/all.log"
-fi
 
 forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/all.log"       --pidFile "$pids/all.pid"       start node/all.js
 
