@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "habr like open community's site engine",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "mustache": "^2.2.1"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
