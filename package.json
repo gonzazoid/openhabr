@@ -1,7 +1,7 @@
 {
   "name": "openhabr.net",
   "version": "1.0.0",
-  "description": "",
+  "description": "habr like open community's site engine",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},
