@@ -15,7 +15,8 @@ var worker = function(request, response){
         //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
 
         response.writeHead(200, "Ok", headers);
-    response.write(pattern);
+    var output = mustache.render(pattern, {user: {name: "me"}});
+    response.write(output);
     response.end();
 };
 

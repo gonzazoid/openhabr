@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 </head>
 <body>
-<b>hella</b>
+<b>hella, {{user.name}}</b>
 </body>
 </html>
