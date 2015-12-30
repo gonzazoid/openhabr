@@ -7,6 +7,6 @@
 <b>hella, {{user.name}}</b>
 {{#articles}}
 <h3>{{title}}</h3>
-{{/atricles}}
+{{/artricles}}
 </body>
 </html>
