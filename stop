@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cd "/www/openhabr.net.$1/node"
+
+pids="/www/openhabr.net.$1/pids"
+logs="/www/openhabr.net.$1/logs"
+forever -a -l "$logs/all.log"       --pidFile "$pids/all.pid"       stop all.js
+
+# в prod-сборке этого быть не должно. Как это сделать?
