@@ -11,8 +11,8 @@ var worker = function(request, response){
     pg.connect(config.common.postgres, function (err, pgClient, done) {
         var sql = "SELECT * (SELECT * FROM articles WHERE draft != false ORDER BY stamp DESC LIMIT 10) ORDER BY stamp asc";
         pgClient.query({
-            text: sql,
-            values: argv
+            text: sql
+	   // ,values: argv
 	}, function(err, result){
             done();
 	    if(err){
