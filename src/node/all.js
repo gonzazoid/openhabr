@@ -1,6 +1,6 @@
 var http = require("http");
 var pg = require("pg");
-var mustach = require("mustach");
+var mustache = require("mustache");
 
 var worker = function(request, response){
         var headers = {};
