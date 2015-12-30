@@ -1,4 +1,4 @@
 exports.common = {
-        "postgres": "postgres://ordnung:atilla0453@localhost/sgbtest",
+        "postgres": "postgres://ordnung:atilla0453@localhost/openhabr",
     };
 
