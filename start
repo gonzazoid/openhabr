@@ -8,6 +8,7 @@ logs="/www/openhabr.net.$1/logs"
 #если draft - сбросить логи
 
 forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/all.log"       --pidFile "$pids/all.pid"       start all.js
+forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/post.log"       --pidFile "$pids/post.pid"       start post.js
 
 # в prod-сборке этого быть не должно. Как это сделать?
 #forever -a -l "$logs/$1/test.log"       --pidFile "$pids/$1/test.pid"       start test.server.js
