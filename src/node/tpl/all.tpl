@@ -11,7 +11,6 @@
 <link href="/css/main.css" rel="stylesheet" media="all" />
 </head>
 <body>
-<b>hella, {{user.name}}</b>
 <div id="layout">
 <div id="navbar"></div>
 <div class="inner">
