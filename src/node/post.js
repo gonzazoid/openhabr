@@ -1,7 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 var pg = require("pg");
-var url = requite("url");
+var url = require("url");
 var mustache = require("mustache");
 
 var config = require("./config");
