@@ -15,7 +15,8 @@ var worker = function(request, response){
     if(!/^\/[0-9]+\/$/.test(req.path.trim())){
         //возвращаем 404
     }
-    var id = req.path.trim().slice(1, -1);
+    request.post = {};
+    request.post.id = req.path.trim().slice(1, -1);
     console.log("id: ", id);
     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	if(err){
@@ -27,7 +28,7 @@ var worker = function(request, response){
         var sql = "SELECT * FROM articles WHERE id = $1;";
         pgClient.query({
             text: sql
-	    values: [id]
+	    values: [request.post.id]
 	}, function(err, result){
             done();
 	    if(err){
