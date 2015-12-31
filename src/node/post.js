@@ -23,10 +23,11 @@ var worker = function(request, response){
             response.end();
     	    return;
 	}
-        var sql = "SELECT * FROM articles WHERE id = 2;";
+        //TODO так мы светим и черновики. Где будем проверять - в запросе или же после получения данных из базы?
+        var sql = "SELECT * FROM articles WHERE id = $1;";
         pgClient.query({
             text: sql
-	   // ,values: argv
+	    values: [id]
 	}, function(err, result){
             done();
 	    if(err){
@@ -34,6 +35,9 @@ var worker = function(request, response){
                 response.end();
 		return;
 	    }
+            if(result.rows.length != 1){
+                //либо статья не найдена либо найдено больше одной статьи (что станно)
+            }
             var headers = {};
 
             headers['Content-Type'] = 'text/html';
