@@ -28,7 +28,7 @@ var worker = function(request, response){
         var sql = "SELECT * FROM articles WHERE id = $1;";
         pgClient.query({
             text: sql
-	    values: [request.post.id]
+	   ,values: [request.post.id]
 	}, function(err, result){
             done();
 	    if(err){
