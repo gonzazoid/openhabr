@@ -14,7 +14,16 @@ var worker = function(request, response){
             response.end();
     	    return;
 	}
-        var sql = "SELECT * FROM (SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10) t ORDER BY t.stamp ASC;";
+        //TODO нам бы тут еще тэги с чисел на строки поменять
+        //var sql = "SELECT I.*, array_agg(J.title) FROM (SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10) I LEFT JOIN tags J ON J.id = ANY(i.tags) GROUP BY I.id, ORDER BY I.stamp ASC;";
+        var sql = "SELECT V.*,  M.tags_title, M.tags_id FROM (
+SELECT I.id, I.stamp, array_agg(J.title) as tags_title, array_agg(J.id) as tags_id
+FROM (
+    SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10
+) I, tags J
+--можно в каждой строке выбирать тег и его id а потом агрегировать обоих
+WHERE  J.id = ANY(I.tags) GROUP BY I.id, I.stamp, I.tags  ORDER BY I.stamp ASC) M, articles V
+WHERE M.id = V.id ORDER BY stamp ASC;"
         pgClient.query({
             text: sql
 	   // ,values: argv
