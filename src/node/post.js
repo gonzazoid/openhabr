@@ -12,6 +12,8 @@ var worker = function(request, response){
     //обработаем запрос, вытащим id запрашиваемой статьи
     var req = url.parse(request.url);
     console.log(req)
+    var params = req.path.trim().split("/");
+    console.log(params);
     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	if(err){
             console.log(err);
