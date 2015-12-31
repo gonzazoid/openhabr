@@ -59,7 +59,7 @@
             </li>
             <li class="postinfo-panel__item">
               <div class="favorite-wjt favorite">
-                <button type="button" class="favorite-wjt__button add" title="Добавить в избранное" onclick="return posts_add_to_favorite(this, '2', 270673);">
+                <button type="button" class="favorite-wjt__button add" data-id="{{id}}" title="Добавить в избранное" onclick="return posts_add_to_favorite(this);">
                   <span>В избранное</span>
                 </button>
                 <span class="favorite-wjt__counter js-favs_count" title="Количество пользователей, добавивших публикацию в избранное">{{favorites}}</span>
