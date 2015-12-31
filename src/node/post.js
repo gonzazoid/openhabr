@@ -12,7 +12,7 @@ var worker = function(request, response){
     //обработаем запрос, вытащим id запрашиваемой статьи
     var req = url.parse(request.url);
     console.log(req);
-    if(!/^\/[0-9]+\/$/.test(req.path.trim()){
+    if(!/^\/[0-9]+\/$/.test(req.path.trim())){
         //возвращаем 404
     }
     var id = req.path.trim().slice(1, -1);
