@@ -46,7 +46,7 @@
                 </button>
 
                 <div class="voting-wjt__counter js-mark">
-                  <span class="voting-wjt__result-score js-score" title="Оценка будет видна после завершения голосования">&mdash;</span>
+                  <span class="voting-wjt__result-score js-score" title="Оценка статьи пользователями">{{rating}}</span>
                 </div>
 
                 <button type="button" disabled class="voting-wjt__button voting-wjt__button_minus js-minus" title="Read-only пользователи не могут голосовать">
@@ -55,14 +55,14 @@
               </div>
             </li>
             <li class="postinfo-panel__item">
-              <div class="views-count_post" title="Просмотры публикации">109</div>
+              <div class="views-count_post" title="Просмотры публикации">{{views}}</div>
             </li>
             <li class="postinfo-panel__item">
               <div class="favorite-wjt favorite">
                 <button type="button" class="favorite-wjt__button add" title="Добавить в избранное" onclick="return posts_add_to_favorite(this, '2', 270673);">
                   <span>В избранное</span>
                 </button>
-                <span class="favorite-wjt__counter js-favs_count" title="Количество пользователей, добавивших публикацию в избранное">4</span>
+                <span class="favorite-wjt__counter js-favs_count" title="Количество пользователей, добавивших публикацию в избранное">{{favorites}}</span>
               </div>
             </li>
             <li class="postinfo-panel__item post-author">
