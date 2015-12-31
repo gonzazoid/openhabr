@@ -21,7 +21,7 @@
       <div class="post shortcuts_item" id="post_270673">
         <div class="published">сегодня в 20:15</div>
           <h1 class="title">
-            <a href="/post/270673/" class="post_title">{{title}}</a>
+            <a href="/post/id/" class="post_title">{{title}}</a>
           </h1>
           <div class="hubs">
             <a href="/hub/programming/" class="hub " title="Вы не подписаны на этот хаб" >Программирование</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
