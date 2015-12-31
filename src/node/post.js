@@ -16,7 +16,7 @@ var worker = function(request, response){
         //возвращаем 404
     }
     var id = req.path.trim().slice(1, -1);
-    console.log("id: ": id);
+    console.log("id: ", id);
     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	if(err){
             console.log(err);
