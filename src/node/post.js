@@ -1,6 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 var pg = require("pg");
+var url = requite("url");
 var mustache = require("mustache");
 
 var config = require("./config");
@@ -8,6 +9,9 @@ var config = require("./config");
 var pattern = fs.readFileSync("./tpl/article.tpl", "utf-8");
 
 var worker = function(request, response){
+    //обработаем запрос, вытащим id запрашиваемой статьи
+    var req = url.parse(request.url);
+    console.log(req)
     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	if(err){
             console.log(err);
