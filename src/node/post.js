@@ -17,7 +17,7 @@ var worker = function(request, response){
     }
     request.post = {};
     request.post.id = req.path.trim().slice(1, -1);
-    console.log("id: ", id);
+    //console.log("id: ", id);
     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	if(err){
             console.log(err);
