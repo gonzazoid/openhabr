@@ -16,7 +16,8 @@ var worker = function(request, response){
 	}
         //TODO нам бы тут еще тэги с чисел на строки поменять
         //var sql = "SELECT I.*, array_agg(J.title) FROM (SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10) I LEFT JOIN tags J ON J.id = ANY(i.tags) GROUP BY I.id, ORDER BY I.stamp ASC;";
-        var sql = "SELECT V.*,  M.tags_title, M.tags_id FROM (SELECT I.id, I.stamp, array_agg(J.title) as tags_title, array_agg(J.id) as tags_id FROM (SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10) I, tags J WHERE  J.id = ANY(I.tags) GROUP BY I.id, I.stamp, I.tags  ORDER BY I.stamp ASC) M, articles V WHERE M.id = V.id ORDER BY stamp ASC;"
+        //var sql = "SELECT V.*,  M.tags_title, M.tags_id FROM (SELECT I.id, I.stamp, array_agg(J.title) as tags_title, array_agg(J.id) as tags_id FROM (SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10) I, tags J WHERE  J.id = ANY(I.tags) GROUP BY I.id, I.stamp, I.tags  ORDER BY I.stamp ASC) M, articles V WHERE M.id = V.id ORDER BY stamp ASC;"
+        var sql = "SELECT V.*,  M.hub_title, M.hub_id, M.hub_name FROM (SELECT I.id, I.stamp, array_agg(J.title) as hub_title, array_agg(J.id) as hub_id, array_agg(J.name) as hub_name FROM (SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10) I, hubs J WHERE  J.id = ANY(I.hubs) GROUP BY I.id, I.stamp, I.hubs  ORDER BY I.stamp ASC) M, articles V WHERE M.id = V.id ORDER BY stamp ASC;"
         pgClient.query({
             text: sql
 	   // ,values: argv
@@ -27,6 +28,11 @@ var worker = function(request, response){
                 response.end();
 		return;
 	    }
+
+            //сольем вместе hub_title, id и name
+            result.rows.forEach(function(item, key, holder){
+
+            });
             var headers = {};
 
             headers['Content-Type'] = 'text/html';
