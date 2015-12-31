@@ -32,13 +32,14 @@ var worker = function(request, response){
             //сольем вместе hub_title, id и name
             result.rows.forEach(function(item, key, holder){
                 var hubs = [];
+                var i, l;
                 if(!item.hubs.length) return;
                 for(i=0, l=item.hub_id.length; i<l; i++){
                     hubs[item.hub_id[i]] = {id: item.hub_id[i], name: item.hub_name[i], title: item.hub_title[i]};
                 }
                 for(i=0, l=item.hubs.length; i<l; i++){
                     if(item.hubs[i] in hubs){
-                        item.hubs[i] = hubs[item.hub_id[i]];
+                        item.hubs[i] = hubs[item.hubs[i]];
                     }else{
                         delete(item.hubs[i]);
                     }
