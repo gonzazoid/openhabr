@@ -34,7 +34,7 @@
           <div class="content html_format">
             {{cut}} 
             <div class="buttons">
-              <a class="button habracut" href="/post/270673/#habracut">И как его правильно использовать?</a>
+              <a class="button habracut" href="/post/270673/#habracut">{{cut_title}}</a>
             </div>
             <div class="clear"></div>
           </div>
