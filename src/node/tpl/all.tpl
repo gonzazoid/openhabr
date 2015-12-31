@@ -24,7 +24,9 @@
             <a href="/post/{{id}}/" class="post_title">{{title}}</a>
           </h1>
           <div class="hubs">
-            <a href="/hub/programming/" class="hub " title="Вы не подписаны на этот хаб" >Программирование</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+            {{#hubs}}
+            <a href="/hub/{{name}}/" class="hub " title="Вы не подписаны на этот хаб" >{{title}}</a><span class="profiled_hub" title="Профильный хаб">*</span>
+            {{/hubs}}
             <a href="/hub/ui/" class="hub " title="Вы не подписаны на этот хаб" >Интерфейсы</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
             <a href="/hub/webdev/" class="hub subscribed" title="Вы подписаны на этот хаб" >Веб-разработка</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
             <a href="/hub/ReactJS/" class="hub " title="Вы не подписаны на этот хаб" >ReactJS</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
