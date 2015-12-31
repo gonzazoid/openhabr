@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title>{{title}}</title>
+<title>{{article.title}}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <link href="/css/post_common_css.css" rel="stylesheet" media="all" />
@@ -19,13 +19,13 @@
   <div class="post shortcuts_item" id="post_274219">
     <div class="published">28 декабря в 19:14</div>
       <h1 class="title">
-        <span class="post_title">{{title}}</span>
+        <span class="post_title">{{article.title}}</span>
       </h1>
       <div class="hubs">
         <a href="/hub/habr/" class="hub " title="Вы не подписаны на этот хаб" >Хабрахабр</a>
       </div>
       <div class="content html_format">
-        {{body}}      
+        {{article.body}}      
         <div class="clear"></div>
       </div>
       <ul class="tags icon_tag">
