@@ -7,7 +7,14 @@
 <link href="/css/post_common_css.css" rel="stylesheet" media="all" />
 <link href="/css/posts.css" rel="stylesheet" media="all" />
 <link href="/css/main.css" rel="stylesheet" media="all" />
-
+<style>
+.hub:after {
+    content: ","
+}
+.hub:last-of-type:after {
+    content: ""
+}
+</style>
 </head>
 <body>
 <div id="layout">
@@ -23,7 +30,7 @@
       </h1>
       <div class="hubs">
         {{#article.hubs}}
-          <a href="/hub/{{name}}/" class="hub " title="Вы не подписаны на этот хаб" >{{title}}</a>{{^-last}}, {{/-last}} 
+          <a href="/hub/{{name}}/" class="hub " title="Вы не подписаны на этот хаб" >{{title}}</a> 
         {{/article.hubs}}
       </div>
       <div class="content html_format">
