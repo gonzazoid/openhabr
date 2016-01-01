@@ -27,7 +27,7 @@ var worker = function(request, response){
         //TODO так мы светим и черновики. Где будем проверять - в запросе или же после получения данных из базы?
         //var sql = "SELECT * FROM articles WHERE id = $1 AND draft = false;";
         //var sql = "SELECT articles.*, M.hub_name, M.hub_title, M.hub_id FROM articles, (SELECT I.id, array_agg(J.title) as hub_title, array_agg(J.name) as hub_name, array_agg(J.id) as hub_id FROM (SELECT * FROM articles WHERE id = $1 AND draft = false) I, hubs J WHERE J.id = ANY(i.hubs) GROUP BY I.id) M WHERE M.id = articles.id;"
-        var sql = "SELECT articles.*, M.hub_name, M.hub_title, M.hub_id, users.nickname, users.carma, user.rating as u_rating FROM articles, (SELECT I.id, array_agg(J.title) as hub_title, array_agg(J.name) as hub_name, array_agg(J.id) as hub_id FROM (SELECT * FROM articles WHERE id = $1 AND draft = false) I, hubs J WHERE J.id = ANY(i.hubs) GROUP BY I.id) M, users WHERE M.id = articles.id AND articles.author = users.id;"
+        var sql = "SELECT articles.*, M.hub_name, M.hub_title, M.hub_id, users.nickname, users.carma, users.rating as u_rating FROM articles, (SELECT I.id, array_agg(J.title) as hub_title, array_agg(J.name) as hub_name, array_agg(J.id) as hub_id FROM (SELECT * FROM articles WHERE id = $1 AND draft = false) I, hubs J WHERE J.id = ANY(i.hubs) GROUP BY I.id) M, users WHERE M.id = articles.id AND articles.author = users.id;"
         pgClient.query({
             text: sql
 	   ,values: [request.post.id]
