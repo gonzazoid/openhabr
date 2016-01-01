@@ -22,9 +22,9 @@
         <span class="post_title">{{article.title}}</span>
       </h1>
       <div class="hubs">
-        {{#hubs}}
+        {{#articles.hubs}}
           <a href="/hub/{{name}}/" class="hub " title="Вы не подписаны на этот хаб" >{{title}}</a> 
-        {{/hubs}}
+        {{/articles.hubs}}
       </div>
       <div class="content html_format">
         {{article.body}}      
