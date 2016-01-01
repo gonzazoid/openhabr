@@ -64,13 +64,13 @@
               </div>
             </li>
             <li class="postinfo-panel__item post-author">
-              <a title="Автор публикации" class="post-author__link" href="/users/ekubyshin/" >
-                <img src="/getpro/habr/avatars/a15/01d/305/a1501d305b24b29765a9a63b93970230.jpg" class="post-author__pic"/>@ekubyshin
+              <a title="Автор публикации" class="post-author__link" href="/users/{{nickname}}/" >
+                <img src="/img/avatars/{{nickname}}.jpg" class="post-author__pic"/>@{{nickname}}
               </a>
             </li>
             <li class="postinfo-panel__item postinfo-panel__item_comments">
               <div class="post-comments">
-                <a href="/post/270673/#comments" class="post-comments__link" title="Комментировать">
+                <a href="/post/{{id}}/#comments" class="post-comments__link" title="Комментировать">
                   <span class="post-comments_all">Комментировать</span>
                 </a>
               </div>
