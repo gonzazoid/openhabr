@@ -21,6 +21,8 @@ gulp.task("draft", function(){
         .pipe(gulp.dest("build/static/fonts/"));
     gulp.src("src/static/img/*.*")
         .pipe(gulp.dest("build/static/img/"));
+    gulp.src("src/static/img/avatars/*.*")
+        .pipe(gulp.dest("build/static/img/avatars/"));
 });
 
 gulp.task("master", function(){
