@@ -88,12 +88,12 @@
         </div>
 
         <div class="author-info ">
-          <a href="/users/Vilyx" class="author-info__image">
-            <img src="/getpro/habr/avatars/d13/65e/f81/d1365ef8164fb6e394b5da094ba5c9d3.jpg" class="author-info__image-pic"/>
+          <a href="/users/{{article.nickname}}" class="author-info__image">
+            <img src="/img/avatars/{{article.nickname}}.jpg" class="author-info__image-pic"/>
           </a>
           <div class="author-info__desc">
             <div class="author-info__username">
-              <a href="/users/Vilyx" class="author-info__nickname">@{{nickname}}</a>
+              <a href="/users/{{article.nickname}}" class="author-info__nickname">@{{article.nickname}}</a>
               <div class="karma__widjet voting-wjt voting-wjt_small js-karma  " title="Карма пользователя">
                 <div class="voting-wjt__counter voting-wjt__counter_positive">
                   <span class="voting-wjt__label">карма</span>
