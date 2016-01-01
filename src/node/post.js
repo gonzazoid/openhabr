@@ -32,7 +32,7 @@ var worker = function(request, response){
             text: sql
 	   ,values: [request.post.id]
 	}, function(err, result){
-            done();
+            //done();
 	    if(err){
 		console.log(err);
                 response.end();
@@ -58,6 +58,24 @@ var worker = function(request, response){
                 }
             });
             console.log(result.rows);
+            //если есть комментарии - вытащим их (в дальнейшем надо перевести на queue, пока тянем последовательно
+            //или отрисовку комментов сделать на клиенте? С точки зрения производительности - да, а вот с точки зрения индексации
+            //лучше все таки комменты отдавать статикой
+            //ok, сделаем и так и так
+            sql = "SELECT * FROM comments WHERE article_id = $1;";
+            pgClient.query({
+                text: sql
+	       ,values: [request.post.id]
+	    }, function(err, result){
+                done();
+	        if(err){
+                //TODO тут бы по хорошему вывести статью, просто без комментариев
+		    console.log(err);
+                    response.end();
+		    return;
+	        }
+                console.log(result.rows);
+             });
             var headers = {};
 
             headers['Content-Type'] = 'text/html';
