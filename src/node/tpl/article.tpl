@@ -23,7 +23,7 @@
       </h1>
       <div class="hubs">
         {{#article.hubs}}
-          <a href="/hub/{{name}}/" class="hub " title="Вы не подписаны на этот хаб" >{{title}}</a> 
+          <a href="/hub/{{name}}/" class="hub " title="Вы не подписаны на этот хаб" >{{title}}</a>, 
         {{/article.hubs}}
       </div>
       <div class="content html_format">
