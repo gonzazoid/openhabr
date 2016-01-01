@@ -97,12 +97,12 @@
               <div class="karma__widjet voting-wjt voting-wjt_small js-karma  " title="Карма пользователя">
                 <div class="voting-wjt__counter voting-wjt__counter_positive">
                   <span class="voting-wjt__label">карма</span>
-                  <span class="voting-wjt__counter-score js-karma_num">71,0</span>
+                  <span class="voting-wjt__counter-score js-karma_num">{{article.carma}}</span>
                 </div>
               </div>
               <div class="user-rating" title="Рейтинг пользователя">
                 <span class="user-rating__label">рейтинг</span>
-                <span class="user-rating__value">–0,6</span>
+                <span class="user-rating__value">{{article.u_rating}}</span>
               </div>
             </div>
           </div>
