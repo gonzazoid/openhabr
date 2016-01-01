@@ -56,6 +56,7 @@ var worker = function(request, response){
                     }
                 }
             });
+            console.log(result.rows);
             var headers = {};
 
             headers['Content-Type'] = 'text/html';
