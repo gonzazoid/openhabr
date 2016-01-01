@@ -25,7 +25,8 @@ var worker = function(request, response){
     	    return;
 	}
         //TODO так мы светим и черновики. Где будем проверять - в запросе или же после получения данных из базы?
-        var sql = "SELECT * FROM articles WHERE id = $1;";
+        //var sql = "SELECT * FROM articles WHERE id = $1 AND draft = false;";
+        var sql = "SELECT articles.*, M.hub_name, M.hub_title, M.hub_id FROM articles, (SELECT I.id, array_agg(J.title) as hub_title, array_agg(J.name) as hub_name, array_agg(J.id) as hub_id FROM (SELECT * FROM articles WHERE id = 2 AND draft = false) I, hubs J WHERE J.id = ANY(i.hubs) GROUP BY I.id) M WHERE M.id = articles.id;"
         pgClient.query({
             text: sql
 	   ,values: [request.post.id]
@@ -39,6 +40,22 @@ var worker = function(request, response){
             if(result.rows.length != 1){
                 //либо статья не найдена либо найдено больше одной статьи (что станно)
             }
+            result.rows.forEach(function(item, key, holder){
+                var hubs = [];
+                var i, l;
+                if(!item.hubs.length) return;
+                for(i=0, l=item.hub_id.length; i<l; i++){
+                    hubs[item.hub_id[i]] = {id: item.hub_id[i], name: item.hub_name[i], title: item.hub_title[i]};
+                }
+                for(i=0, l=item.hubs.length; i<l; i++){
+                    if(item.hubs[i] in hubs){
+                        item.hubs[i] = hubs[item.hubs[i]];
+                    }else{
+                        //этот код никогда не должен сработать!
+                        delete(item.hubs[i]);
+                    }
+                }
+            });
             var headers = {};
 
             headers['Content-Type'] = 'text/html';
