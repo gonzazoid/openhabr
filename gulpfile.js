@@ -19,6 +19,8 @@ gulp.task("draft", function(){
         .pipe(gulp.dest("build/static/css/"));
     gulp.src("src/static/fonts/*.*")
         .pipe(gulp.dest("build/static/fonts/"));
+    gulp.src("src/static/img/*.*")
+        .pipe(gulp.dest("build/static/img/"));
 });
 
 gulp.task("master", function(){
