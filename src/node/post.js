@@ -88,8 +88,14 @@ var worker = function(request, response){
                 //ok, перекидываем
                 var by_id = {};
                 for(i=0, l=result.rows.length; i<l; i++){
+                    result.rows.comments = [];
                     by_id[result.rows[i].id] = result.rows[i];
                 }
+                //ok, догружаем
+                for(i=0, l=result.rows.length; i<l; i++){
+                    by_id[result.rows[i].reply_to].push(result.rows[i]);
+                }
+
                 var headers = {};
 
                 headers['Content-Type'] = 'text/html';
