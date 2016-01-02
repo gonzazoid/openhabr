@@ -88,7 +88,7 @@ var worker = function(request, response){
                 //ok, перекидываем
                 var by_id = {};
                 for(i=0, l=result.rows.length; i<l; i++){
-                    result.rows.comments = [];
+                    result.rows[i].comments = [];
                     by_id[result.rows[i].id] = result.rows[i];
                 }
                 //ok, догружаем
