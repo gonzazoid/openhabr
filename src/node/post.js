@@ -97,7 +97,7 @@ var worker = function(request, response){
                 }
                 //ok, в by_id["0"] имеем все дерево комментов
                 //пробуем рекурсивный шаблон вывода
-                article.comments = by_id["0"];
+                article.comments = by_id["0"].comments;
 
                 var headers = {};
 
