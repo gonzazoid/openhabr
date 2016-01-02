@@ -58,6 +58,7 @@ var worker = function(request, response){
                 }
             });
             console.log(result.rows);
+            var article = result.rows[0];
             //если есть комментарии - вытащим их (в дальнейшем надо перевести на queue, пока тянем последовательно
             //или отрисовку комментов сделать на клиенте? С точки зрения производительности - да, а вот с точки зрения индексации
             //лучше все таки комменты отдавать статикой
@@ -75,19 +76,20 @@ var worker = function(request, response){
 		    return;
 	        }
                 console.log(result.rows);
+                var headers = {};
+
+                headers['Content-Type'] = 'text/html';
+                headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+                headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+                headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+                //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+
+                response.writeHead(200, "Ok", headers);
+                var output = mustache.render(pattern, {user: {name: "me"}, article: article});
+                response.write(output);
+                response.write(JSON.stringify(result.rows));
+                response.end();
              });
-            var headers = {};
-
-            headers['Content-Type'] = 'text/html';
-            headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-            headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-            headers['Pragma'] = ' no-cache'; // HTTP/1.1 
-            //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
-
-            response.writeHead(200, "Ok", headers);
-            var output = mustache.render(pattern, {user: {name: "me"}, article: result.rows[0]});
-            response.write(output);
-            response.end();
 	});
     });
 };
