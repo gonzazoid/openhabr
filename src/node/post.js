@@ -93,7 +93,7 @@ var worker = function(request, response){
                 }
                 //ok, догружаем
                 for(i=0, l=result.rows.length; i<l; i++){
-                    by_id[result.rows[i].reply_to].push(result.rows[i]);
+                    by_id[result.rows[i].reply_to].comments.push(result.rows[i]);
                 }
 
                 var headers = {};
