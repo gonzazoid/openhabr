@@ -57,7 +57,7 @@ var worker = function(request, response){
                     }
                 }
             });
-            console.log(result.rows);
+            //console.log(result.rows);
             var article = result.rows[0];
             //если есть комментарии - вытащим их (в дальнейшем надо перевести на queue, пока тянем последовательно
             //или отрисовку комментов сделать на клиенте? С точки зрения производительности - да, а вот с точки зрения индексации
@@ -75,7 +75,7 @@ var worker = function(request, response){
                     response.end();
 		    return;
 	        }
-                console.log(result.rows);
+                //console.log(result.rows);
                 //ок, выстроим дерево
                 //коммент - объект вида "{id: "", body: "", author: "", comments: []}
                 //перенесем все корневые комменты в наш массив
@@ -83,8 +83,8 @@ var worker = function(request, response){
                 //пройдемся исходному списку и по reply_to запушим комменты в comments владельца
                 //делаем вывод корневых эелементов - имеем построенное дерево, но! пока еще не упорядоченное по stamp-ам
                 //хотя есть мысль что если взять изначально отсортированный список (силами sql) - то и результат будет отсортирован
-                var root = result.rows.filter((cv) => cv.reply_to == 0);
-                console.log(root);
+                //var root = result.rows.filter((cv) => cv.reply_to == 0);
+                //console.log(root);
                 //ok, перекидываем
                 var by_id = {"0": {"comments": []}};
                 for(i=0, l=result.rows.length; i<l; i++){
@@ -95,6 +95,9 @@ var worker = function(request, response){
                 for(i=0, l=result.rows.length; i<l; i++){
                     by_id[result.rows[i].reply_to].comments.push(result.rows[i]);
                 }
+                //ok, в by_id["0"] имеем все дерево комментов
+                //пробуем рекурсивный шаблон вывода
+                article.comments = by_id["0"];
 
                 var headers = {};
 
@@ -107,8 +110,8 @@ var worker = function(request, response){
                 response.writeHead(200, "Ok", headers);
                 var output = mustache.render(pattern, {user: {name: "me"}, article: article});
                 response.write(output);
-                response.write(JSON.stringify(result.rows));
-                response.write(JSON.stringify(by_id));
+                //response.write(JSON.stringify(result.rows));
+                //response.write(JSON.stringify(by_id));
                 response.end();
              });
 	});
