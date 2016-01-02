@@ -109,7 +109,7 @@ var worker = function(request, response){
                 //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
 
                 response.writeHead(200, "Ok", headers);
-                var output = mustache.render(pattern, {user: {name: "me"}, article: article}, {comments: comments_tpl});
+                var output = mustache.render(pattern, {user: {name: "me"}, article: article}, {comment: comment_tpl});
                 response.write(output);
                 //response.write(JSON.stringify(result.rows));
                 response.write(JSON.stringify(article));
