@@ -86,7 +86,7 @@ var worker = function(request, response){
                 var root = result.rows.filter((cv) => cv.reply_to == 0);
                 console.log(root);
                 //ok, перекидываем
-                var by_id = {};
+                var by_id = {"0": {"comments": []}};
                 for(i=0, l=result.rows.length; i<l; i++){
                     result.rows[i].comments = [];
                     by_id[result.rows[i].id] = result.rows[i];
