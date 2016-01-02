@@ -155,6 +155,7 @@
     </div>
   </div>
   <div class="reply_comments" id="reply_comments_8281983">
+{{> comments}}
   </div>
 </div>
 {{/article.comments}}
