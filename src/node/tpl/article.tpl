@@ -121,7 +121,7 @@
           </span>
         </h2>
 <!-- comments -->
-{{#comments}}
+{{#article.comments}}
 <div class="comment_item" id="comment_8281181" >
   <span class="parent_id" data-parent_id="0"></span>
   <div class="comment_body ">
@@ -157,7 +157,7 @@
   <div class="reply_comments" id="reply_comments_8281983">
   </div>
 </div>
-{{comments}}
+{{article.comments}}
 <!-- comments -->
       </div>
     </div>
