@@ -7,6 +7,7 @@ var mustache = require("mustache");
 var config = require("./config");
 
 var pattern = fs.readFileSync("./tpl/article.tpl", "utf-8");
+var comment_tpl = fs.readFileSync("./tpl/comment.tpl", "utf-8");
 
 var worker = function(request, response){
     //обработаем запрос, вытащим id запрашиваемой статьи
@@ -108,7 +109,7 @@ var worker = function(request, response){
                 //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
 
                 response.writeHead(200, "Ok", headers);
-                var output = mustache.render(pattern, {user: {name: "me"}, article: article});
+                var output = mustache.render(pattern, {user: {name: "me"}, article: article}, {comments: comments_tpl});
                 response.write(output);
                 //response.write(JSON.stringify(result.rows));
                 response.write(JSON.stringify(article));
