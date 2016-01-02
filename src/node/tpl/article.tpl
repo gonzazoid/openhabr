@@ -121,6 +121,7 @@
           </span>
         </h2>
 <!-- comments -->
+{{#comments}}
 <div class="comment_item" id="comment_8281181" >
   <span class="parent_id" data-parent_id="0"></span>
   <div class="comment_body ">
@@ -147,7 +148,7 @@
       </div>
     </div>
     <div class="message html_format ">
-          ну так rigger это и не шаблонизатор. Вся его функциональность — простой импорт чего угодно и куда угодно. И он в своем деле хорош :)
+         {{body}} 
     </div>
     <div class="reply_form_placeholder"></div>
     <div class="reply">
@@ -156,6 +157,7 @@
   <div class="reply_comments" id="reply_comments_8281983">
   </div>
 </div>
+{{comments}}
 <!-- comments -->
       </div>
     </div>
