@@ -85,6 +85,11 @@ var worker = function(request, response){
                 //хотя есть мысль что если взять изначально отсортированный список (силами sql) - то и результат будет отсортирован
                 var root = result.rows.filter((cv) => cv.reply_to == 0);
                 console.log(root);
+                //ok, перекидываем
+                var by_id = {};
+                for(i=0, l=result.rows.length; i<l; i++){
+                    by_id[result.rows[i].id] = result.rows[i];
+                }
                 var headers = {};
 
                 headers['Content-Type'] = 'text/html';
@@ -97,6 +102,7 @@ var worker = function(request, response){
                 var output = mustache.render(pattern, {user: {name: "me"}, article: article});
                 response.write(output);
                 response.write(JSON.stringify(result.rows));
+                response.write(JSON.stringify(by_id));
                 response.end();
              });
 	});
