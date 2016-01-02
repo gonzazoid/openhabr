@@ -107,12 +107,7 @@
             </div>
           </div>
 
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="column-wrapper column-wrapper_comments">
+ <div class="column-wrapper column-wrapper_comments">
     <div class="content_left">
       <div class="comments_list " id="comments">
         <h2 class="title ">Комментарии (<span id="comments_count">114</span>)
@@ -124,6 +119,13 @@
       </div>
     </div>
   </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
 
 </div>
 </div>
