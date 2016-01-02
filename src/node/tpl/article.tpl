@@ -107,6 +107,10 @@
             </div>
           </div>
 
+
+
+        </div>
+
  <div class="column-wrapper column-wrapper_comments">
     <div class="content_left">
       <div class="comments_list " id="comments">
@@ -120,7 +124,6 @@
     </div>
   </div>
 
-        </div>
       </div>
     </div>
   </div>
