@@ -157,7 +157,7 @@
   <div class="reply_comments" id="reply_comments_8281983">
   </div>
 </div>
-{{article.comments}}
+{{/article.comments}}
 <!-- comments -->
       </div>
     </div>
