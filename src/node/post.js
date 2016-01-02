@@ -7,7 +7,7 @@ var mustache = require("mustache");
 var config = require("./config");
 
 var pattern = fs.readFileSync("./tpl/article.tpl", "utf-8");
-var comment_tpl = fs.readFileSync("./tpl/comment.tpl", "utf-8");
+var comment_tpl = fs.readFileSync("./tpl/comments.tpl", "utf-8");
 
 var worker = function(request, response){
     //обработаем запрос, вытащим id запрашиваемой статьи
