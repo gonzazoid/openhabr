@@ -25,7 +25,7 @@ var worker = function(request, response){
                     response.end();
     	            return;
 	        }
-                var sql = "select adduser($1, $2, $3);"
+                var sql = "select * from adduser($1, $2, $3);"
                 pgClient.query({
                     text: sql
 	           ,values: [request.post.nickname, request.post.mailbox, sha3(request.post.sword)]
