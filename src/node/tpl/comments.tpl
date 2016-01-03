@@ -3,10 +3,10 @@
   <div class="comment_body ">
     <div class="info comments-list__item comment-item  is_topic_starter  " rel="8281983">
       <div class="folding-dot-holder"><div class="folding-dot"></div></div>
-      <a href="http://habrahabr.ru/users/Insayt/" class="comment-item__avatar">
-        <img src="//habrastorage.org/getpro/habr/avatars/d09/296/676/d09296676a6ce3afbcf2d55d871951c4_small.jpg" alt="" class="comment-item__avatar-img"/>
+      <a href="http://habrahabr.ru/users/{{nickname}}/" class="comment-item__avatar">
+        <img src="/img/avatars/{{nickname}}.jpg" alt="" class="comment-item__avatar-img"/>
       </a>
-      <a href="http://habrahabr.ru/users/Insayt/" class="comment-item__username">Insayt</a>
+      <a href="http://habrahabr.ru/users/{{nickname}}/" class="comment-item__username">Insayt</a>
       <time class="comment-item__time_published">15 февраля 2015 в 19:14</time>
       <span class="comment-item__controls">
         <a href="#comment_{{id}}" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
