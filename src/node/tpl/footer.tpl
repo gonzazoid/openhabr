@@ -16,8 +16,8 @@
     <dd><a href="/auth/">Войти</a></dd>
     <dd><a href="/register/">Регистрация</a></dd>
   </dl>
-  <dl>
 {{/user}}
+  <dl>
     <dt>Разделы</dt>
     <dd><a href="/posts/top/">Публикации</a></dd>
     <dd><a href="/hubs/">Хабы</a></dd>
