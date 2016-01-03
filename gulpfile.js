@@ -18,7 +18,7 @@ gulp.task("draft", function(){
 
     gulp.src("src/static/*.*")
         .pipe(gulp.dest("build/static/"));
-    gulp.src("src/static/*.*")
+    gulp.src("src/static/css/*.*")
         .pipe(gulp.dest("build/static/css/"));
     gulp.src("src/static/fonts/*.*")
         .pipe(gulp.dest("build/static/fonts/"));
