@@ -1,4 +1,5 @@
 var http = require("http");
+var qs = require('querystring');
 var fs = require("fs");
 var pg = require("pg");
 var mustache = require("mustache");
@@ -16,11 +17,9 @@ var worker = function(request, response){
     switch(request.url){
         case "/newuser":
             //регистрируем новичка
-            console.log
+            console.log(request.post);
 
     }
-
-
 
     //если нет никаких action - просто выводим форму регистрации
     pg.connect(config.common.postgres, function (err, pgClient, done) {
@@ -58,24 +57,28 @@ var worker = function(request, response){
 	});
     });
 };
-var starter = function(request, response){
-    var jsonString = '';
-    request.on('data', function (data) {//TODO контролировать размер поста
-        jsonString += data;
-    });
-    request.on('end', function () {
-        console.log(jsonString);
-        try {//TEST me!!!
-            request.post = jsonString.length ? JSON.parse(jsonString) : {};
-        } catch (error) {
-            //console.log(jsonString);
-            response.statusCode = 403;
-            response.statusMessage = 'Forbidden';
-            response.end();
-            return;
-        }
-        handler(request, response);
-    });
+var starter = function (request, response) {
+    if (request.method == 'POST') {
+        var body = '';
+
+        request.on('data', function (data) {
+            body += data;
+
+            // Too much POST data, kill the connection!
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6)
+                request.connection.destroy();
+        });
+
+        request.on('end', function () {
+            request.post = qs.parse(body);
+            worker(request, response);
+        });
+    }else{
+        request.post = {};
+        worker(request, response);
+    }
 };
+
 http.createServer(starter).listen(7502, "localhost");
 console.log('views.server running at http://localhost:7502');
