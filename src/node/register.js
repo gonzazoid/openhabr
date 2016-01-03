@@ -14,7 +14,7 @@ var worker = function(request, response){
     
     //проверим action
     //если newuser - пришли данные на регистрацию
-    console.log(request.url);
+    console.log(request.post);
     switch(request.url){
         case "/newuser":
             //регистрируем новичка
