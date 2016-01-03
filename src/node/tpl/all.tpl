@@ -10,7 +10,7 @@
 <link href="/css/hubs_all.css" rel="stylesheet" media="all" />
 <link href="/css/main.css" rel="stylesheet" media="all" />
 
-<link rel="icon" href="http://openhabr.net/favicon.ico" /> 
+<link rel="shortcut icon" href="/favicon.ico" /> 
 </head>
 <body>
 <div id="layout">
