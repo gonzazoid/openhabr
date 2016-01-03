@@ -1,11 +1,12 @@
 {
   "name": "openhabr.net",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "habr like open community's site engine",
   "main": "index.js",
   "dependencies": {
     "mustache": "^2.2.1"
    ,"pg":       "^4.4.3"
+   ,"js-sha3":  "^0.5.1"
   },
   "devDependencies": {},
   "scripts": {

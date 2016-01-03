@@ -2,6 +2,7 @@ var http = require("http");
 var qs = require('querystring');
 var fs = require("fs");
 var pg = require("pg");
+var sha3 = require("js-sha3").sha3_512;
 var mustache = require("mustache");
 
 var config = require("./config");
@@ -18,7 +19,39 @@ var worker = function(request, response){
         case "/newuser":
             //регистрируем новичка
             console.log(request.post);
+            pg.connect(config.common.postgres, function (err, pgClient, done) {
+	    if(err){
+                console.log(err);
+                response.end();
+    	        return;
+	    }
+            var sql = "select adduser($1, $2, $3);"
+            pgClient.query({
+                text: sql
+	        values: [request.post.nickname, request.post.mailbox, sha3(request.post.sword)]
+	    }, function(err, result){
+                done();
+	        if(err){
+		    console.log(err);
+                    response.end();
+		    return;
+	        }
+                console.log(result);
+                var headers = {};
 
+                headers['Content-Type'] = 'text/html';
+                headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+                headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+                headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+                //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+
+                response.writeHead(200, "Ok", headers);
+                var output = mustache.render(pattern, {});
+                response.write(output);
+	        //response.write(JSON.stringify(result.rows));
+                response.end();
+            });
+            break;
     }
 
     //если нет никаких action - просто выводим форму регистрации
