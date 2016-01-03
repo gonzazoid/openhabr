@@ -53,43 +53,46 @@ var worker = function(request, response){
                 });
             });
             break;
+        case "/":
+            //если нет никаких action - просто выводим форму регистрации
+            pg.connect(config.common.postgres, function (err, pgClient, done) {
+	        if(err){
+                    console.log(err);
+                    response.end();
+    	            return;
+	        }
+
+                var sql = ""
+                pgClient.query({
+                    text: sql
+	            // ,values: argv
+	        }, function(err, result){
+                    done();
+	            if(err){
+		        console.log(err);
+                        response.end();
+		        return;
+	            }
+            
+                    var headers = {};
+
+                    headers['Content-Type'] = 'text/html';
+                    headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+                    headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+                    headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+                    //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+
+                    response.writeHead(200, "Ok", headers);
+                    var output = mustache.render(pattern, {});
+                    response.write(output);
+	            //response.write(JSON.stringify(result.rows));
+                    response.end();
+	        });
+            });
+            break;
     }
 
-    //если нет никаких action - просто выводим форму регистрации
-    pg.connect(config.common.postgres, function (err, pgClient, done) {
-	if(err){
-            console.log(err);
-            response.end();
-    	    return;
-	}
 
-        var sql = ""
-        pgClient.query({
-            text: sql
-	   // ,values: argv
-	}, function(err, result){
-            done();
-	    if(err){
-		console.log(err);
-                response.end();
-		return;
-	    }
-            
-            var headers = {};
-
-            headers['Content-Type'] = 'text/html';
-            headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-            headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-            headers['Pragma'] = ' no-cache'; // HTTP/1.1 
-            //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
-
-            response.writeHead(200, "Ok", headers);
-            var output = mustache.render(pattern, {});
-            response.write(output);
-	    //response.write(JSON.stringify(result.rows));
-            response.end();
-	});
-    });
 };
 var starter = function (request, response) {
     if (request.method == 'POST') {
