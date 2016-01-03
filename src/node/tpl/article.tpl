@@ -225,11 +225,11 @@
 
       </div>
     </div>
+{{>footer}}
   </div>
 
  
 
-{{>footer}}
 </div>
 </div>
 </div>
