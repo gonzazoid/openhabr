@@ -9,6 +9,7 @@ var config = require("./config");
 
 var pattern = fs.readFileSync("./tpl/register.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
+var congratulations = fs.readFileSync("./tpl/congratulations.tpl", "utf-8");
 
 var worker = function(request, response){
     
@@ -37,6 +38,22 @@ var worker = function(request, response){
 		        return;
 	            }
                     console.log(result);
+                    // если все хорошо - выставляем куки и поздравляем с регистрацией
+                    if(result.rows[0].adduser){
+                        var headers = {};
+
+                        headers['Content-Type'] = 'text/html';
+                        headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+                        headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+                        headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+                        //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+
+                        response.writeHead(200, "Ok", headers);
+                        var output = mustache.render(congratulations, {user: {nickname: request.post.nickname}}, {footer: footer});
+                        response.write(output);
+	                //response.write(JSON.stringify(result.rows));
+                        response.end();  
+                    }else{//что то пошло не так - просим повторить заново (логин либо почта уже есть в системе)
                     var headers = {};
 
                     headers['Content-Type'] = 'text/html';
@@ -50,49 +67,28 @@ var worker = function(request, response){
                     response.write(output);
 	            //response.write(JSON.stringify(result.rows));
                     response.end();
+                    }
                 });
             });
             break;
         case "/":
             //если нет никаких action - просто выводим форму регистрации
-            pg.connect(config.common.postgres, function (err, pgClient, done) {
-	        if(err){
-                    console.log(err);
-                    response.end();
-    	            return;
-	        }
-
-                var sql = ""
-                pgClient.query({
-                    text: sql
-	            // ,values: argv
-	        }, function(err, result){
-                    done();
-	            if(err){
-		        console.log(err);
-                        response.end();
-		        return;
-	            }
             
-                    var headers = {};
+            var headers = {};
 
-                    headers['Content-Type'] = 'text/html';
-                    headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-                    headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-                    headers['Pragma'] = ' no-cache'; // HTTP/1.1 
-                    //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+            headers['Content-Type'] = 'text/html';
+            headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+            headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+            headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+            //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
 
-                    response.writeHead(200, "Ok", headers);
-                    var output = mustache.render(pattern, {});
-                    response.write(output);
-	            //response.write(JSON.stringify(result.rows));
-                    response.end();
-	        });
-            });
+            response.writeHead(200, "Ok", headers);
+            var output = mustache.render(pattern, {});
+            response.write(output);
+            //response.write(JSON.stringify(result.rows));
+            response.end();
             break;
     }
-
-
 };
 var starter = function (request, response) {
     if (request.method == 'POST') {
@@ -101,9 +97,7 @@ var starter = function (request, response) {
         request.on('data', function (data) {
             body += data;
 
-            // Too much POST data, kill the connection!
-            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-            if (body.length > 1e6)
+            if (body.length > 4096)
                 request.connection.destroy();
         });
 
