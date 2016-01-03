@@ -17,7 +17,7 @@
 <div class="column-wrapper">
 
 <div class="item title required">
-
+<form action="newuser" method="post">
 	<label for="nickname">
 		nickname (login):<sup class="required_field">*</sup>
 	</label>
@@ -32,6 +32,7 @@
 	</label>
 	<input type="password" name="sword" value="">
 <input type="submit" class="btn btn_medium btn_grey" name="submit" value="принимайте гика!">
+</form>
 </div>
 
 </div>
