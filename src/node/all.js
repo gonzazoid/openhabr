@@ -6,6 +6,7 @@ var mustache = require("mustache");
 var config = require("./config");
 
 var pattern = fs.readFileSync("./tpl/all.tpl", "utf-8");
+var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
 var worker = function(request, response){
     pg.connect(config.common.postgres, function (err, pgClient, done) {
@@ -56,7 +57,7 @@ var worker = function(request, response){
             //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
 
             response.writeHead(200, "Ok", headers);
-            var output = mustache.render(pattern, {user: {name: "me"}, articles: result.rows});
+            var output = mustache.render(pattern, {user: {name: "me"}, articles: result.rows}, {footer: footer});
             response.write(output);
 	    response.write(JSON.stringify(result.rows));
             response.end();

@@ -8,6 +8,7 @@ var config = require("./config");
 
 var pattern = fs.readFileSync("./tpl/article.tpl", "utf-8");
 var comment_tpl = fs.readFileSync("./tpl/comments.tpl", "utf-8");
+var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
 var worker = function(request, response){
     //обработаем запрос, вытащим id запрашиваемой статьи
@@ -109,7 +110,7 @@ var worker = function(request, response){
                 //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
 
                 response.writeHead(200, "Ok", headers);
-                var output = mustache.render(pattern, {user: {name: "me"}, article: article}, {comment: comment_tpl});
+                var output = mustache.render(pattern, {user: {name: "me"}, article: article}, {comment: comment_tpl, footer:footer});
                 response.write(output);
                 //response.write(JSON.stringify(result.rows));
                 response.write(JSON.stringify(article));
