@@ -86,8 +86,8 @@
 <div class="footer_panel">
             <div id="footer">
   <dl>
-    <dd><a href="https://habrahabr.ru/auth/login/">Войти</a></dd>
-    <dd><a href="https://habrahabr.ru/auth/register/">Регистрация</a></dd>
+    <dd><a href="/auth/">Войти</a></dd>
+    <dd><a href="/register/">Регистрация</a></dd>
   </dl>
   <dl>
     <dt>Разделы</dt>
