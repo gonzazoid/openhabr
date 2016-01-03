@@ -26,7 +26,7 @@
         <label for="mailbox">
 		mail:<sup class="required_field">*</sup>
 	</label>
-	<input type="text" name="mail" value="">
+	<input type="text" name="mailbox" value="">
         <label for="sword">
 		password:<sup class="required_field">*</sup>
 	</label>
