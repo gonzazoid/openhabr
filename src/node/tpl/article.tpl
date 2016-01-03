@@ -56,7 +56,7 @@
       </div>
 
     </div>
-    <div class="profile-header__buttons">
+    <div class="profile-header__buttons" style="display: inline-block;">
           <button type="button" class="btn btn_blue btn_large " id="followUser" title="Подписаться на пользователя" data-login="{{article.nickname}}">Подписаться</button>
 
           <button type="button" class="btn btn_blue btn_subscribed btn_large hidden" id="unfollowUser" title="Вы подписаны на пользователя" data-login="{{article.nickname}}">Подписан</button>
