@@ -229,8 +229,8 @@
 
  
 
-</div>
 {{>footer}}
+</div>
 </div>
 </div>
 </div>
