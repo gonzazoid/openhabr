@@ -34,7 +34,7 @@
         
       </div>
         <div class="author-info__specialization">
-          Редактор Хабрахабра
+         {{article.u_status}} 
         </div>
     </div>
   </div>
