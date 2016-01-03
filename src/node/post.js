@@ -113,7 +113,7 @@ var worker = function(request, response){
                 var output = mustache.render(pattern, {user: {name: "me"}, article: article}, {comment: comment_tpl, footer:footer});
                 response.write(output);
                 //response.write(JSON.stringify(result.rows));
-                response.write(JSON.stringify(article));
+                //response.write(JSON.stringify(article));
                 response.end();
              });
 	});

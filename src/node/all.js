@@ -59,7 +59,7 @@ var worker = function(request, response){
             response.writeHead(200, "Ok", headers);
             var output = mustache.render(pattern, {user: {name: "me"}, articles: result.rows}, {footer: footer});
             response.write(output);
-	    response.write(JSON.stringify(result.rows));
+	    //response.write(JSON.stringify(result.rows));
             response.end();
 	});
     });
