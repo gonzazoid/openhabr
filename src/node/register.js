@@ -9,6 +9,13 @@ var pattern = fs.readFileSync("./tpl/register.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
 var worker = function(request, response){
+    //проверим action
+    //если newuser - пришли данные на регистрацию
+    console.log(request.url);
+
+
+
+    //если нет никаких action - просто выводим форму регистрации
     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	if(err){
             console.log(err);
