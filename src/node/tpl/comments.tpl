@@ -6,7 +6,7 @@
       <a href="http://habrahabr.ru/users/{{nickname}}/" class="comment-item__avatar">
         <img src="/img/avatars/{{nickname}}.jpg" alt="" class="comment-item__avatar-img"/>
       </a>
-      <a href="http://habrahabr.ru/users/{{nickname}}/" class="comment-item__username">Insayt</a>
+      <a href="/users/{{nickname}}/" class="comment-item__username">{{nickname}}</a>
       <time class="comment-item__time_published">15 февраля 2015 в 19:14</time>
       <span class="comment-item__controls">
         <a href="#comment_{{id}}" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
