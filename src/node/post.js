@@ -64,7 +64,7 @@ var worker = function(request, response){
             //или отрисовку комментов сделать на клиенте? С точки зрения производительности - да, а вот с точки зрения индексации
             //лучше все таки комменты отдавать статикой
             //ok, сделаем и так и так
-            sql = "SELECT * FROM comments WHERE article_id = $1;";
+            sql = "SELECT comments.*, users.nickname FROM comments, users WHERE article_id = $1 AND comments.author = users.id;";
             pgClient.query({
                 text: sql
 	       ,values: [request.post.id]
