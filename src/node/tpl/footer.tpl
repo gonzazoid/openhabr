@@ -1,10 +1,23 @@
 <div class="footer_panel">
             <div id="footer">
+{{^user}}
+<dl class="user">
+    <dt><a href="/users/{{user.nickname}}/">{{user.nickname}}</a></dt>
+    <dd><a href="http://habrahabr.ru/feed/">Лента</a></dd>
+    <dd><a href="/tracker/">Трекер</a></dd>
+      <dd><a href="/sandbox/add/">Написать</a></dd>
+        <dd><a href="/auth/settings/upgrade/">Read-only</a></dd>
+
+      <dd><a href="/auth/settings/">Настройки</a></dd>
+  </dl>
+{{/user}}
+{{#user}
   <dl>
     <dd><a href="/auth/">Войти</a></dd>
     <dd><a href="/register/">Регистрация</a></dd>
   </dl>
   <dl>
+{{/user}}
     <dt>Разделы</dt>
     <dd><a href="/posts/top/">Публикации</a></dd>
     <dd><a href="/hubs/">Хабы</a></dd>
