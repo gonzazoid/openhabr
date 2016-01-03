@@ -31,7 +31,7 @@
 		password:<sup class="required_field">*</sup>
 	</label>
 	<input type="password" name="sword" value="">
-<input type="submit" class="btn btn_huge btn_green" name="submit" value="принимайте гика!">
+<input type="submit" class="btn btn_medium btn_grey" name="submit" value="принимайте гика!">
 </div>
 
 </div>
