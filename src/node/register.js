@@ -5,7 +5,7 @@ var mustache = require("mustache");
 
 var config = require("./config");
 
-var pattern = fs.readFileSync("./tpl/all.tpl", "utf-8");
+var pattern = fs.readFileSync("./tpl/register.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
 var worker = function(request, response){
