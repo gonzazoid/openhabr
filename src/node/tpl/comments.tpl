@@ -9,7 +9,7 @@
       <a href="http://habrahabr.ru/users/Insayt/" class="comment-item__username">Insayt</a>
       <time class="comment-item__time_published">15 февраля 2015 в 19:14</time>
       <span class="comment-item__controls">
-        <a href="#comment_8281983" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+        <a href="#comment_{{id}}" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
         <a href="#" class="icon_comment-favorite add" onclick="return comments_add_to_favorite(this, '3', 8281983 )" title="В избранное"></a>
         <span class="icon_comment-tree js-comment_tree" data-id="8281983" data-parent_id="8281885" title="Показать ветку комментариев"></span>
         <a href="#comment_8281885" class="icon_comment-parent js-comment_parent" data-id="8281983" data-parent_id="8281885" title="Показать предыдущий комментарий"></a>
