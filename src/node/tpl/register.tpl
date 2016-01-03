@@ -18,13 +18,20 @@
 
 <div class="item title required">
 
-	<label for="title">
+	<label for="nickname">
 		nickname (login):<sup class="required_field">*</sup>
 	</label>
 	<input type="text" name="nickname" value="">
 
-	<div class="error" style="display: none;"></div>
-
+        <label for="mailbox">
+		mail:<sup class="required_field">*</sup>
+	</label>
+	<input type="text" name="mail" value="">
+        <label for="sword">
+		password:<sup class="required_field">*</sup>
+	</label>
+	<input type="password" name="sword" value="">
+<input type="submit" class="btn btn_huge btn_green" name="submit" value="принимайте гика!">
 </div>
 
 </div>
