@@ -9,12 +9,14 @@ var pattern = fs.readFileSync("./tpl/register.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
 var worker = function(request, response){
+    
     //проверим action
     //если newuser - пришли данные на регистрацию
     console.log(request.url);
     switch(request.url){
         case "/newuser":
             //регистрируем новичка
+            console.log
 
     }
 
@@ -56,6 +58,24 @@ var worker = function(request, response){
 	});
     });
 };
-
-http.createServer(worker).listen(7502, "localhost");
+var starter = function(request, response){
+    var jsonString = '';
+    request.on('data', function (data) {//TODO контролировать размер поста
+        jsonString += data;
+    });
+    request.on('end', function () {
+        console.log(jsonString);
+        try {//TEST me!!!
+            request.post = jsonString.length ? JSON.parse(jsonString) : {};
+        } catch (error) {
+            //console.log(jsonString);
+            response.statusCode = 403;
+            response.statusMessage = 'Forbidden';
+            response.end();
+            return;
+        }
+        handler(request, response);
+    });
+};
+http.createServer(starter).listen(7502, "localhost");
 console.log('views.server running at http://localhost:7502');
