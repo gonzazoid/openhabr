@@ -57,7 +57,7 @@
               </div>
             </li>
             <li class="postinfo-panel__item">
-              <div class="views-count_post" title="Просмотры публикации">30,4k</div>
+              <div class="views-count_post" title="Просмотры публикации">{{article.views}}</div>
             </li>
             <li class="postinfo-panel__item">
               <div class="favorite-wjt favorite">
@@ -114,7 +114,7 @@
  <div class="column-wrapper column-wrapper_comments">
     <div class="content_left">
       <div class="comments_list " id="comments">
-        <h2 class="title ">Комментарии (<span id="comments_count">114</span>)
+        <h2 class="title ">Комментарии (<span id="comments_count">{{article.comments_count}}</span>)
           <span class="subscribe_comments"> отслеживать новые: 
 	    <label ><input type="checkbox" id="subscribe_comments" rel="{target_type:'2',target_id:250569 }"  /> в почте</label>
 	    <label ><input type="checkbox" id="tracker_comments" rel="{target_type:'2',target_id:250569 }"  /> в трекере</label>
