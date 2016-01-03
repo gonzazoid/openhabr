@@ -64,7 +64,7 @@
                 <button type="button" class="favorite-wjt__button add" title="Добавить в избранное" onclick="return posts_add_to_favorite(this, '2', 274219);">
                   <span>В избранное</span>
                 </button>
-                <span class="favorite-wjt__counter js-favs_count" title="Количество пользователей, добавивших публикацию в избранное">41</span>
+                <span class="favorite-wjt__counter js-favs_count" title="Количество пользователей, добавивших публикацию в избранное">{{article.favorites}}</span>
               </div>
             </li>
             <!-- шеринг в соцсети -->
