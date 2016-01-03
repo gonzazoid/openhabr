@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<meta http-equiv="refresh" content="15; url=/">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- это для постов -->
 <link href="/css/post_common_css.css" rel="stylesheet" media="all" />
