@@ -9,6 +9,7 @@ logs="/www/openhabr.net.$1/logs"
 
 forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/all.log"       --pidFile "$pids/all.pid"       start all.js
 forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/post.log"       --pidFile "$pids/post.pid"       start post.js
+forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/register.log"       --pidFile "$pids/register.pid"       start register.js
 
 # в prod-сборке этого быть не должно. Как это сделать?
 #forever -a -l "$logs/$1/test.log"       --pidFile "$pids/$1/test.pid"       start test.server.js
