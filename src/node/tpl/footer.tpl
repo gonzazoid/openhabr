@@ -11,7 +11,7 @@
       <dd><a href="/auth/settings/">Настройки</a></dd>
   </dl>
 {{/user}}
-{{#user}
+{{#user}}
   <dl>
     <dd><a href="/auth/">Войти</a></dd>
     <dd><a href="/register/">Регистрация</a></dd>
