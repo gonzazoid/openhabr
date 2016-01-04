@@ -50,12 +50,12 @@
             <div class="last_post">последняя публикация: <a href="http://habrahabr.ru/post/273249/" class="grey">Как попасть на дачу президента в пять часов утра</a></div>
          </div>
          <div class="clear"></div>
+{{>footer}}
        </div>
 {{/users}}
     </div>
   </div>
 </div>
-{{>footer}}
 </div>
 </div>
 </div>
