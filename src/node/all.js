@@ -57,7 +57,9 @@ var worker = function(request, response){
             //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
 
             response.writeHead(200, "Ok", headers);
-            var output = mustache.render(pattern, {articles: result.rows}, {footer: footer});
+            var data = {articles: result.rows};
+            if("user" in request) data.user = request.user;
+            var output = mustache.render(pattern, data, {footer: footer});
             response.write(output);
 	    //response.write(JSON.stringify(result.rows));
             response.end();
@@ -65,5 +67,57 @@ var worker = function(request, response){
     });
 };
 
-http.createServer(worker).listen(7500, "localhost");
+var parseCookies = function (request) {//TODO audit&refactoring&error handling
+    //console.log(this.headers);
+    var cookies = {};
+
+    if (request.headers.cookie !== undefined) {
+        var rc = request.headers.cookie.split(';');
+
+        for (var cookie in rc) {
+            var parts = rc[cookie].split('=');
+            //TODO проверка на разбивку (должно быть точно два элемента)
+            if (parts.length !== 2) {
+                //this.forbidden();
+                console.log("wrong cookies");
+            }else{
+                cookies[parts[0].trim()] = parts[1].trim();
+            }
+        }
+    }
+    //console.log(this.cookies);
+    return cookies;
+};
+var start_session = function(request, response){
+    request.cookies = parseCookies(request); 
+    if("id" in request.cookies){
+        //тянем сессию
+        pg.connect(config.common.postgres, function (err, pgClient, done) {
+	    if(err){
+                console.log(err);
+                response.end();
+    	        return;
+	    }
+            var sql = "SELECT * FROM users WHERE sid = $1;"
+            pgClient.query({
+                text: sql
+	       ,values: request.cookies.id
+	    }, function(err, result){
+                done();
+	        if(err){
+		    console.log(err);
+                    response.end();
+		    return;
+	        } 
+                if(result.rows.length == 1){
+                    request.user = result.rows[0];
+                }
+                worker(request, response);
+            });
+        });
+    }
+    worker(request, response);
+};
+
+http.createServer(start_session).listen(7500, "localhost");
 console.log('views.server running at http://localhost:7500');
