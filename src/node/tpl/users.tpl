@@ -21,7 +21,7 @@
 <div id="layout">
 <div id="navbar"></div>
 <div class="inner">
-
+<div class="column-wrapper">
   <div class="page_head">
     <h2 class="title">Пользователи</h2>
   </div>
@@ -56,7 +56,7 @@
   </div>
 </div>
 {{>footer}}
-
+</div>
 </div>
 </div>
 </div>
