@@ -34,13 +34,12 @@
       <div class="users peoples" id="peoples">
 {{#users}}
         <div class="user " id="user_{{id}}">
-          <div class="lion_king"></div>
           <div class="rating">{{rating}}</div>
           <div class="karma">{{carma}}</div>
           <div class="rating_change"></div>
 
           <div class="avatar"><a href="/users/{{nickname}}/">
-        <span class="user-pic_default user-pic_default_47 user-pic_blue"></span>
+<img src="/img/avatars/{{nickname.jpg}}">
     </a>
   </div>
 
