@@ -1,15 +1,14 @@
 <div class="footer_panel">
-            <div id="footer">
+  <div id="footer">
 {{#user}}
-<dl class="user">
-    <dt><a href="/users/{{user.nickname}}/">{{user.nickname}}</a></dt>
-    <dd><a href="http://habrahabr.ru/feed/">Лента</a></dd>
-    <dd><a href="/tracker/">Трекер</a></dd>
+    <dl class="user">
+      <dt><a href="/users/{{user.nickname}}/">{{user.nickname}}</a></dt>
+      <dd><a href="http://habrahabr.ru/feed/">Лента</a></dd>
+      <dd><a href="/tracker/">Трекер</a></dd>
       <dd><a href="/sandbox/add/">Написать</a></dd>
-        <dd><a href="/auth/settings/upgrade/">Read-only</a></dd>
-
+      <dd><a href="/auth/settings/upgrade/">Read-only</a></dd>
       <dd><a href="/auth/settings/">Настройки</a></dd>
-  </dl>
+    </dl>
 {{/user}}
 {{^user}}
   <dl>
@@ -45,22 +44,17 @@
     <dd><a href="/hh/">Работа в IT</a></dd>
   </dl>
   <div class="copyright">
-
     <div class="about">
       <a href="http:///">openHabr</a>
-
       <br><br>
       <a href="/feedback/">Служба поддержки</a><br><br>
-
-
       <div class="social_accounts">
         <a href="https://twitter.com/habrahabr" class="tw"></a>
         <a href="https://www.facebook.com/habrahabr.ru" class="fb"></a>
         <a href="http://vk.com/habr" class="vk"></a>
         <!-- <a href="" class="gp"></a> //-->
       </div>
-
     </div>
   </div>
 </div>
-          </div>
+</div>

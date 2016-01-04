@@ -37,30 +37,21 @@
           <div class="rating">{{rating}}</div>
           <div class="karma">{{carma}}</div>
           <div class="rating_change"></div>
-
-          <div class="avatar"><a href="/users/{{nickname}}/">
-<img src="/img/avatars/{{nickname}}.jpg">
-    </a>
-  </div>
-
-  <div class="info">
-    <div class="userlogin">
-        <div class="username"><a href="/users/{{nickname}}/">{{nickname}}</a></div>
-
-          <div class="buttons">
-            <input type="button" class="btn btn_subscribe  subscribeUser" value="Подписаться" data-id="{{id}}" data-login="{{nickname}}">
-            <input type="button" class="btn btn_subscribe btn_subscribed hidden unsubscribeUser" value="Отписаться" data-id="{{id}}" data-login="{{nickname}}">
-          </div>
-    </div>
-
-    <div class="lifetime">1 месяц на сайте</div>
-    <div class="last_post">последняя публикация: <a href="http://habrahabr.ru/post/273249/" class="grey">Как попасть на дачу президента в пять часов утра</a></div>
-
-
-  </div>
+          <div class="avatar"><a href="/users/{{nickname}}/"><img src="/img/avatars/{{nickname}}.jpg"></a></div>
+          <div class="info">
+            <div class="userlogin">
+              <div class="username"><a href="/users/{{nickname}}/">{{nickname}}</a></div>
+              <div class="buttons">
+                <input type="button" class="btn btn_subscribe  subscribeUser" value="Подписаться" data-id="{{id}}" data-login="{{nickname}}">
+                <input type="button" class="btn btn_subscribe btn_subscribed hidden unsubscribeUser" value="Отписаться" data-id="{{id}}" data-login="{{nickname}}">
+              </div>
+            </div>
+            <div class="lifetime">1 месяц на сайте</div>
+            <div class="last_post">последняя публикация: <a href="http://habrahabr.ru/post/273249/" class="grey">Как попасть на дачу президента в пять часов утра</a></div>
+         </div>
   <div class="clear"></div>
 </div>
-
+</div>
 {{/users}}
     </div>
   </div>
