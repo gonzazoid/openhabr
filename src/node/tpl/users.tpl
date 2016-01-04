@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="layout">
-<div id="navbar"></div>
+  <div id="navbar"></div>
 <div class="inner">
 <div class="column-wrapper">
   <div class="page_head">
@@ -48,12 +48,12 @@
             </div>
             <div class="lifetime">1 месяц на сайте</div>
             <div class="last_post">последняя публикация: <a href="http://habrahabr.ru/post/273249/" class="grey">Как попасть на дачу президента в пять часов утра</a></div>
-         </div>
+        </div>
+    </div>        </div>
+{{/users}}
          <div class="clear"></div>
 {{>footer}}
-       </div>
-{{/users}}
-    </div>
+
   </div>
 </div>
 </div>
