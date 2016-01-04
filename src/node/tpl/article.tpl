@@ -127,7 +127,7 @@
         {{/article.hubs}}
       </div>
       <div class="content html_format">
-        {{article.body}}      
+        {{{article.body}}}      
         <div class="clear"></div>
       </div>
       <ul class="tags icon_tag">

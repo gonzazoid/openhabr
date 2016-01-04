@@ -30,7 +30,7 @@
             {{/hubs}}
           </div>
           <div class="content html_format">
-            {{cut}} 
+            {{{cut}}} 
             <div class="buttons">
               <a class="button habracut" href="/post/{{id}}/#habracut">{{cut_title}}</a>
             </div>
