@@ -4,6 +4,7 @@
 <title>{{article.title}}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
+<link href="/css/users_index.css" rel="stylesheet" media="all" />
 <link href="/css/post_common_css.css" rel="stylesheet" media="all" />
 <link href="/css/posts.css" rel="stylesheet" media="all" />
 <link href="/css/main.css" rel="stylesheet" media="all" />
