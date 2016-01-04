@@ -38,9 +38,10 @@ var worker = function(request, response){
     	            return;
 	        }
                 var sql = "select * from adduser($1, $2, $3, $4);"
+                var sid = rndHex(128);
                 pgClient.query({
                     text: sql
-	           ,values: [request.post.nickname, request.post.mailbox, sha3(request.post.sword), var sid = rndHex(128)]
+	           ,values: [request.post.nickname, request.post.mailbox, sha3(request.post.sword), sid]
 	        }, function(err, result){
                     done();
 	            if(err){
