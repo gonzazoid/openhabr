@@ -28,7 +28,7 @@ var worker = function(request, response){
 
             response.writeHead(200, "Ok", headers);
             //TODO  тут вообще то если пользователь уже авторизован - надо бы ему сообщать об этом
-            var data = {users: result.rows};
+            var data = {};
             if("user" in request) data.user = request.user;
             var output = mustache.render(auth, data, {footer: footer});
             response.write(output);
