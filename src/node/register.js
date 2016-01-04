@@ -11,6 +11,17 @@ var pattern = fs.readFileSync("./tpl/register.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 var congratulations = fs.readFileSync("./tpl/congratulations.tpl", "utf-8");
 
+var rndHex = function (len) {
+    var id = '';
+    var map = '0123456789abcdef';
+
+    for (var $i = 0; $i < len; $i++) {
+        id += map.charAt(Math.floor(Math.random() * 16));
+    }
+
+    return id;
+};
+
 var worker = function(request, response){
     
     //проверим action
@@ -26,10 +37,10 @@ var worker = function(request, response){
                     response.end();
     	            return;
 	        }
-                var sql = "select * from adduser($1, $2, $3);"
+                var sql = "select * from adduser($1, $2, $3, $4);"
                 pgClient.query({
                     text: sql
-	           ,values: [request.post.nickname, request.post.mailbox, sha3(request.post.sword)]
+	           ,values: [request.post.nickname, request.post.mailbox, sha3(request.post.sword), var sid = rndHex(128)]
 	        }, function(err, result){
                     done();
 	            if(err){
@@ -41,7 +52,8 @@ var worker = function(request, response){
                     // если все хорошо - выставляем куки и поздравляем с регистрацией
                     if(result.rows[0].adduser){
                         var headers = {};
-
+                        //куки авторизации
+                        headers["Set-Cookie"] = 'id=' + sid + '; path=/; HttpOnly;';
                         headers['Content-Type'] = 'text/html';
                         headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
                         headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
