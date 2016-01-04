@@ -101,7 +101,7 @@ var start_session = function(request, response){
             var sql = "SELECT * FROM users WHERE sid = $1;"
             pgClient.query({
                 text: sql
-	       ,values: request.cookies.id
+	       ,values: [request.cookies.id]
 	    }, function(err, result){
                 done();
 	        if(err){
