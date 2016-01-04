@@ -39,7 +39,7 @@
           <div class="rating_change"></div>
 
           <div class="avatar"><a href="/users/{{nickname}}/">
-<img src="/img/avatars/{{nickname.jpg}}">
+<img src="/img/avatars/{{nickname}}.jpg">
     </a>
   </div>
 
