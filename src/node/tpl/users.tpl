@@ -20,18 +20,18 @@
 <body>
 <div id="layout">
   <div id="navbar"></div>
-<div class="inner">
-<div class="column-wrapper">
-  <div class="page_head">
-    <h2 class="title">Пользователи</h2>
-  </div>
-  <div class="content_left js-content_left">
-    <div class="peoples_list">
-      <div class="users_header">
-        <div class="rating">рейтинг</div>
-        <div class="karma">карма</div>
+  <div class="inner">
+    <div class="column-wrapper">
+      <div class="page_head">
+        <h2 class="title">Пользователи</h2>
       </div>
-      <div class="users peoples" id="peoples">
+      <div class="content_left js-content_left">
+        <div class="peoples_list">
+          <div class="users_header">
+            <div class="rating">рейтинг</div>
+            <div class="karma">карма</div>
+          </div>
+          <div class="users peoples" id="peoples">
 {{#users}}
         <div class="user " id="user_{{id}}">
           <div class="rating">{{rating}}</div>
@@ -49,14 +49,14 @@
             <div class="lifetime">1 месяц на сайте</div>
             <div class="last_post">последняя публикация: <a href="http://habrahabr.ru/post/273249/" class="grey">Как попасть на дачу президента в пять часов утра</a></div>
         </div>
-    </div>        </div>
+    </div>
 {{/users}}
+ </div>
+</div> </div>
          <div class="clear"></div>
 {{>footer}}
 
-  </div>
-</div>
-</div>
+
 </div>
 </div>
 </div>
