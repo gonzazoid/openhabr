@@ -85,8 +85,9 @@ var start_session = function(request, response){
                 worker(request, response);
             });
         });
+    }else{
+        worker(request, response);
     }
-    worker(request, response);
 };
 var starter = function (request, response) {
     if (request.method == 'POST') {
