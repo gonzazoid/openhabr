@@ -62,7 +62,6 @@
 </div>
 
 {{/users}}
-      </div>
     </div>
   </div>
 {{>footer}}
