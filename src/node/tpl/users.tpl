@@ -49,12 +49,12 @@
             <div class="lifetime">1 месяц на сайте</div>
             <div class="last_post">последняя публикация: <a href="http://habrahabr.ru/post/273249/" class="grey">Как попасть на дачу президента в пять часов утра</a></div>
          </div>
-  <div class="clear"></div>
-</div>
-</div>
+         <div class="clear"></div>
+       </div>
 {{/users}}
     </div>
   </div>
+</div>
 {{>footer}}
 
 </div>
