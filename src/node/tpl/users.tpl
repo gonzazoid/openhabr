@@ -60,8 +60,8 @@
   </div>
   <div class="clear"></div>
 </div>
-{{/users}}
 
+{{/users}}
       </div>
     </div>
   </div>
