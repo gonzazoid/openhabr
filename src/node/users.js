@@ -49,7 +49,7 @@ var worker = function(request, response){
                     response.writeHead(200, "Ok", headers);
                     var data = {users: result.rows};
                     if("user" in request) data.user = request.user;
-                    var output = mustache.render(user, data, {footer: footer});
+                    var output = mustache.render(users, data, {footer: footer});
                     response.write(output);
                     //response.write(JSON.stringify(result.rows));
                     response.end();
@@ -93,7 +93,7 @@ var worker = function(request, response){
                         response.writeHead(200, "Ok", headers);
                         var data = {profile: result.rows[0]};
                         if("user" in request) data.user = request.user;
-                        var output = mustache.render(users, data, {footer: footer});
+                        var output = mustache.render(user, data, {footer: footer});
                         response.write(output);
                         response.end();
                     });
