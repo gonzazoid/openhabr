@@ -7,6 +7,7 @@
 <link href="/css/post_common_css.css" rel="stylesheet" media="all" />
 <link href="/css/posts.css" rel="stylesheet" media="all" />
 <link href="/css/forms.css" rel="stylesheet" media="all" />
+<link href="/css/settings_all.css" rel="stylesheet" media="all" />
 <link href="/css/main.css" rel="stylesheet" media="all" />
 <link href="/css/profile.css" rel="stylesheet" media="all" />
 <style>
