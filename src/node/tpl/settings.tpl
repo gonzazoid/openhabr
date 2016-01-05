@@ -42,7 +42,7 @@
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
           <a href="/auth/settings/account/" class="tab-item " target="_blank">
-            <span class="tab-item__value">
+            <span class="tab-item__value todo">
               Аккаунт&nbsp;
               <strong class="counter"></strong>
               
@@ -51,7 +51,7 @@
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
           <a href="/auth/settings/notifications/" class="tab-item ">
-            <span class="tab-item__value">
+            <span class="tab-item__value todo">
               Уведомления&nbsp;
               <strong class="counter"></strong>
               
@@ -60,7 +60,7 @@
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
           <a href="/auth/settings/upgrade/" class="tab-item ">
-            <span class="tab-item__value">
+            <span class="tab-item__value todo">
               Апгрейд&nbsp;
               <strong class="counter"></strong>
               
@@ -69,7 +69,7 @@
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
           <a href="https://habrahabr.ru/auth/apps/" class="tab-item ">
-            <span class="tab-item__value">
+            <span class="tab-item__value todo">
               Приложения&nbsp;
               <strong class="counter"></strong>
               
@@ -78,8 +78,8 @@
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
           <a href="/auth/settings/others/" class="tab-item ">
-            <span class="tab-item__value">
-              Разные&nbsp;
+            <span class="tab-item__value todo">
+              Разное&nbsp;
               <strong class="counter"></strong>
               
             </span>
