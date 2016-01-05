@@ -4,7 +4,7 @@
     <dl class="user">
       <dt><a href="/users/{{user.nickname}}/">{{user.nickname}}</a></dt>
       <dd><a href="/auth/logout/">logout</a></dd>
-      <dd><a href="/feed/">Лента</a></dd>
+      <dd class="todo"><a href="/feed/">Лента</a></dd>
       <dd><a href="/tracker/">Трекер</a></dd>
       <dd><a href="/sandbox/add/">Написать</a></dd>
       <dd><a href="/auth/settings/upgrade/">Read-only</a></dd>
