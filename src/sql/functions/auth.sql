@@ -10,7 +10,7 @@ AS $_$
 
 BEGIN
 
-UPDATE users SET sid = _sid WHERE nickname = _nickname AND pwd = _pwd RETURNING *;
+RETURN QUERY UPDATE users SET sid = _sid WHERE nickname = _nickname AND pwd = _pwd RETURNING *;
 
 END;
 

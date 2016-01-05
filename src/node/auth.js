@@ -56,7 +56,7 @@ var worker = function(request, response){
                     response.end();
     	            return;
 	        }
-                var sql = "select * from auth($1, $2, $3);"
+                var sql = "select * from auth($1, $2, $3);";
                 pgClient.query({
                     text: sql
 	           ,values: [request.post.nickname, sha3(request.post.sword), rndHex(128)]
@@ -68,6 +68,24 @@ var worker = function(request, response){
     	                return;
 	            }
                     console.log(result.rows);
+                    //здесь и выводим
+                    if(result.rows.length != 1){
+                        //что то пошло не так
+                    }
+                    //response.user = result.rows[0];
+                    if("return" in request.post){
+                        var parsed = url.parse(request.post.return);
+                        headers["Location"] = parsed.hostname == "openhabr.net" ? request.headers.referer : "/"
+                    }else{
+                        headers["Location"] = "/";
+                    }
+                    headers['Content-Type'] = 'text/html';
+                    headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+                    headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+                    headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+            
+                    response.writeHead(303, "See Other", headers);
+                    response.end();
                 });
             });
             break;
