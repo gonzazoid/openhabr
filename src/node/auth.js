@@ -36,6 +36,22 @@ var worker = function(request, response){
             //response.write(JSON.stringify(result.rows));
             response.end();
             break;
+        case "/login/":
+            pg.connect(config.common.postgres, function (err, pgClient, done) {
+	        if(err){
+                    console.log(err);
+                    response.end();
+    	            return;
+	        }
+                var sql = "select * from auth($1, $2, $3);"
+                pgClient.query({
+                    text: sql
+	           ,values: [request.post.nickname, sha3(request.post.sword), rndHex(128)]
+	        }, function(err, result){
+                    done();
+                });
+            });
+            break;
         case "/logout/":
             var headers = {};
 
@@ -56,6 +72,7 @@ var worker = function(request, response){
             
             response.writeHead(303, "See Other", headers);
             response.end();
+            break;
     }
 };
 var parseCookies = function (request) {//TODO audit&refactoring&error handling
