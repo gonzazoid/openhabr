@@ -141,7 +141,7 @@
                   <ul id="people-tags">
                   {{#profile.medals}}
                     <li>
-                     <a title="description" class="habred"><span>title</span></a>
+                     <a title="{{description}}" class="habred"><span>{{title}}</span></a>
                     </li>
                    {{/profile.medals}}
                     <li>
