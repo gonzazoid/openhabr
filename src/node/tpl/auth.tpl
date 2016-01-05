@@ -27,6 +27,7 @@
 		password:<sup class="required_field">*</sup>
 	</label>
 	<input type="password" name="sword" value="">
+<input type="hidden" name="return" value="{{return}}">
 <input type="submit" class="btn btn_medium btn_grey" name="submit" value="здравствуйте">
 </form>
 </div>
