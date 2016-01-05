@@ -37,7 +37,7 @@ var worker = function(request, response){
             //response.write(JSON.stringify(result.rows));
             response.end();
             break;
-        case "/login/":
+        case "/auth/login/":
             console.log("/login/");
             pg.connect(config.common.postgres, function (err, pgClient, done) {
 	        if(err){
