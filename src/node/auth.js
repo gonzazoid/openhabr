@@ -4,6 +4,7 @@ var fs = require("fs");
 var pg = require("pg");
 var sha3 = require("js-sha3").sha3_512;
 var mustache = require("mustache");
+var url = require('url');
 
 var config = require("./config");
 
@@ -39,17 +40,22 @@ var worker = function(request, response){
             var headers = {};
 
             headers["Set-Cookie"] = 'id=; path=/; HttpOnly;';
-            console.log(request.headers);
-            return;
-            //headers["Location"] = ;
+            //console.log(request.headers);
+            if("referer" in request.headers){
+                var parsed = url.parse(response.headers.referer);
+                headers["Location"] = parsed.hostname == "openhabr.net" ? request.headers.referer : "/"
+            }else{
+                headers["Location"] = "/";
+            }
+            //return;
             headers['Content-Type'] = 'text/html';
             headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
             headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
             headers['Pragma'] = ' no-cache'; // HTTP/1.1 
             //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
             
-
             response.writeHead(303, "See Other", headers);
+            response.end();
     }
 };
 var parseCookies = function (request) {//TODO audit&refactoring&error handling
