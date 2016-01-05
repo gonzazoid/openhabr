@@ -49,6 +49,7 @@ var worker = function(request, response){
 	           ,values: [request.post.nickname, sha3(request.post.sword), rndHex(128)]
 	        }, function(err, result){
                     done();
+                    consle.log(result.rows);
                 });
             });
             break;
