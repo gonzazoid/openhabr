@@ -16,6 +16,7 @@ var worker = function(request, response){
     //проверим action
     //если newuser - пришли данные на регистрацию
     console.log(request.post);
+    console.log(request.url);
     switch(request.url){
         case "/":
             //если нет никаких данных - просто выводим форму авторизации
