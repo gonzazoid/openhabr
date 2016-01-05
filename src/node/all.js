@@ -90,33 +90,34 @@ var parseCookies = function (request) {//TODO audit&refactoring&error handling
 };
 var start_session = function(request, response){
     request.cookies = parseCookies(request); 
-    if("id" in request.cookies){
-        //тянем сессию
-        pg.connect(config.common.postgres, function (err, pgClient, done) {
-	    if(err){
-                console.log(err);
-                response.end();
-    	        return;
-	    }
-            var sql = "SELECT * FROM users WHERE sid = $1;"
-            pgClient.query({
-                text: sql
-	       ,values: [request.cookies.id]
-	    }, function(err, result){
-                done();
-	        if(err){
-		    console.log(err);
-                    response.end();
-		    return;
-	        } 
-                if(result.rows.length == 1){
-                    request.user = result.rows[0];
-                }
-                worker(request, response);
-            });
-        });
+    if(!("id" in request.cookies)){
+        worker(request, response);
+        return;
     }
-    worker(request, response);
+    //тянем сессию
+    pg.connect(config.common.postgres, function (err, pgClient, done) {
+	if(err){
+            console.log(err);
+            response.end();
+    	    return;
+	}
+        var sql = "SELECT * FROM users WHERE sid = $1;"
+        pgClient.query({
+            text: sql
+	   ,values: [request.cookies.id]
+	}, function(err, result){
+            done();
+	    if(err){
+	        console.log(err);
+                response.end();
+	        return;
+	    } 
+            if(result.rows.length == 1){
+                request.user = result.rows[0];
+            }
+            worker(request, response);
+        });
+    });
 };
 
 http.createServer(start_session).listen(7500, "localhost");

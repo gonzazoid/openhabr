@@ -130,6 +130,7 @@ var worker = function(request, response){
             //response.write(JSON.stringify(result.rows));
             //response.write(JSON.stringify(article));
             response.end();
+            break;
     }
 };
 var parseCookies = function (request) {//TODO audit&refactoring&error handling
