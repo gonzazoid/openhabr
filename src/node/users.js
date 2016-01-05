@@ -56,10 +56,31 @@ var worker = function(request, response){
             });
             break;
         default:
-            console.log(request.url);
-            var res = request.url.split("/");
-            console.log(res);
-            response.end();
+            if(/^\/[a-zA-z0-9_\-]+\/$/.test(request.url)){
+                console.log(request.url);
+                var res = request.url.split("/");
+                console.log(res);
+                var nickname = res[1];
+                pg.connect(config.common.postgres, function (err, pgClient, done) {
+	            if(err){
+                        console.log(err);
+                        response.end();
+    	                return;
+	            }
+                    var sql = "SELECT * FROM get_user_by_name($1);";   
+                    pgClient.query({
+                        text: sql
+	               ,values: [nickname]
+	            }, function(err, result){
+                        done();
+	                if(err){
+		            console.log(err);
+                            response.end();
+		            return;
+	                }   
+                    response.end();
+                    });
+                });
     }
 };
 var parseCookies = function (request) {//TODO audit&refactoring&error handling

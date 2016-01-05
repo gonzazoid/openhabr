@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title>{{article.title}}</title>
+<title>{{user.nickname}}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <link href="/css/post_common_css.css" rel="stylesheet" media="all" />
@@ -18,57 +18,44 @@
 </head>
 <body>
 <div id="layout">
-<div id="navbar"></div>
-<div class="inner">
+  <div id="navbar"></div>
+  <div class="inner">
 
-  <div class="page_head">
-    <h2 class="title">Пользователи</h2>
-  </div>
-  <div class="content_left js-content_left">
-    <div class="peoples_list">
-      <div class="users_header">
-        <div class="rating">рейтинг</div>
-        <div class="karma">карма</div>
-      </div>
-      <div class="users peoples" id="peoples">
-{{#users}}
-        <div class="user " id="user_{{id}}">
-          <div class="lion_king"></div>
-          <div class="rating">{{rating}}</div>
-          <div class="karma">{{carma}}</div>
-          <div class="rating_change"></div>
-
-          <div class="avatar"><a href="/users/{{nickname}}/">
-        <span class="user-pic_default user-pic_default_47 user-pic_blue"></span>
-    </a>
-  </div>
-
-  <div class="info">
-    <div class="userlogin">
-        <div class="username"><a href="/users/{{nickname}}/">{{nickname}}</a></div>
-
-          <div class="buttons">
-            <input type="button" class="btn btn_subscribe  subscribeUser" value="Подписаться" data-id="{{id}}" data-login="{{nickname}}">
-            <input type="button" class="btn btn_subscribe btn_subscribed hidden unsubscribeUser" value="Отписаться" data-id="{{id}}" data-login="{{nickname}}">
+    <div class="profile-header">
+      <div class="profile-header__summary author-info author-info_profile ">
+        <a href="/users/{{user.nickname}}/" class="author-info__image">
+          <img src="/img/avatars/{{user.nickname}}.jpg" class="author-info__image-pic">
+        </a>
+        <div class="author-info__desc">
+          <div class="author-info__username">
+            <a href="/users/{{user.nickname}}/" class="author-info__nickname">@{{user.nickname}}</a>
           </div>
-    </div>
-
-    <div class="lifetime">1 месяц на сайте</div>
-    <div class="last_post">последняя публикация: <a href="http://habrahabr.ru/post/273249/" class="grey">Как попасть на дачу президента в пять часов утра</a></div>
-
-
-  </div>
-  <div class="clear"></div>
-</div>
-{{/users}}
-
+          <div class="author-info__specialization">
+              {{user.status}}
+          </div>
+        </div>
+      </div>
+      <div class="profile-header__stats">
+        <div class="karma__widjet voting-wjt js-karma  ">
+          <div class="voting-wjt__counter js-karma-mark voting-wjt__counter_positive " title="TODO х голосов">
+            <div class="voting-wjt__counter-score js-karma_num">{{user.carma}}</div>
+            <div class="voting-wjt__label">карма</div>
+          </div>
+        </div>
+        <div class="user-rating" title="Рейтинг пользователя">
+          <div class="user-rating__value">{{user.rating}}</div>
+          <div class="user-rating__label">рейтинг</div>
+        </div>
+      </div>
+      <div class="profile-header__buttons">
+          <button type="button" class="btn btn_blue btn_large " id="followUser" title="Подписаться на пользователя" data-login="{{user.nickname}}">Подписаться</button>
+          <button type="button" class="btn btn_blue btn_subscribed btn_large hidden" id="unfollowUser" title="Вы подписаны на пользователя" data-login="{{user.nickname}}">Подписан</button>
       </div>
     </div>
-  </div>
+    
 {{>footer}}
 
-</div>
-</div>
+  </div>
 </div>
 </body>
 </html>
