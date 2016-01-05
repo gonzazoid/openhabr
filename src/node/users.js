@@ -81,6 +81,7 @@ var worker = function(request, response){
                     response.end();
                     });
                 });
+            }
     }
 };
 var parseCookies = function (request) {//TODO audit&refactoring&error handling
