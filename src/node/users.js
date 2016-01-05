@@ -78,7 +78,23 @@ var worker = function(request, response){
                             response.end();
 		            return;
 	                }   
-                    response.end();
+                        if(result.rows.length != 1){
+                            //TODO что то пошло не так
+                        }
+                        var headers = {};
+
+                        headers['Content-Type'] = 'text/html';
+                        headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+                        headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+                        headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+                        //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+
+                        response.writeHead(200, "Ok", headers);
+                        var data = {profile: result.rows[0]};
+                        if("user" in request) data.user = request.user;
+                        var output = mustache.render(users, data, {footer: footer});
+                        response.write(output);
+                        response.end();
                     });
                 });
             }
