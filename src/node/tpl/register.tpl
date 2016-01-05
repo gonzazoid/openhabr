@@ -22,21 +22,20 @@
 		nickname (login):<sup class="required_field">*</sup>
 	</label>
 	<input type="text" name="nickname" value="">
-<br>
         <label for="mailbox">
 		mail:<sup class="required_field">*</sup>
 	</label>
 	<input type="text" name="mailbox" value="">
-<br>
         <label for="sword">
 		password:<sup class="required_field">*</sup>
 	</label>
 	<input type="password" name="sword" value="">
 <br>
         <label for="promo">
-		если у Вас есть приглашение - введите его здесь,после регистрации вы сразу получите возможность комментировать и публиковать статьи (иначе придется добиваться этого права через песочницу):
+	        invite:	
 	</label>
 	<input type="text" name="promo" value="">
+если у Вас есть приглашение - введите его здесь, после регистрации вы сразу получите возможность комментировать и публиковать статьи (иначе придется добиваться этого права через песочницу):
 <br>
 <input type="submit" class="btn btn_medium btn_grey" name="submit" value="принимайте гика!">
 </form>
