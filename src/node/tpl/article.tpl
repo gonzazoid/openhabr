@@ -181,7 +181,7 @@
         </div>
 
         <div class="author-info ">
-          <a href="/users/{{article.nickname}}" class="author-info__image">
+          <a href="/users/{{article.nickname}}/" class="author-info__image">
             <img src="/img/avatars/{{article.nickname}}.jpg" class="author-info__image-pic"/>
           </a>
           <div class="author-info__desc">
