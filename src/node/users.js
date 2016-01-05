@@ -57,6 +57,8 @@ var worker = function(request, response){
             break;
         default:
             console.log(request.url);
+            var res = request.url.split("/");
+            console.log(res);
             response.end();
     }
 };
