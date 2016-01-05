@@ -6,6 +6,7 @@
 
 <link href="/css/post_common_css.css" rel="stylesheet" media="all" />
 <link href="/css/posts.css" rel="stylesheet" media="all" />
+<link href="/css/forms.css" rel="stylesheet" media="all" />
 <link href="/css/main.css" rel="stylesheet" media="all" />
 <link href="/css/profile.css" rel="stylesheet" media="all" />
 <style>
@@ -30,7 +31,7 @@
       <div class="tabs">
     <ul class="tabs-menu tabs-menu_habrahabr">
         <li class="tabs-menu__item tabs-menu__item_inline">
-          <a href="https://habrahabr.ru/auth/settings/profile/" class="tab-item tab-item_current">
+          <a href="/auth/settings/profile/" class="tab-item tab-item_current">
             <span class="tab-item__value">
               Профиль&nbsp;
               <strong class="counter"></strong>
@@ -39,7 +40,7 @@
           </a>
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
-          <a href="https://habrahabr.ru/auth/settings/account/" class="tab-item " target="_blank">
+          <a href="/auth/settings/account/" class="tab-item " target="_blank">
             <span class="tab-item__value">
               Аккаунт&nbsp;
               <strong class="counter"></strong>
@@ -48,7 +49,7 @@
           </a>
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
-          <a href="https://habrahabr.ru/auth/settings/notifications/" class="tab-item ">
+          <a href="/auth/settings/notifications/" class="tab-item ">
             <span class="tab-item__value">
               Уведомления&nbsp;
               <strong class="counter"></strong>
@@ -57,7 +58,7 @@
           </a>
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
-          <a href="https://habrahabr.ru/auth/settings/upgrade/" class="tab-item ">
+          <a href="/auth/settings/upgrade/" class="tab-item ">
             <span class="tab-item__value">
               Апгрейд&nbsp;
               <strong class="counter"></strong>
@@ -75,7 +76,7 @@
           </a>
         </li>
         <li class="tabs-menu__item tabs-menu__item_inline">
-          <a href="https://habrahabr.ru/auth/settings/others/" class="tab-item ">
+          <a href="/auth/settings/others/" class="tab-item ">
             <span class="tab-item__value">
               Разные&nbsp;
               <strong class="counter"></strong>
@@ -638,42 +639,12 @@
 		
 		<input type="hidden" name="avatar_token" value="">
 				
-		<div class="iframe_uploader_preview"><div class="image"><img src="//habrahabr.ru/i/avatars/stub-user-middle.gif" alt=""><div class="delete" data-name="avatar" title="Удалить изображение?">x</div></div></div>
-		
-		<script type="text/javascript">
-		if(typeof(window.uploader_callback) == 'undefined'){
-			window.uploader_callback = function(name, status, response){
-				var xml = $(response);
-				if( xml.find('message').text() == 'ok' ){
-					var url = xml.find('url').text();
-					var id = xml.find('id').text();
-					$('.'+name+' .iframe_uploader_preview').html('<div class="image"><img src="'+url+'"  /><div class="delete" data-name="'+name+'" title="Удалить изображение?">x</div></div>');
-					$('.'+name+' input[name="'+name+'"]').val(id);
-					if( xml.find('id').size() > 0 ) {
-						$('.'+name+' input[name="'+name+'_token"]').val(xml.find('token').text());
-					}
-					$('.'+name+' .error').text('').hide();
-				}else{
-					var error = xml.find('error').text();
-					$('.'+name+' .error').text(error).fadeIn();
-
-				}
-
-			}
-		}
-		
-
-		
-		</script>
-		
+		<div class="iframe_uploader_preview"><div class="image"><img src="/i/avatars/stub-user-middle.gif" alt=""><div class="delete" data-name="avatar" title="Удалить изображение?">x</div></div></div>
 		
 		<div class="error">
-			 
-			
 		</div>
 		<div class="description">Формат: jpg, gif, png. Максимальный размер файла: 1Mb.</div>
 	</div>
-
 
           <div class="buttons">
             <input type="submit" value="Сохранить">
