@@ -23,12 +23,12 @@
 
     <div class="profile-header">
       <div class="profile-header__summary author-info author-info_profile ">
-        <a href="/users/{{profile.nickname}}/" class="author-info__name">{{profile.fullname}}</a> 
         <a href="/users/{{profile.nickname}}/" class="author-info__image">
           <img src="/img/avatars/{{profile.nickname}}.jpg" class="author-info__image-pic">
         </a>
         <div class="author-info__desc">
           <div class="author-info__username">
+            <a href="/users/{{profile.nickname}}/" class="author-info__name">{{profile.fullname}}</a> 
             <a href="/users/{{profile.nickname}}/" class="author-info__nickname">@{{profile.nickname}}</a>
           </div>
           <div class="author-info__specialization">
