@@ -30,7 +30,7 @@
 		password:<sup class="required_field">*</sup>
 	</label>
 	<input type="password" name="sword" value="">
-<br>
+<hr>
         <label for="promo">
 	        invite:	
 	</label>
