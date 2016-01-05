@@ -133,8 +133,6 @@
                 </dd>
               </dl>
 
-
-
               <dl>
                 <dt>Значки:</dt>
                 <dd>
@@ -144,21 +142,9 @@
                      <a title="{{description}}" class="habred"><span>{{title}}</span></a>
                     </li>
                    {{/profile.medals}}
-                    <li>
-                     
-                     <a title="Пользователь, зарегистрированный более 3-х лет назад, с кармой больше 50." class="oldresident"><span>Старожил</span></a>
-                    </li>
                   </ul>
                 </dd>
               </dl>
-
-
-
-
-
-
-
-
 
             <dl class="hubs_list">
               <dt>Состоит в:</dt>

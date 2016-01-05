@@ -21,7 +21,7 @@ CREATE FUNCTION get_user_by_name(_nickname character varying) RETURNS TABLE(
     LANGUAGE sql
     AS $$
 -- надо подтянуть медальки
-SELECT users.*, m.medal_description, m.medal_title
+SELECT users.*, m.medal_title, m.medal_description
 FROM(
     SELECT users.id, array_agg(medals.title) AS medal_title, array_agg(medals.description) AS medal_description
     FROM users, medals 
