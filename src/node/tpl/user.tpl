@@ -73,7 +73,7 @@
                 <span class="stats__counters stats__counters_big">
                   <strong class="counter">199</strong>
                 </span>
-                <span class="stats__value">Публикации</span>
+                <span class="stats__value todo">Публикации</span>
             </span></a>
           </li>
           <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
@@ -82,7 +82,7 @@
                 <span class="stats__counters stats__counters_big">
                   <strong class="counter">1,4k</strong>
                 </span>
-                <span class="stats__value">Комментарии</span>
+                <span class="stats__value todo">Комментарии</span>
             </span></a>
           </li>
           <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
@@ -91,7 +91,7 @@
                 <span class="stats__counters stats__counters_big">
                   <strong class="counter">53</strong>
                 </span>
-                <span class="stats__value">Избранное</span>
+                <span class="stats__value todo">Избранное</span>
             </span></a>
           </li>
           <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
@@ -100,7 +100,7 @@
                 <span class="stats__counters stats__counters_big">
                   <strong class="counter">274</strong>
                 </span>
-                <span class="stats__value">Подписчики</span>
+                <span class="stats__value todo">Подписчики</span>
             </span></a>
           </li>
     </ul>
