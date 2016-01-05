@@ -23,7 +23,7 @@
 <div id="layout">
   <div id="navbar"></div>
   <div class="inner">
-
+    <div class="content_left">
     <div class="page_head">
       <h2 class="title">Настройки</h2>
     </div>
@@ -653,7 +653,7 @@
         </form>
     </div>
   </div>
-
+</div>
 {{>footer}}
 
   </div>
