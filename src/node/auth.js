@@ -73,6 +73,7 @@ var worker = function(request, response){
                         //что то пошло не так
                     }
                     //response.user = result.rows[0];
+                    var headers = {};
                     if("return" in request.post){
                         var parsed = url.parse(request.post.return);
                         headers["Location"] = parsed.hostname == "openhabr.net" ? request.headers.referer : "/"
