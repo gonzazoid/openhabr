@@ -55,6 +55,9 @@ var worker = function(request, response){
                 });
             });
             break;
+        default:
+            console.log(request.url);
+            response.end();
     }
 };
 var parseCookies = function (request) {//TODO audit&refactoring&error handling
