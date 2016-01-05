@@ -10,6 +10,7 @@ var config = require("./config");
 var pattern = fs.readFileSync("./tpl/user.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 var users = fs.readFileSync("./tpl/users.tpl", "utf-8");
+var user = fs.readFileSync("./tpl/user.tpl", "utf-8");
 
 var worker = function(request, response){
     
@@ -48,7 +49,7 @@ var worker = function(request, response){
                     response.writeHead(200, "Ok", headers);
                     var data = {users: result.rows};
                     if("user" in request) data.user = request.user;
-                    var output = mustache.render(users, data, {footer: footer});
+                    var output = mustache.render(user, data, {footer: footer});
                     response.write(output);
                     //response.write(JSON.stringify(result.rows));
                     response.end();
