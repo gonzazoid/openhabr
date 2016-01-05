@@ -9,6 +9,7 @@ var url = require('url');
 var config = require("./config");
 
 var auth = fs.readFileSync("./tpl/auth.tpl", "utf-8");
+var settings = fs.readFileSync("./tpl/settings.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
 var rndHex = function (len) {
@@ -112,6 +113,23 @@ var worker = function(request, response){
             response.writeHead(303, "See Other", headers);
             response.end();
             break;
+        case "/settings/":
+            var headers = {};
+
+            headers['Content-Type'] = 'text/html';
+            headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+            headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+            headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+            //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+
+            response.writeHead(200, "Ok", headers);
+            var data = {}
+            if("user" in request) data.user = request.user;
+            var output = mustache.render(settings, data, {footer:footer});
+            response.write(output);
+            //response.write(JSON.stringify(result.rows));
+            //response.write(JSON.stringify(article));
+            response.end();
     }
 };
 var parseCookies = function (request) {//TODO audit&refactoring&error handling
