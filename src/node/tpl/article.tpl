@@ -186,7 +186,7 @@
           </a>
           <div class="author-info__desc">
             <div class="author-info__username">
-              <a href="/users/{{article.nickname}}" class="author-info__nickname">@{{article.nickname}}</a>
+              <a href="/users/{{article.nickname}}/" class="author-info__nickname">@{{article.nickname}}</a>
               <div class="karma__widjet voting-wjt voting-wjt_small js-karma  " title="Карма пользователя">
                 <div class="voting-wjt__counter voting-wjt__counter_positive">
                   <span class="voting-wjt__label">карма</span>
