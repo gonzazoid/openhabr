@@ -105,6 +105,122 @@
     </ul>
 
   </div>
+<div class="user_profile">
+
+          
+
+
+              <dl>
+                <dt>Место в рейтинге:</dt>
+                <dd>
+
+                    Не участвует
+                </dd>
+              </dl>
+
+              <dl>
+                <dt>Заметка:</dt>
+                <dd class="note" id="private_note">
+                  <span class="current_note"></span>
+                  <span class="add_note">Написать заметку</span>
+                  <form id="edit_note" method="post" class="edit_note hidden">
+                    <input type="hidden" name="login" value="Vilyx">
+                    <input id="note_text" class="text" name="note" value="">
+                    <div class="description">Комментарий к пользователю (он виден только вам).</div>
+                    <div class="buttons"><input type="submit" value="Сохранить"> или <span class="cancel_note">отменить</span></div>
+                  </form>
+                </dd>
+              </dl>
+
+
+
+              <dl>
+                <dt>Значки:</dt>
+                <dd>
+                  <ul id="people-tags">
+                    <li>
+                     
+                     <a title="Пользователь с кармой >0." class="habred"><span>Захабренный</span></a>
+                    </li>
+                    <li>
+                     
+                     <a title="Пользователь, зарегистрированный более 3-х лет назад, с кармой больше 50." class="oldresident"><span>Старожил</span></a>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+
+
+
+
+
+
+
+
+
+            <dl class="hubs_list">
+              <dt>Состоит в:</dt>
+              <dd>
+                <ul class="grey" id="hubs_data_items">
+                    <li class="">
+                      <a class="" href="/hub/flash_platform/">Adobe Flash</a>
+                    </li>
+                    <li class="">
+                      <a class="" href="/hub/Dart/">Dart</a>
+                    </li>
+                    <li class="">
+                      <a class="" href="/hub/erlang/">Erlang/OTP</a>
+                    </li>
+                    <li class="">
+                      <a class="" href="/hub/gdev/">Game Development</a>
+                    </li>
+                    <li class="">
+                      <a class="" href="/hub/perl/">Perl</a>
+                    </li>
+                    <li class="">
+                      <a class="" href="/hub/unity3d/">Unity3D</a>
+                    </li>
+                    <li class="">
+                      <a class="" href="/hub/vs/">Visual Studio</a>
+                    </li>
+                    <li class="">
+                      <a class="" href="/hub/algorithms/">Алгоритмы</a>
+                    </li>
+                    <li class="">
+                      <a class="" href="/hub/programming/">Программирование</a>
+                    </li>
+                </ul>
+              </dd>
+            </dl>
+
+          <dl>
+            <dt>
+              
+               Зарегистрирован: 
+            </dt>
+            <dd class="grey">
+              15 ноября 2011 в  16:40
+            </dd>
+          </dl>
+
+            <dl>
+              <dt>
+                
+                 Приглашен: 
+              </dt>
+              <dd class="grey">07 декабря 2012 в  13:39
+                   по приглашению <a href="http://habrahabr.ru/">НЛО</a>
+              </dd>
+            </dl>
+
+
+            <dl>
+              <dt>Активность:</dt>
+              <dd>
+                  Последний раз был на сайте 05 января 2016 в  16:50
+              </dd>
+            </dl>
+      </div>
 </div>
 {{>footer}}
 
