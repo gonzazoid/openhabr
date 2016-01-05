@@ -34,7 +34,7 @@
         <label for="promo">
 	        invite:	
 	</label>
-	<input type="text" name="promo" value="">
+	<input type="text" name="promo" value=""><br>
 если у Вас есть приглашение - введите его здесь, после регистрации вы сразу получите возможность комментировать и публиковать статьи (иначе придется добиваться этого права через песочницу):
 <br>
 <input type="submit" class="btn btn_medium btn_grey" name="submit" value="принимайте гика!">
