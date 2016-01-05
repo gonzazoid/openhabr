@@ -37,6 +37,7 @@ var worker = function(request, response){
             response.end();
             break;
         case "/login/":
+            console.log("/login/");
             pg.connect(config.common.postgres, function (err, pgClient, done) {
 	        if(err){
                     console.log(err);
@@ -49,7 +50,7 @@ var worker = function(request, response){
 	           ,values: [request.post.nickname, sha3(request.post.sword), rndHex(128)]
 	        }, function(err, result){
                     done();
-                    consle.log(result.rows);
+                    console.log(result.rows);
                 });
             });
             break;
