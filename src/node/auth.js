@@ -41,7 +41,7 @@ var worker = function(request, response){
             headers["Set-Cookie"] = 'id=; path=/; HttpOnly;';
             console.log(request.headers);
             return;
-            headers["Location"] = ;
+            //headers["Location"] = ;
             headers['Content-Type'] = 'text/html';
             headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
             headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
