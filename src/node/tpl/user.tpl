@@ -139,10 +139,11 @@
                 <dt>Значки:</dt>
                 <dd>
                   <ul id="people-tags">
+                  {{#profile.medals}}
                     <li>
-                     
-                     <a title="Пользователь с кармой >0." class="habred"><span>Захабренный</span></a>
+                     <a title="description" class="habred"><span>title</span></a>
                     </li>
+                   {{/profile.medals}}
                     <li>
                      
                      <a title="Пользователь, зарегистрированный более 3-х лет назад, с кармой больше 50." class="oldresident"><span>Старожил</span></a>
