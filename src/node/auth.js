@@ -35,6 +35,21 @@ var worker = function(request, response){
             //response.write(JSON.stringify(result.rows));
             response.end();
             break;
+        case "/logout/":
+            var headers = {};
+
+            headers["Set-Cookie"] = 'id=; path=/; HttpOnly;';
+            console.log(request.headers);
+            return;
+            headers["Location"] = ;
+            headers['Content-Type'] = 'text/html';
+            headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
+            headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
+            headers['Pragma'] = ' no-cache'; // HTTP/1.1 
+            //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+            
+
+            response.writeHead(303, "See Other", headers);
     }
 };
 var parseCookies = function (request) {//TODO audit&refactoring&error handling
