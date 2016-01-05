@@ -54,6 +54,58 @@
       </div>
     </div>
     
+<div class="column-wrapper">
+<div class="tabs">
+    <ul class="tabs-menu tabs-menu_habrahabr">
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="/users/{{profile.nickname}}/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter"></strong>
+                </span>
+                <span class="stats__value">Профиль</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="/users/{{profile.nickname}}/topics/" class="tab-item tab-item_stacked tab-item_current">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">199</strong>
+                </span>
+                <span class="stats__value">Публикации</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="/users/{{profile.nickname}}/comments/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">1,4k</strong>
+                </span>
+                <span class="stats__value">Комментарии</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="/users/{{profile.nickname}}/favorites/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">53</strong>
+                </span>
+                <span class="stats__value">Избранное</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="/users/{{profile.nickname}}/subscription/followers/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">274</strong>
+                </span>
+                <span class="stats__value">Подписчики</span>
+            </span></a>
+          </li>
+    </ul>
+
+  </div>
+</div>
 {{>footer}}
 
   </div>
