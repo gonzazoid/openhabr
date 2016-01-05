@@ -80,6 +80,7 @@ var worker = function(request, response){
                     }else{
                         headers["Location"] = "/";
                     }
+                    headers["Set-Cookie"] = 'id=' + result.rows[0].sid + '; path=/; HttpOnly;';
                     headers['Content-Type'] = 'text/html';
                     headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
                     headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
