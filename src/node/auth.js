@@ -11,6 +11,17 @@ var config = require("./config");
 var auth = fs.readFileSync("./tpl/auth.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
+var rndHex = function (len) {
+    var id = '';
+    var map = '0123456789abcdef';
+
+    for (var $i = 0; $i < len; $i++) {
+        id += map.charAt(Math.floor(Math.random() * 16));
+    }
+
+    return id;
+};
+
 var worker = function(request, response){
     
     //проверим action
