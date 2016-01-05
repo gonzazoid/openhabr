@@ -42,7 +42,7 @@ var worker = function(request, response){
             headers["Set-Cookie"] = 'id=; path=/; HttpOnly;';
             //console.log(request.headers);
             if("referer" in request.headers){
-                var parsed = url.parse(response.headers.referer);
+                var parsed = url.parse(request.headers.referer);
                 headers["Location"] = parsed.hostname == "openhabr.net" ? request.headers.referer : "/"
             }else{
                 headers["Location"] = "/";
