@@ -15,6 +15,7 @@ CREATE FUNCTION get_user_by_name(_nickname character varying) RETURNS TABLE(
    ,pwd      character varying
    ,sid      character varying
    ,medals   integer[]
+   ,readonly boolean
    ,medal_title character varying[]
    ,medal_description character varying[]
 )
