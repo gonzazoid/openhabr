@@ -13,7 +13,18 @@
 </head>
 <body>
 <div id="layout">
-<div id="navbar"></div>
+  <div id="navbar" style="bottom: 29px;">
+    <div class="nav_panel">
+      <a href="/users/{{user.nickname}}/" class="tab tab_user" data-tab="user_tab" title="{{user.nickname}}">
+
+          <img src="/img/avatars/{{profile.nickname}}.jpg" class="author-info__image-pic">
+                <span class="user-pic_default user-pic_default_38 user-pic_pink"></span>
+                <span class="count navbar_count_new_messages"></span>
+            </a>
+            <a href="/sandbox/add/" class="tab tab_add_post" title="Новая публикация в песочницу"><span class="g-icon g-icon-write"></span></a>
+    </div>
+
+  </div>
 <div class="inner">
 <div class="column-wrapper">
 <div class="posts_list">
