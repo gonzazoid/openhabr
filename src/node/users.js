@@ -83,15 +83,13 @@ var worker = function(request, response){
                             //TODO что то пошло не так
                         }
                         //сольем медальки
-                        if("medals" in result.rows[0]){
-                            var medals = {};
-                            for(i=0, l=result.rows[0].medals.length; i<l; i++){
-                                medals[result.rows[0].medals[i]] = {title:       result.rows[0].medal_title[i]
-                                                                   ,description: result.rows[0].medal_description[i]};
-                            }
-                            for(i=0, l=result.rows[0].medals.length; i<l; i++){
-                                result.rows[0].medals[i] =  medals[result.rows[0].medals[i]];
-                            }
+                        var medals = {};
+                        for(i=0, l=result.rows[0].medals.length; i<l; i++){
+                            medals[result.rows[0].medals[i]] = {title:       result.rows[0].medal_title[i]
+                                                               ,description: result.rows[0].medal_description[i]};
+                        }
+                        for(i=0, l=result.rows[0].medals.length; i<l; i++){
+                            result.rows[0].medals[i] =  medals[result.rows[0].medals[i]];
                         }
                         var headers = {};
 
