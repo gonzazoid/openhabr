@@ -5,6 +5,10 @@
 <!-- это для постов -->
 <link href="/css/post_common_css.css" rel="stylesheet" media="all" />
 
+
+<link href="/css/highlightjs_github.css" rel="stylesheet" media="all" />
+<link href="/css/libs_chosen.css" rel="stylesheet" media="all" />
+<link href="/css/sandbox_edit.css" rel="stylesheet" media="all" />
 <link href="/css/forms.css" rel="stylesheet" media="all" />
 <link href="/css/posts.css" rel="stylesheet" media="all" />
 <link href="/css/hubs_all.css" rel="stylesheet" media="all" />
