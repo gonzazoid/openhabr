@@ -702,6 +702,7 @@
             <input type="button" class="btn btn_medium btn_grey" name="preview" value="Предпросмотр">
           </div>
         </form>
+</div>
     </div>
   </div>
 </div>
