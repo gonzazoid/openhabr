@@ -93,6 +93,22 @@ var worker = function(request, response){
             });
             break;
         case "/logout/":
+            if("user" in request){
+                pg.connect(config.common.postgres, function (err, pgClient, done) {
+	            if(err){
+                        console.log(err);
+                        response.end();
+    	                return;
+	            }
+                    var sql = "select * from reset_session($1);";
+                    pgClient.query({
+                        text: sql
+	               ,values: [request.user.id]
+	            }, function(err, result){
+                        done();
+                    });
+                });
+            }
             var headers = {};
 
             headers["Set-Cookie"] = 'id=; path=/; HttpOnly;';
@@ -156,7 +172,7 @@ var parseCookies = function (request) {//TODO audit&refactoring&error handling
 };
 var start_session = function(request, response){
     request.cookies = parseCookies(request); 
-    if("id" in request.cookies){
+    if("id" in request.cookies && request.cookies.id.trim() != ''){
         //тянем сессию
         pg.connect(config.common.postgres, function (err, pgClient, done) {
 	    if(err){

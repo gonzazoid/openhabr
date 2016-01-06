@@ -62,7 +62,7 @@ var parseCookies = function (request) {//TODO audit&refactoring&error handling
 };
 var start_session = function(request, response){
     request.cookies = parseCookies(request); 
-    if("id" in request.cookies){
+    if("id" in request.cookies && request.cookies.id.trim() != ''){
         //тянем сессию
         pg.connect(config.common.postgres, function (err, pgClient, done) {
 	    if(err){
