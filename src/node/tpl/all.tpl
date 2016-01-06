@@ -18,7 +18,6 @@
       <a href="/users/{{user.nickname}}/" class="tab tab_user" data-tab="user_tab" title="{{user.nickname}}">
 
           <img src="/img/avatars/{{profile.nickname}}.jpg" class="author-info__image-pic">
-                <span class="user-pic_default user-pic_default_38 user-pic_pink"></span>
                 <span class="count navbar_count_new_messages"></span>
             </a>
             <a href="/sandbox/add/" class="tab tab_add_post" title="Новая публикация в песочницу"><span class="g-icon g-icon-write"></span></a>
