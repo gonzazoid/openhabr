@@ -16,6 +16,7 @@
 
 <script type="text/javascript" src="/js/global_main.js"></script>
 <script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript" src="/js/libs_wysiwyg.js"></script>
 <script type="text/javascript" src="/js/sandbox_edit.js"></script>
 <script type="text/javascript" src="/js/topic_form.js"></script>
 
