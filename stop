@@ -10,5 +10,6 @@ forever -a -l "$logs/post.log"      --pidFile "$pids/post.pid"       stop post.j
 forever -a -l "$logs/register.log"  --pidFile "$pids/register.pid"   stop register.js
 forever -a -l "$logs/users.log"       --pidFile "$pids/users.pid"    stop users.js
 forever -a -l "$logs/auth.log"       --pidFile "$pids/auth.pid"      stop auth.js
+forever -a -l "$logs/posts.log"       --pidFile "$pids/posts.pid"      stop posts.js
 
 # в prod-сборке этого быть не должно. Как это сделать?
