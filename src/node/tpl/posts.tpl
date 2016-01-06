@@ -702,13 +702,12 @@
             <input type="button" class="btn btn_medium btn_grey" name="preview" value="Предпросмотр">
           </div>
         </form>
-</div>
     </div>
   </div>
-</div>
 <div class="clear"></div>
 <div class="clear"></div>
 {{>footer}}
+</div>
 </div>
 </body>
 </html>
