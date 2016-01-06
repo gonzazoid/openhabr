@@ -14,6 +14,7 @@
 <link href="/css/hubs_all.css" rel="stylesheet" media="all" />
 <link href="/css/main.css" rel="stylesheet" media="all" />
 
+<script type="text/javascript" src="/js/global_main.js"></script>
 <script type="text/javascript" src="/js/jquery.form.js"></script>
 <script type="text/javascript" src="/js/sandbox_edit.js"></script>
 <script type="text/javascript" src="/js/topic_form.js"></script>
