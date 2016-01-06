@@ -18,6 +18,8 @@ gulp.task("draft", function(){
 
     gulp.src("src/static/*.*")
         .pipe(gulp.dest("build/static/"));
+    gulp.src("src/static/js/*.js")
+        .pipe(gulp.dest("build/static/js/"));
     gulp.src("src/static/css/*.*")
         .pipe(gulp.dest("build/static/css/"));
     gulp.src("src/static/fonts/*.*")
