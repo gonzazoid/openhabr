@@ -20,7 +20,13 @@
           <img src="/img/avatars/{{user.nickname}}.jpg" class="author-info__image-pic">
                 <span class="count navbar_count_new_messages"></span>
             </a>
+<!-- если пользователь read-only - ссылка на публикацию в песочницу иначе - на новый пост -->
+{{#user.readonly}}
             <a href="/sandbox/add/" class="tab tab_add_post" title="Новая публикация в песочницу">+</a>
+{{/user.readonly}}
+{{^user.readonly}}
+            <a href="/posts/add/" class="tab tab_add_post" title="Новая публикация в общую ленту">+</a>
+{{/user.readonly}}
     </div>
 
   </div>
