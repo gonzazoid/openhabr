@@ -89,7 +89,7 @@ var worker = function(job){
                 resolve(job);
                 break;
         }
-    }):
+    });
 };
 
 http.createServer(dispatcher).listen(7502, "localhost");
