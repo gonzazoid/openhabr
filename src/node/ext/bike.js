@@ -28,9 +28,10 @@ module.exports = {
         });
     }
     ,start_session: function(job){
-        console.log("start session", job);
+        console.log("start session");
         return new Promise(function(resolve, reject){
             //request.cookies = parseCookies(request); 
+            console.log("start session: promisse handler")
             if(!("id" in job.request.cookies && job.request.cookies.id.trim() != '')){
                 console.log("start session: id not found");
                 resolve(job);
