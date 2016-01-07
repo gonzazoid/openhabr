@@ -1,7 +1,7 @@
 module.exports = {
     prepare_headers: function(job){
         return new Promise(function(resolve, reject){
-            if(!("habr" in job.response)) job.response.habr = {};
+            "habr" in job.response || (job.response.habr = {});
             job.response.habr.headers = {};
 
             job.response.habr.headers['Content-Type'] = 'text/html';
@@ -20,7 +20,7 @@ module.exports = {
                 job.request.headers.cookie.split(';')
                                           .map(cV => cV.split('='))
                                           .map(cV => cV.length == 2 ? cV : null)
-                                          .forEach(cV => cV || job.request.cookies[cV[0].trim()] = cV[1].trim());
+                                          .forEach(cV => cV || (job.request.cookies[cV[0].trim()] = cV[1].trim()));
             resolve(job);
         });
     }
@@ -61,7 +61,7 @@ module.exports = {
    ,output: function(job){
         var mustache = require("mustache");
         job.response.writeHead(200, "Ok", job.response.habr.headers);
-        if("user" in job.request) job.response.habr.data.user = job.request.user;
+        "user" in job.request && (job.response.habr.data.user = job.request.user);
         var output = mustache.render(job.response.habr.pattern, job.response.habr.data, job.response.habr.patterns);
         job.response.write(output);
         job.response.end();
