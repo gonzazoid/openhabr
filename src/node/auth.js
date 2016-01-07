@@ -40,8 +40,8 @@ var worker = function(job){
         var sha3 = require("js-sha3").sha3_512;
         //проверим action
         //если newuser - пришли данные на регистрацию
-        console.log(request.post);
-        console.log(request.url);
+        console.log(job.request.post);
+        console.log(job.request.url);
         switch(request.url){
             case "/":
                 //если нет никаких данных - просто выводим форму авторизации
