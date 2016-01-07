@@ -54,6 +54,7 @@ module.exports = {
     	                return;
                     }
                     done();
+                    console.log("start session", result.rows);
                     switch(true){
 	                case err:
 	                    console.log(err); //не надо тут ставить break!!!
