@@ -18,7 +18,7 @@ module.exports = {
         //console.log(job);
         return new Promise(function(resolve, reject){
             job.request.cookies = {};
-            job.request.headers.cookie ||
+            "cookie" in job.request.headers &&
             
                 job.request.headers.cookie.split(';')
                                           .map(cV => cV.split('='))
