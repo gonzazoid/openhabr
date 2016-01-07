@@ -22,23 +22,24 @@ var dispatcher = function(request, response){
    .then(fw.output, fw.err);
 };
 var worker = function(job){
-    
-    //проверим action
-    //если newuser - пришли данные на регистрацию
-    console.log(job.request.url);
-    switch(job.request.url){
-        case "/add/":
-            //просто выводим форму редактора статьи
-            //TODO если пользователь не авторизован - предложить авторизоваться или зарегистрироваться
-            "data" in job.response.habr || (job.response.habr.data = {});
-            job.response.habr.pattern = patterns.posts;
-            job.response.habr.patterns = patterns;
-            resolve(job);
+    return new Promise(function(resolve, reject){ 
+        //проверим action
+        //если newuser - пришли данные на регистрацию
+        console.log(job.request.url);
+        switch(job.request.url){
+            case "/add/":
+                //просто выводим форму редактора статьи
+                //TODO если пользователь не авторизован - предложить авторизоваться или зарегистрироваться
+                "data" in job.response.habr || (job.response.habr.data = {});
+                job.response.habr.pattern = patterns.posts;
+                job.response.habr.patterns = patterns;
+                resolve(job);
 
-            break;
-        default:
+                break;
+            default:
             
-    }
+        }
+    });
 };
 
 http.createServer(dispatcher).listen(7505, "localhost");
