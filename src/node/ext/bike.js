@@ -15,7 +15,7 @@ module.exports = {
         });
     }
    ,parse_cookies: function(job){
-        console.log(job);
+        //console.log(job);
         return new Promise(function(resolve, reject){
             job.request.cookies = {};
             job.request.headers.cookie ||
@@ -28,6 +28,7 @@ module.exports = {
         });
     }
     ,start_session: function(job){
+        console.log(job);
         return new Promise(function(resolve, reject){
             request.cookies = parseCookies(request); 
             if(!("id" in request.cookies && request.cookies.id.trim() != '')){
