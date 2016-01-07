@@ -30,8 +30,8 @@ module.exports = {
     ,start_session: function(job){
         console.log(job);
         return new Promise(function(resolve, reject){
-            request.cookies = parseCookies(request); 
-            if(!("id" in request.cookies && request.cookies.id.trim() != '')){
+            //request.cookies = parseCookies(request); 
+            if(!("id" in job.request.cookies && job.request.cookies.id.trim() != '')){
                 resolve(job);
                 return;
             }
