@@ -6,9 +6,9 @@ var fs = require("fs");
 var http = require("http");
 
 var patterns = {
-    article: fs.readFileSync("./tpl/article.tpl", "utf-8")
-   ,comments = fs.readFileSync("./tpl/comments.tpl", "utf-8")
-   ,footer = fs.readFileSync("./tpl/footer.tpl", "utf-8")
+    article:  fs.readFileSync("./tpl/article.tpl", "utf-8")
+   ,comments: fs.readFileSync("./tpl/comments.tpl", "utf-8")
+   ,footer:   fs.readFileSync("./tpl/footer.tpl", "utf-8")
 };
 
 var dispatcher = function(request, response){
