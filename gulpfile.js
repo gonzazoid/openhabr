@@ -13,6 +13,8 @@ gulp.task("draft", function(){
     gulp.src("src/node/*.js")
 //	.pipe(nano(config.draft))
         .pipe(gulp.dest("build/node/"));
+    gulp.src("src/node/ext/*.js")
+        .pipe(gulp.dest("build/node/ext/"));
     gulp.src("src/node/tpl/*.tpl")
         .pipe(gulp.dest("build/node/tpl/"));
 
