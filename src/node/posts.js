@@ -25,7 +25,7 @@ var worker = function(job){
     
     //проверим action
     //если newuser - пришли данные на регистрацию
-    console.log(job.request.post);
+    console.log(job.request.url);
     switch(job.request.url){
         case "/add/":
             //просто выводим форму редактора статьи
