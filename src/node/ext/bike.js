@@ -39,6 +39,7 @@ module.exports = {
             var pg = require("pg");
             var config = require("./config");
             pg.connect(config.common.postgres, function (err, pgClient, done) {
+                console.log("start session: pg connected");
 	        if(err){
                     console.log(err);
                     reject();
