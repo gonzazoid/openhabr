@@ -28,10 +28,8 @@ module.exports = {
         });
     }
     ,start_session: function(job){
-        console.log("start session");
         return new Promise(function(resolve, reject){
             //request.cookies = parseCookies(request); 
-            console.log("start session: promisse handler")
             if(!("id" in job.request.cookies && job.request.cookies.id.trim() != '')){
                 console.log("start session: id not found");
                 resolve(job);
@@ -40,9 +38,7 @@ module.exports = {
             //тянем сессию
             var pg = require("pg");
             var config = require("./config");
-            console.log("start session: ready for connect");
             pg.connect(config.common.postgres, function (err, pgClient, done) {
-                console.log("start session: pg connected");
 	        if(err){
                     console.log(err);
                     reject();
@@ -58,7 +54,6 @@ module.exports = {
     	                return;
                     }
                     done();
-                    console.log("start session", result.rows);
                     switch(true){
 	                case err:
 	                    console.log(err); //не надо тут ставить break!!!
@@ -67,14 +62,12 @@ module.exports = {
                             return;
                     }
                     job.request.user = result.rows[0];
-                    console.log("session", job);
                     resolve(job);
                 });
             });
         });
     }
    ,output: function(job){
-        console.log("output", job);
         var mustache = require("mustache");
         job.response.writeHead(200, "Ok", job.response.habr.headers);
         "user" in job.request && (job.response.habr.data.user = job.request.user);
