@@ -27,6 +27,7 @@ var dispatcher = function(request, response){
     var fw = require("./bike");
 
          fw.prepare_headers({request, response})
+   .then(fw.parse_post, fw.error)
    .then(fw.parse_cookies, fw.err)
    .then(fw.start_session, fw.err)
    .then(worker, fw.err)
