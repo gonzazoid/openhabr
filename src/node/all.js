@@ -4,6 +4,7 @@
 
 var fs = require("fs");
 var http = require("http");
+
 var pattern = fs.readFileSync("./tpl/all.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
@@ -15,7 +16,7 @@ var dispatcher = function(request, response){
    .then(fw.parse_cookies, fw.err)
    .then(fw.start_session, fw.err)
    .then(worker, fw.err)
-   .then(fw.output, fw.err)
+   .then(fw.output, fw.err);
 };
 
 var worker = function(job){

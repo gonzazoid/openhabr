@@ -215,7 +215,6 @@
         </h2>
 <!-- comments -->
 {{#article.comments}}
-{{> comment}}
 {{>comments}}
 {{/article.comments}}
 <!-- comments -->
