@@ -25,13 +25,13 @@ var worker = function(request, response){
     
     //проверим action
     //если newuser - пришли данные на регистрацию
-    console.log(request.post);
+    console.log(job.request.post);
     switch(job.request.url){
         case "/add/":
             //просто выводим форму редактора статьи
             //TODO если пользователь не авторизован - предложить авторизоваться или зарегистрироваться
             "data" in job.response.habr || (job.response.habr.data = {});
-            job.response.habr.pattern = patterns.post;
+            job.response.habr.pattern = patterns.posts;
             job.response.habr.patterns = patterns;
             resolve(job);
 
