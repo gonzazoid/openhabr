@@ -50,7 +50,7 @@ var worker = function(job){
             var sql = "SELECT articles.*, M.hub_name, M.hub_title, M.hub_id, users.nickname, users.fullname, users.status as u_status, users.carma, users.rating as u_rating FROM articles, (SELECT I.id, array_agg(J.title) as hub_title, array_agg(J.name) as hub_name, array_agg(J.id) as hub_id FROM (SELECT * FROM articles WHERE id = $1 AND draft = false) I, hubs J WHERE J.id = ANY(i.hubs) GROUP BY I.id) M, users WHERE M.id = articles.id AND articles.author = users.id;"
             pgClient.query({
                 text: sql
-	       ,values: [request.post.id]
+	       ,values: [job.request.post.id]
 	    }, function(err, result){
                 //done();
 	        if(err){
