@@ -132,5 +132,5 @@ var worker = function(job){
     });
 };
 
-http.createServer(start_session).listen(7501, "localhost");
+http.createServer(dispatcher).listen(7501, "localhost");
 console.log('views.server running at http://localhost:7501');
