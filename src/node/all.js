@@ -1,6 +1,6 @@
 "use strict";
 //просто что бы видеть, какие модули используются
-["http", "fs", "pg", "mustache", "./ext/bike", "./config"].forEach(cV => require(cV));
+["http", "fs", "pg", "mustache", "./bike", "./config"].forEach(cV => require(cV));
 
 var fs = require("fs");
 var http = require("http");
@@ -9,7 +9,7 @@ var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
 var dispatcher = function(request, response){
 
-    var fw = require("./ext/bike");
+    var fw = require("./bike");
 
          fw.prepare_headers({request, response})
    .then(fw.parse_cookies, fw.err)
