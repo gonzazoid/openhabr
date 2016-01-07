@@ -38,6 +38,7 @@ var worker = function(job){
     return new Promise(function(resolve, reject){
         var pg = require("pg");
         var config = require("./config");
+        var sha3 = require("js-sha3").sha3_512;
         //проверим action
         //если newuser - пришли данные на регистрацию
         console.log(job.request.post);
