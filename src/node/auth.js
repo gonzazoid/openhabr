@@ -89,6 +89,7 @@ var worker = function(job){
                 });
                 break;
             case "/logout/":
+                var url = require("url");
                 if("user" in job.request){
                     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	                if(err){
@@ -114,6 +115,7 @@ var worker = function(job){
                     job.response.habr.headers["Location"] = "/";
                 }
                 job.response.habr.status = {code: 303, message: "See Other"};
+                resolve(job);
                 break;
             case "/settings/":
                 "data" in job.response.habr || (job.response.habr.data = {});
