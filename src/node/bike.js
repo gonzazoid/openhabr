@@ -29,7 +29,7 @@ module.exports = {
                 });
 
                 job.request.on('end', function () {
-                    var qs = request("querystring");
+                    var qs = require("querystring");
                     job.request.post = qs.parse(body);
                     resolve(job);
                 });
