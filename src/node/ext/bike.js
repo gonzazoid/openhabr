@@ -62,6 +62,7 @@ module.exports = {
                             return;
                     }
                     job.request.user = result.rows[0];
+                    console.log("session", job);
                     resolve(job);
                 });
             });
