@@ -1,3 +1,4 @@
+"use strict";
 module.exports = {
     prepare_headers: function(job){
         return new Promise(function(resolve, reject){
@@ -44,6 +45,11 @@ module.exports = {
                     text: "SELECT * FROM users WHERE sid = $1;"
 	           ,values: [job.request.cookies.id]
 	        }, function(err, result){
+                    if(err){
+                        console.log(err);
+                        reject();
+    	                return;
+                    }
                     done();
                     switch(true){
 	                case err:
