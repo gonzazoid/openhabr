@@ -68,6 +68,7 @@ module.exports = {
         });
     }
    ,output: function(job){
+        console.log("output", job);
         var mustache = require("mustache");
         job.response.writeHead(200, "Ok", job.response.habr.headers);
         "user" in job.request && (job.response.habr.data.user = job.request.user);
