@@ -1,6 +1,7 @@
 "use strict";
 module.exports = {
     prepare_headers: function(job){
+        console.log(job);
         return new Promise(function(resolve, reject){
             "habr" in job.response || (job.response.habr = {});
             job.response.habr.headers = {};
