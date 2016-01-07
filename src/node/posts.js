@@ -41,5 +41,5 @@ var worker = function(request, response){
     }
 };
 
-http.createServer(starter).listen(7505, "localhost");
+http.createServer(dispatcher).listen(7505, "localhost");
 console.log('users.server running at http://localhost:7505');
