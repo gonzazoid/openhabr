@@ -85,6 +85,7 @@ var worker = function(job){
                         }
                         job.response.habr.headers["Set-Cookie"] = 'id=' + result.rows[0].sid + '; path=/; HttpOnly;';
                         job.response.habr.status = {code: 303, message: "See Other"};
+                        resolve(job);
                     });
                 });
                 break;
