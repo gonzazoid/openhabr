@@ -1,16 +1,15 @@
+"use strict";
+//просто что бы видеть, какие модули используются
+["http", "fs", "pg", "querystring", "url", "mustache", "js-sha3", "./bike", "./config"].forEach(cV => require(cV));
+
 var http = require("http");
-var qs = require('querystring');
 var fs = require("fs");
-var pg = require("pg");
-var sha3 = require("js-sha3").sha3_512;
-var mustache = require("mustache");
-var url = require('url');
 
-var config = require("./config");
-
-var auth = fs.readFileSync("./tpl/auth.tpl", "utf-8");
-var settings = fs.readFileSync("./tpl/settings.tpl", "utf-8");
-var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
+var patterns = {
+    auth    : fs.readFileSync("./tpl/auth.tpl", "utf-8")
+   ,settings: fs.readFileSync("./tpl/settings.tpl", "utf-8")
+   ,footer  : fs.readFileSync("./tpl/footer.tpl", "utf-8")
+};
 
 var rndHex = function (len) {
     var id = '';
@@ -23,204 +22,108 @@ var rndHex = function (len) {
     return id;
 };
 
-var worker = function(request, response){
-    
-    //проверим action
-    //если newuser - пришли данные на регистрацию
-    console.log(request.post);
-    console.log(request.url);
-    switch(request.url){
-        case "/":
-            //если нет никаких данных - просто выводим форму авторизации
-            var headers = {};
+var dispatcher = function(request, response){
 
-            headers['Content-Type'] = 'text/html';
-            headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-            headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-            headers['Pragma'] = ' no-cache'; // HTTP/1.1 
-            //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
+    var fw = require("./bike");
 
-            response.writeHead(200, "Ok", headers);
-            //TODO  тут вообще то если пользователь уже авторизован - надо бы ему сообщать об этом
-            var data = {"return": "referer" in request.headers ? request.headers.referer : "/"};
-            if("user" in request) data.user = request.user;
-            var output = mustache.render(auth, data, {footer: footer});
-            response.write(output);
-            //response.write(JSON.stringify(result.rows));
-            response.end();
-            break;
-        case "/auth/login/":
-            console.log("/login/");
-            pg.connect(config.common.postgres, function (err, pgClient, done) {
-	        if(err){
-                    console.log(err);
-                    response.end();
-    	            return;
-	        }
-                var sql = "select * from auth($1, $2, $3);";
-                pgClient.query({
-                    text: sql
-	           ,values: [request.post.nickname, sha3(request.post.sword), rndHex(128)]
-	        }, function(err, result){
-                    done();
-	            if(err){
-                        console.log(err);
-                        response.end();
-    	                return;
-	            }
-                    console.log(result.rows);
-                    //здесь и выводим
-                    if(result.rows.length != 1){
-                        //что то пошло не так
-                    }
-                    //response.user = result.rows[0];
-                    var headers = {};
-                    if("return" in request.post){
-                        var parsed = url.parse(request.post.return);
-                        headers["Location"] = parsed.hostname == "openhabr.net" ? request.post.return : "/"
-                    }else{
-                        headers["Location"] = "/";
-                    }
-                    headers["Set-Cookie"] = 'id=' + result.rows[0].sid + '; path=/; HttpOnly;';
-                    headers['Content-Type'] = 'text/html';
-                    headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-                    headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-                    headers['Pragma'] = ' no-cache'; // HTTP/1.1 
-            
-                    response.writeHead(303, "See Other", headers);
-                    response.end();
-                });
-            });
-            break;
-        case "/logout/":
-            if("user" in request){
+         fw.prepare_headers({request, response})
+   .then(fw.parse_cookies, fw.err)
+   .then(fw.start_session, fw.err)
+   .then(worker, fw.err)
+   .then(fw.output, fw.err);
+};
+
+var worker = function(job){
+    return new Promise(function(resolve, reject){
+        var pg = require("pg");
+        var config = require("./config");
+        var sha3 = require("js-sha3").sha3_512;
+        //проверим action
+        //если newuser - пришли данные на регистрацию
+        console.log(request.post);
+        console.log(request.url);
+        switch(request.url){
+            case "/":
+                //если нет никаких данных - просто выводим форму авторизации
+                //TODO  тут вообще то если пользователь уже авторизован - надо бы ему сообщать об этом
+                "data" in job.response.habr || (job.response.habr.data = {});
+                job.response.habr.data.return = "referer" in request.headers ? request.headers.referer : "/";
+                job.response.habr.pattern = patterns.auth;
+                job.response.habr.patterns = patterns;
+                resolve(job);
+                break;
+            case "/auth/login/":
+                console.log("/login/");
                 pg.connect(config.common.postgres, function (err, pgClient, done) {
 	            if(err){
                         console.log(err);
-                        response.end();
+                        reject();
     	                return;
 	            }
-                    var sql = "select * from reset_session($1);";
+                    var sql = "select * from auth($1, $2, $3);";
                     pgClient.query({
                         text: sql
-	               ,values: [request.user.id]
+	               ,values: [job.request.post.nickname, sha3(job.request.post.sword), rndHex(128)]
 	            }, function(err, result){
                         done();
+	                if(err){
+                            console.log(err);
+                            reject();
+    	                    return;
+	                }
+                        console.log(result.rows);
+                        //здесь и выводим
+                        if(result.rows.length != 1){
+                            //что то пошло не так
+                        }
+                        //response.user = result.rows[0];
+                        if("return" in job.request.post){
+                            var parsed = url.parse(job.request.post.return);
+                            job.response.habr.headers["Location"] = parsed.hostname == "openhabr.net" ? job.request.post.return : "/"
+                        }else{
+                            job.response.habr.headers["Location"] = "/";
+                        }
+                        job.response.habr.headers["Set-Cookie"] = 'id=' + result.rows[0].sid + '; path=/; HttpOnly;';
+                        job.response.habr.status = {code: 303, message: "See Other"};
                     });
                 });
-            }
-            var headers = {};
-
-            headers["Set-Cookie"] = 'id=; path=/; HttpOnly;';
-            //console.log(request.headers);
-            if("referer" in request.headers){
-                var parsed = url.parse(request.headers.referer);
-                headers["Location"] = parsed.hostname == "openhabr.net" ? request.headers.referer : "/"
-            }else{
-                headers["Location"] = "/";
-            }
-            //return;
-            headers['Content-Type'] = 'text/html';
-            headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-            headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-            headers['Pragma'] = ' no-cache'; // HTTP/1.1 
-            //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
-            
-            response.writeHead(303, "See Other", headers);
-            response.end();
-            break;
-        case "/settings/":
-            var headers = {};
-
-            headers['Content-Type'] = 'text/html';
-            headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-            headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-            headers['Pragma'] = ' no-cache'; // HTTP/1.1 
-            //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
-
-            response.writeHead(200, "Ok", headers);
-            var data = {}
-            if("user" in request) data.user = request.user;
-            var output = mustache.render(settings, data, {footer:footer});
-            response.write(output);
-            //response.write(JSON.stringify(result.rows));
-            //response.write(JSON.stringify(article));
-            response.end();
-            break;
-    }
-};
-var parseCookies = function (request) {//TODO audit&refactoring&error handling
-    //console.log(this.headers);
-    var cookies = {};
-
-    if (request.headers.cookie !== undefined) {
-        var rc = request.headers.cookie.split(';');
-
-        for (var cookie in rc) {
-            var parts = rc[cookie].split('=');
-            //TODO проверка на разбивку (должно быть точно два элемента)
-            if (parts.length !== 2) {
-                //this.forbidden();
-                console.log("wrong cookies");
-            }else{
-                cookies[parts[0].trim()] = parts[1].trim();
-            }
-        }
-    }
-    //console.log(this.cookies);
-    return cookies;
-};
-var start_session = function(request, response){
-    request.cookies = parseCookies(request); 
-    if("id" in request.cookies && request.cookies.id.trim() != ''){
-        //тянем сессию
-        pg.connect(config.common.postgres, function (err, pgClient, done) {
-	    if(err){
-                console.log(err);
-                response.end();
-    	        return;
-	    }
-            var sql = "SELECT * FROM users WHERE sid = $1;"
-            pgClient.query({
-                text: sql
-	       ,values: [request.cookies.id]
-	    }, function(err, result){
-                done();
-	        if(err){
-		    console.log(err);
-                    response.end();
-		    return;
-	        } 
-                if(result.rows.length == 1){
-                    request.user = result.rows[0];
+                break;
+            case "/logout/":
+                if("user" in job.request){
+                    pg.connect(config.common.postgres, function (err, pgClient, done) {
+	                if(err){
+                            console.log(err);
+                            reject();
+    	                    return;
+	                }
+                        var sql = "select * from reset_session($1);";
+                        pgClient.query({
+                            text: sql
+	                   ,values: [job.request.user.id]
+	                }, function(err, result){
+                            done();
+                        });
+                    });
                 }
-                worker(request, response);
-            });
-        });
-    }else{
-        worker(request, response);
-    }
-};
-var starter = function (request, response) {
-    if (request.method == 'POST') {
-        var body = '';
-
-        request.on('data', function (data) {
-            body += data;
-
-            if (body.length > 4096)
-                request.connection.destroy();
-        });
-
-        request.on('end', function () {
-            request.post = qs.parse(body);
-            start_session(request, response);
-        });
-    }else{
-        request.post = {};
-        start_session(request, response);
-    }
+                job.response.habr.headers["Set-Cookie"] = 'id=; path=/; HttpOnly;';
+                //console.log(request.headers);
+                if("referer" in job.request.headers){
+                    var parsed = url.parse(job.request.headers.referer);
+                    job.response.habr.headers["Location"] = parsed.hostname == "openhabr.net" ? request.headers.referer : "/"
+                }else{
+                    job.response.habr.headers["Location"] = "/";
+                }
+                job.response.habr.status = {code: 303, message: "See Other"};
+                break;
+            case "/settings/":
+                "data" in job.response.habr || (job.response.habr.data = {});
+                job.response.habr.pattern = patterns.settings;
+                job.response.habr.patterns = patterns;
+                resolve(job);
+                break;
+        }
+    });
 };
 
-http.createServer(starter).listen(7504, "localhost");
+http.createServer(dispatcher).listen(7504, "localhost");
 console.log('auth.server running at http://localhost:7504');

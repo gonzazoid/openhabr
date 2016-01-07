@@ -94,10 +94,16 @@ module.exports = {
     }
    ,output: function(job){
         var mustache = require("mustache");
-        job.response.writeHead(200, "Ok", job.response.habr.headers);
-        "user" in job.request && (job.response.habr.data.user = job.request.user);
-        var output = mustache.render(job.response.habr.pattern, job.response.habr.data, job.response.habr.patterns);
-        job.response.write(output);
+        if("status" in job.response.habr){
+            job.response.writeHead(job.response.habr.status.code, job.response.habr.status.message, job.response.habr.headers);
+        }else{
+            job.response.writeHead(200, "Ok", job.response.habr.headers);
+        }
+        if("pattern" in job.response.habr.data){
+            "user" in job.request && (job.response.habr.data.user = job.request.user);
+            var output = mustache.render(job.response.habr.pattern, job.response.habr.data, job.response.habr.patterns);
+            job.response.write(output);
+        }
         job.response.end();
     }
    ,err: function(job){

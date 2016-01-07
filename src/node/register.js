@@ -33,7 +33,7 @@ var dispatcher = function(request, response){
    .then(worker, fw.err)
    .then(fw.output, fw.err);
 };
-
+//TODO санитизация
 var worker = function(job){
     return new Promise(function(resolve, reject){
         var pg = require("pg");
