@@ -39,6 +39,7 @@ var worker = function(job){
         var pg = require("pg");
         var config = require("./config");
         var sha3 = require("js-sha3").sha3_512;
+        var url = require("url");
         //проверим action
         //если newuser - пришли данные на регистрацию
         console.log(job.request.post);
@@ -91,7 +92,6 @@ var worker = function(job){
                 });
                 break;
             case "/logout/":
-                var url = require("url");
                 if("user" in job.request){
                     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	                if(err){
