@@ -110,7 +110,7 @@ var worker = function(job){
                 //console.log(request.headers);
                 if("referer" in job.request.headers){
                     var parsed = url.parse(job.request.headers.referer);
-                    job.response.habr.headers["Location"] = parsed.hostname == "openhabr.net" ? request.headers.referer : "/"
+                    job.response.habr.headers["Location"] = parsed.hostname == "openhabr.net" ? job.request.headers.referer : "/"
                 }else{
                     job.response.habr.headers["Location"] = "/";
                 }
