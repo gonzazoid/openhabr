@@ -19,6 +19,7 @@ var dispatcher = function(request, response){
 };
 
 var worker = function(job){
+    console.log("worker", job);
     return new Promise(function(resolve, reject){
         //TODO перевести на pg-then
         var pg = require("pg");
