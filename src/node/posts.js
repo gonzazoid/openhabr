@@ -21,7 +21,7 @@ var dispatcher = function(request, response){
    .then(worker, fw.err)
    .then(fw.output, fw.err);
 };
-var worker = function(request, response){
+var worker = function(job){
     
     //проверим action
     //если newuser - пришли данные на регистрацию
