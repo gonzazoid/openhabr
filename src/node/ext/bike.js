@@ -32,6 +32,7 @@ module.exports = {
         return new Promise(function(resolve, reject){
             //request.cookies = parseCookies(request); 
             if(!("id" in job.request.cookies && job.request.cookies.id.trim() != '')){
+                console.log("start session: id not found");
                 resolve(job);
                 return;
             }
