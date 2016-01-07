@@ -42,12 +42,12 @@ var worker = function(job){
         //если newuser - пришли данные на регистрацию
         console.log(job.request.post);
         console.log(job.request.url);
-        switch(request.url){
+        switch(job.request.url){
             case "/":
                 //если нет никаких данных - просто выводим форму авторизации
                 //TODO  тут вообще то если пользователь уже авторизован - надо бы ему сообщать об этом
                 "data" in job.response.habr || (job.response.habr.data = {});
-                job.response.habr.data.return = "referer" in request.headers ? request.headers.referer : "/";
+                job.response.habr.data.return = "referer" in job.request.headers ? job.request.headers.referer : "/";
                 job.response.habr.pattern = patterns.auth;
                 job.response.habr.patterns = patterns;
                 resolve(job);
