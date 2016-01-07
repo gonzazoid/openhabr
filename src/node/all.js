@@ -61,7 +61,7 @@ var worker = function(job){
                     }
                 });
                 "data" in job.response.habr || (job.response.habr.data = {});
-                job.response.habr.data = {articles: result.rows};
+                job.response.habr.data.articles: result.rows;
                 job.response.habr.pattern = pattern;
                 job.response.habr.patterns = {footer};
                 resolve(job);
