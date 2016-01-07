@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
     prepare_headers: function(job){
-        console.log(job);
+        //console.log(job);
         return new Promise(function(resolve, reject){
             "habr" in job.response || (job.response.habr = {});
             job.response.habr.headers = {};
@@ -15,6 +15,7 @@ module.exports = {
         });
     }
    ,parse_cookies: function(job){
+        console.log(job);
         return new Promise(function(resolve, reject){
             job.request.cookies = {};
             job.request.headers.cookie ||
@@ -22,7 +23,7 @@ module.exports = {
                 job.request.headers.cookie.split(';')
                                           .map(cV => cV.split('='))
                                           .map(cV => cV.length == 2 ? cV : null)
-                                          .forEach(cV => cV || (job.request.cookies[cV[0].trim()] = cV[1].trim()));
+                                          .forEach(cV => cV && (job.request.cookies[cV[0].trim()] = cV[1].trim()));
             resolve(job);
         });
     }
