@@ -14,6 +14,31 @@ module.exports = {
             resolve(job);
         });
     }
+   ,parse_post: function(job){
+        return new Promise(function(resolve, reject){
+            if (job.request.method == 'POST') {
+                var body = '';
+
+                job.request.on('data', function (data) {
+                    body += data;
+                    //TODO размер - в config
+                    if (body.length > 4096){
+                        job.request.connection.destroy();
+                        reject();
+                    }
+                });
+
+                job.request.on('end', function () {
+                    var qs = request("querystring");
+                    job.request.post = qs.parse(body);
+                    resolve(job);
+                });
+            }else{
+                job.request.post = {};
+                resolve(job);
+            }
+        });
+    }
    ,parse_cookies: function(job){
         //console.log(job);
         return new Promise(function(resolve, reject){
