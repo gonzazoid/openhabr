@@ -3,6 +3,7 @@
 ["http", "fs", "pg", "mustache", "./ext/bike", "./config"].forEach(cV => require(cV));
 
 var fs = require("fs");
+var http = require("http");
 var pattern = fs.readFileSync("./tpl/all.tpl", "utf-8");
 var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
 
