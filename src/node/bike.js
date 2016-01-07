@@ -99,7 +99,7 @@ module.exports = {
         }else{
             job.response.writeHead(200, "Ok", job.response.habr.headers);
         }
-        if("pattern" in job.response.habr.data){
+        if("pattern" in job.response.habr){
             "user" in job.request && (job.response.habr.data.user = job.request.user);
             var output = mustache.render(job.response.habr.pattern, job.response.habr.data, job.response.habr.patterns);
             job.response.write(output);
