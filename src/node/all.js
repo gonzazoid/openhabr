@@ -5,8 +5,10 @@
 var fs = require("fs");
 var http = require("http");
 
-var pattern = fs.readFileSync("./tpl/all.tpl", "utf-8");
-var footer = fs.readFileSync("./tpl/footer.tpl", "utf-8");
+var patterns = {
+    all: fs.readFileSync("./tpl/all.tpl", "utf-8")
+   ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
+};
 
 var dispatcher = function(request, response){
 
@@ -63,8 +65,8 @@ var worker = function(job){
                 });
                 "data" in job.response.habr || (job.response.habr.data = {});
                 job.response.habr.data.articles = result.rows;
-                job.response.habr.pattern = pattern;
-                job.response.habr.patterns = {footer};
+                job.response.habr.pattern = patterns.all;
+                job.response.habr.patterns = patterns;
                 resolve(job);
 	    });
         });
