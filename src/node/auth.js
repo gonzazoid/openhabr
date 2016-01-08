@@ -40,6 +40,7 @@ var worker = function(job){
         var config = require("./config");
         var sha3 = require("js-sha3").sha3_512;
         var url = require("url");
+        validator = require("validator");
         //проверим action
         //если newuser - пришли данные на регистрацию
         console.log(job.request.post);
@@ -56,6 +57,18 @@ var worker = function(job){
                 break;
             case "/auth/login/":
                 console.log("/login/");
+                //отфильтруем данные - тоже кандидат на вынос в общий поток обработки
+                var rules = {
+                     "nickname" : {"flags": "required", "type": "string"}
+                    ,"sword"    : {"flags": "required", "type": "string"}
+                };
+                try {
+                    job.request.post = validator(job.request.post, rules);
+                } catch (err) {
+	            console.log("bad request:\nuser:\n", request.user, "\npost:\n", request.post, "\nerror\n", err);
+                    reject();
+	            return;
+                }
                 pg.connect(config.common.postgres, function (err, pgClient, done) {
 	            if(err){
                         console.log(err);

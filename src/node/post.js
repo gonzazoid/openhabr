@@ -21,6 +21,7 @@ var dispatcher = function(request, response){
    .then(worker, fw.err)
    .then(fw.output, fw.err);
 };
+
 var worker = function(job){
     return new Promise(function(resolve, reject){
 

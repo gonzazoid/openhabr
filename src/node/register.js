@@ -46,6 +46,18 @@ var worker = function(job){
             case "/newuser":
                 //регистрируем новичка
                 console.log(job.request.post);
+                var rules = {
+                     "nickname" : {"flags": "required", "type": "string"}
+                    ,"sword"    : {"flags": "required", "type": "string"}
+                    ,"mailbox"  : {"flags": "required", "type": "string"}
+                };
+                try {
+                    job.request.post = validator(job.request.post, rules);
+                } catch (err) {
+	            console.log("register: bad request:\nuser:\n", request.user, "\npost:\n", request.post, "\nerror\n", err);
+                    reject();
+	            return;
+                }
                 pg.connect(config.common.postgres, function (err, pgClient, done) {
 	            if(err){
                         console.log(err);
