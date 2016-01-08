@@ -1,0 +1,22 @@
+{
+  "name": "openhabr.net",
+  "version": "0.0.1",
+  "description": "habr like open community's site engine",
+  "main": "index.js",
+  "dependencies": {
+    "mustache": "^2.2.1"
+   ,"pg":       "^4.4.3"
+   ,"js-sha3":  "^0.5.1"
+   ,"validator"    : "https://github.com/gonzazoid/validator.js.git"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "root@tests.seogearbox.net:/www/git/openhabr.net"
+  },
+  "author": "",
+  "license": "MIT"
+}
