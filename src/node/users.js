@@ -90,6 +90,7 @@ var worker = function(job){
                         }
                         //сольем медальки
                         var medals = {};
+                        var i, l;
                         for(i=0, l=result.rows[0].medals.length; i<l; i++){
                             medals[result.rows[0].medals[i]] = {title:       result.rows[0].medal_title[i]
                                                                ,description: result.rows[0].medal_description[i]};
