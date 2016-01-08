@@ -4,7 +4,8 @@
 
 DROP FUNCTION IF EXISTS adduser(character varying, character varying, character varying, character varying);
 
-CREATE FUNCTION adduser(_nickname character varying, _mail character varying, _pwd character varying, _sid character varying) RETURNS boolean
+CREATE FUNCTION adduser(_nickname character varying, _mail character varying, _pwd character varying, _sid character varying)
+    RETURNS boolean
     LANGUAGE plpgsql
 AS $_$
 
