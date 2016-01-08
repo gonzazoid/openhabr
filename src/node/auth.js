@@ -61,6 +61,7 @@ var worker = function(job){
                 var rules = {
                      "nickname" : {"flags": "required", "type": "string"}
                     ,"sword"    : {"flags": "required", "type": "string"}
+                    ,"return"   : {"flags": "required", "type": "string"}
                 };
                 try {
                     job.request.post = validator(job.request.post, rules);
