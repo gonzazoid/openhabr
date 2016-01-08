@@ -1,6 +1,5 @@
 #!/usr/local/bin/bash
 
-#здесь надо скопировать репу в /www/seogearbox.net.$branch
 cd ../
 rm -rf "/www/openhabr.net.$1"
 cp -R "./openhabr.net.$1" /www/
