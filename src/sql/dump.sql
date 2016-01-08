@@ -40,7 +40,7 @@ COMMENT ON EXTENSION plv8 IS 'PL/JavaScript (v8) trusted procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- Name: adduser(character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: habr
+-- Name: adduser(character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: openhabr
 --
 
 CREATE FUNCTION adduser(_nickname character varying, _mail character varying, _pwd character varying, _sid character varying) RETURNS boolean
@@ -70,10 +70,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.adduser(_nickname character varying, _mail character varying, _pwd character varying, _sid character varying) OWNER TO habr;
+ALTER FUNCTION public.adduser(_nickname character varying, _mail character varying, _pwd character varying, _sid character varying) OWNER TO openhabr;
 
 --
--- Name: users_id; Type: SEQUENCE; Schema: public; Owner: habr
+-- Name: users_id; Type: SEQUENCE; Schema: public; Owner: openhabr
 --
 
 CREATE SEQUENCE users_id
@@ -84,14 +84,14 @@ CREATE SEQUENCE users_id
     CACHE 1;
 
 
-ALTER TABLE users_id OWNER TO habr;
+ALTER TABLE users_id OWNER TO openhabr;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: habr; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -109,10 +109,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE users OWNER TO habr;
+ALTER TABLE users OWNER TO openhabr;
 
 --
--- Name: auth(character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: habr
+-- Name: auth(character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: openhabr
 --
 
 CREATE FUNCTION auth(_nickname character varying, _pwd character varying, _sid character varying) RETURNS SETOF users
@@ -128,10 +128,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.auth(_nickname character varying, _pwd character varying, _sid character varying) OWNER TO habr;
+ALTER FUNCTION public.auth(_nickname character varying, _pwd character varying, _sid character varying) OWNER TO openhabr;
 
 --
--- Name: get_user_by_name(character varying); Type: FUNCTION; Schema: public; Owner: habr
+-- Name: get_user_by_name(character varying); Type: FUNCTION; Schema: public; Owner: openhabr
 --
 
 CREATE FUNCTION get_user_by_name(_nickname character varying) RETURNS TABLE(id bigint, nickname character varying, mail character varying, carma real, rating real, fullname character varying, status character varying, pwd character varying, sid character varying, medals integer[], readonly boolean, medal_title character varying[], medal_description character varying[])
@@ -149,10 +149,10 @@ WHERE users.id = m.id;
 $$;
 
 
-ALTER FUNCTION public.get_user_by_name(_nickname character varying) OWNER TO habr;
+ALTER FUNCTION public.get_user_by_name(_nickname character varying) OWNER TO openhabr;
 
 --
--- Name: reset_session(bigint); Type: FUNCTION; Schema: public; Owner: habr
+-- Name: reset_session(bigint); Type: FUNCTION; Schema: public; Owner: openhabr
 --
 
 CREATE FUNCTION reset_session(_id bigint) RETURNS SETOF users
@@ -164,10 +164,10 @@ UPDATE users SET sid = '' WHERE id = _id RETURNING *;
 $$;
 
 
-ALTER FUNCTION public.reset_session(_id bigint) OWNER TO habr;
+ALTER FUNCTION public.reset_session(_id bigint) OWNER TO openhabr;
 
 --
--- Name: articles_id; Type: SEQUENCE; Schema: public; Owner: habr
+-- Name: articles_id; Type: SEQUENCE; Schema: public; Owner: openhabr
 --
 
 CREATE SEQUENCE articles_id
@@ -178,10 +178,10 @@ CREATE SEQUENCE articles_id
     CACHE 1;
 
 
-ALTER TABLE articles_id OWNER TO habr;
+ALTER TABLE articles_id OWNER TO openhabr;
 
 --
--- Name: articles; Type: TABLE; Schema: public; Owner: habr; Tablespace: 
+-- Name: articles; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 CREATE TABLE articles (
@@ -203,24 +203,24 @@ CREATE TABLE articles (
 );
 
 
-ALTER TABLE articles OWNER TO habr;
+ALTER TABLE articles OWNER TO openhabr;
 
 --
--- Name: TABLE articles; Type: COMMENT; Schema: public; Owner: habr
+-- Name: TABLE articles; Type: COMMENT; Schema: public; Owner: openhabr
 --
 
 COMMENT ON TABLE articles IS 'статьи';
 
 
 --
--- Name: COLUMN articles.type; Type: COMMENT; Schema: public; Owner: habr
+-- Name: COLUMN articles.type; Type: COMMENT; Schema: public; Owner: openhabr
 --
 
 COMMENT ON COLUMN articles.type IS 'перевод/новость/урок/статья/исследование';
 
 
 --
--- Name: comments_id; Type: SEQUENCE; Schema: public; Owner: habr
+-- Name: comments_id; Type: SEQUENCE; Schema: public; Owner: openhabr
 --
 
 CREATE SEQUENCE comments_id
@@ -231,10 +231,10 @@ CREATE SEQUENCE comments_id
     CACHE 1;
 
 
-ALTER TABLE comments_id OWNER TO habr;
+ALTER TABLE comments_id OWNER TO openhabr;
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: habr; Tablespace: 
+-- Name: comments; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 CREATE TABLE comments (
@@ -249,17 +249,17 @@ CREATE TABLE comments (
 );
 
 
-ALTER TABLE comments OWNER TO habr;
+ALTER TABLE comments OWNER TO openhabr;
 
 --
--- Name: COLUMN comments.reply_to; Type: COMMENT; Schema: public; Owner: habr
+-- Name: COLUMN comments.reply_to; Type: COMMENT; Schema: public; Owner: openhabr
 --
 
 COMMENT ON COLUMN comments.reply_to IS 'id коммента, на который отвечает этот. 0 - если ответ на статью а не комментарий';
 
 
 --
--- Name: hubs_id; Type: SEQUENCE; Schema: public; Owner: habr
+-- Name: hubs_id; Type: SEQUENCE; Schema: public; Owner: openhabr
 --
 
 CREATE SEQUENCE hubs_id
@@ -270,10 +270,10 @@ CREATE SEQUENCE hubs_id
     CACHE 1;
 
 
-ALTER TABLE hubs_id OWNER TO habr;
+ALTER TABLE hubs_id OWNER TO openhabr;
 
 --
--- Name: hubs; Type: TABLE; Schema: public; Owner: habr; Tablespace: 
+-- Name: hubs; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 CREATE TABLE hubs (
@@ -283,24 +283,24 @@ CREATE TABLE hubs (
 );
 
 
-ALTER TABLE hubs OWNER TO habr;
+ALTER TABLE hubs OWNER TO openhabr;
 
 --
--- Name: COLUMN hubs.name; Type: COMMENT; Schema: public; Owner: habr
+-- Name: COLUMN hubs.name; Type: COMMENT; Schema: public; Owner: openhabr
 --
 
 COMMENT ON COLUMN hubs.name IS 'используется в урле';
 
 
 --
--- Name: COLUMN hubs.title; Type: COMMENT; Schema: public; Owner: habr
+-- Name: COLUMN hubs.title; Type: COMMENT; Schema: public; Owner: openhabr
 --
 
 COMMENT ON COLUMN hubs.title IS 'выводится в тексте';
 
 
 --
--- Name: medals_id; Type: SEQUENCE; Schema: public; Owner: habr
+-- Name: medals_id; Type: SEQUENCE; Schema: public; Owner: openhabr
 --
 
 CREATE SEQUENCE medals_id
@@ -311,10 +311,10 @@ CREATE SEQUENCE medals_id
     CACHE 1;
 
 
-ALTER TABLE medals_id OWNER TO habr;
+ALTER TABLE medals_id OWNER TO openhabr;
 
 --
--- Name: medals; Type: TABLE; Schema: public; Owner: habr; Tablespace: 
+-- Name: medals; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 CREATE TABLE medals (
@@ -324,10 +324,10 @@ CREATE TABLE medals (
 );
 
 
-ALTER TABLE medals OWNER TO habr;
+ALTER TABLE medals OWNER TO openhabr;
 
 --
--- Name: tags_id; Type: SEQUENCE; Schema: public; Owner: habr
+-- Name: tags_id; Type: SEQUENCE; Schema: public; Owner: openhabr
 --
 
 CREATE SEQUENCE tags_id
@@ -338,10 +338,10 @@ CREATE SEQUENCE tags_id
     CACHE 1;
 
 
-ALTER TABLE tags_id OWNER TO habr;
+ALTER TABLE tags_id OWNER TO openhabr;
 
 --
--- Name: tags; Type: TABLE; Schema: public; Owner: habr; Tablespace: 
+-- Name: tags; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 CREATE TABLE tags (
@@ -350,10 +350,10 @@ CREATE TABLE tags (
 );
 
 
-ALTER TABLE tags OWNER TO habr;
+ALTER TABLE tags OWNER TO openhabr;
 
 --
--- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: habr; Tablespace: 
+-- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 ALTER TABLE ONLY articles
@@ -361,7 +361,7 @@ ALTER TABLE ONLY articles
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: habr; Tablespace: 
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 ALTER TABLE ONLY comments
@@ -369,7 +369,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: hubs_pkey; Type: CONSTRAINT; Schema: public; Owner: habr; Tablespace: 
+-- Name: hubs_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 ALTER TABLE ONLY hubs
@@ -377,7 +377,7 @@ ALTER TABLE ONLY hubs
 
 
 --
--- Name: medals_pkey; Type: CONSTRAINT; Schema: public; Owner: habr; Tablespace: 
+-- Name: medals_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 ALTER TABLE ONLY medals
@@ -385,7 +385,7 @@ ALTER TABLE ONLY medals
 
 
 --
--- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: habr; Tablespace: 
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 ALTER TABLE ONLY tags
@@ -393,7 +393,7 @@ ALTER TABLE ONLY tags
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: habr; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
 --
 
 ALTER TABLE ONLY users
