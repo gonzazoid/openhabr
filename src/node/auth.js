@@ -40,7 +40,7 @@ var worker = function(job){
         var config = require("./config");
         var sha3 = require("js-sha3").sha3_512;
         var url = require("url");
-        validator = require("validator");
+        var validator = require("validator");
         //проверим action
         //если newuser - пришли данные на регистрацию
         console.log(job.request.post);
