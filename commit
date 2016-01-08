@@ -5,5 +5,3 @@
 git commit -a -m "$1"
 
 git push origin $2
-
-#ssh root@tests.seogearbox.net "/www/git/seogearbox.net.$2/deploy/deploy" $2
