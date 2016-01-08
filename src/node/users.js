@@ -62,15 +62,16 @@ var worker = function(job){
                 });
                 break;
             default:
-            if(/^\/[a-zA-z0-9_\-]+\/$/.test(request.url)){
-                console.log(request.url);
-                var res = request.url.split("/");
+            if(/^\/[a-zA-z0-9_\-]+\/$/.test(job.request.url)){
+                console.log(job.request.url);
+                var res = job.request.url.split("/");
                 console.log(res);
                 var nickname = res[1];
                 pg.connect(config.common.postgres, function (err, pgClient, done) {
 	            if(err){
                         console.log(err);
-                        response.end();
+                        done();
+                        reject();
     	                return;
 	            }
                     var sql = "SELECT * FROM get_user_by_name($1);";   
@@ -81,7 +82,7 @@ var worker = function(job){
                         done();
 	                if(err){
 		            console.log(err);
-                            response.end();
+                            reject();
 		            return;
 	                }   
                         if(result.rows.length != 1){
@@ -96,20 +97,12 @@ var worker = function(job){
                         for(i=0, l=result.rows[0].medals.length; i<l; i++){
                             result.rows[0].medals[i] =  medals[result.rows[0].medals[i]];
                         }
-                        var headers = {};
 
-                        headers['Content-Type'] = 'text/html';
-                        headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-                        headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-                        headers['Pragma'] = ' no-cache'; // HTTP/1.1 
-                        //headers['Last-Modified'] = ".gmdate("D, d M Y H:i:s")."GMT");
-
-                        response.writeHead(200, "Ok", headers);
-                        var data = {profile: result.rows[0]};
-                        if("user" in request) data.user = request.user;
-                        var output = mustache.render(user, data, {footer: footer});
-                        response.write(output);
-                        response.end();
+                        "data" in job.response.habr || (job.response.habr.data = {});
+                        job.response.habr.data.profile = result.rows[0];
+                        job.response.habr.pattern = patterns.user;
+                        job.response.habr.patterns = patterns;
+                        resolve(job);
                     });
                 });
             }
