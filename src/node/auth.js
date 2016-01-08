@@ -65,7 +65,7 @@ var worker = function(job){
                 try {
                     job.request.post = validator(job.request.post, rules);
                 } catch (err) {
-	            console.log("bad request:\nuser:\n", request.user, "\npost:\n", request.post, "\nerror\n", err);
+	            console.log("bad request:\nuser:\n", job.request.user, "\npost:\n", job.request.post, "\nerror\n", err);
                     reject();
 	            return;
                 }
