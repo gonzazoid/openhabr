@@ -35,7 +35,7 @@ var worker = function(job){
     	        return;
 	    }
 
-            var sql = "SELECT V.*,  M.hub_title, M.hub_id, M.hub_name, users.nickname FROM (    SELECT I.id, I.stamp, array_agg(J.title) as hub_title, array_agg(J.id) as hub_id, array_agg(J.name) as hub_name     FROM (        SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10    ) I, hubs J     WHERE  J.id = ANY(I.hubs) GROUP BY I.id, I.stamp, I.hubs  ORDER BY I.stamp ASC) M, articles V, users WHERE M.id = V.id AND V.author = users.id ORDER BY stamp ASC;"
+            var sql = "SELECT V.*,  M.hub_title, M.hub_id, M.hub_name, users.nickname FROM (    SELECT I.id, I.stamp, array_agg(J.title) as hub_title, array_agg(J.id) as hub_id, array_agg(J.name) as hub_name     FROM (        SELECT * FROM articles WHERE draft = false ORDER BY stamp DESC LIMIT 10    ) I, hubs J     WHERE  J.id = ANY(I.hubs) GROUP BY I.id, I.stamp, I.hubs  ORDER BY I.stamp DESC) M, articles V, users WHERE M.id = V.id AND V.author = users.id ORDER BY stamp DESC;"
             pgClient.query({
                 text: sql
 	       // ,values: argv
