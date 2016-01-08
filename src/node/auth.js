@@ -1,6 +1,6 @@
 "use strict";
 //просто что бы видеть, какие модули используются
-["http", "fs", "pg", "querystring", "url", "mustache", "js-sha3", "./bike", "./config"].forEach(cV => require(cV));
+["http", "fs", "pg", "querystring", "url", "mustache", "validator", "js-sha3", "./bike", "./config"].forEach(cV => require(cV));
 
 var http = require("http");
 var fs = require("fs");
