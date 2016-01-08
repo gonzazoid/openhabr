@@ -106,7 +106,8 @@ var worker = function(job){
                     });
                 });
             }
-    }
+        }
+    });
 };
 
 http.createServer(dispatcher).listen(7503, "localhost");
