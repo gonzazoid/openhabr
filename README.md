@@ -309,7 +309,7 @@ var worker = function(job){
 	    if(err){
                 console.log(err);
                 reject();
-    	        return;
+                return;
 	    }
 
         var sql = "SELECT * FROM get_hubs(40, 0);"
@@ -317,9 +317,9 @@ var worker = function(job){
             text: sql
 	       // ,values: argv
 	    }, function(err, result){
-            done();
+                done();
 	        if(err){
-		    console.log(err);
+                    console.log(err);
                     reject();
                     return;
 	        }
