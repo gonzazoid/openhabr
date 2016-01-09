@@ -47,5 +47,8 @@ openhabr.net engine
 Все, нода прописана, можно приступить к программированию. Открываем /src/node/hubs.js
 
 nginx ждет ноду на 7506-ом порту, пропишем сразу это в ноде. В конце файла у нас есть строка запуска http сервера - заменим вопросительные знаки нашим портом:
-`http.createServer(dispatcher).listen(7506, "localhost");
-console.log('hubs.server running at http://localhost:7506');`
+
+<pre>
+http.createServer(dispatcher).listen(7506, "localhost");
+console.log('hubs.server running at http://localhost:7506');
+</pre>
