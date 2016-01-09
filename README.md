@@ -16,7 +16,7 @@ openhabr.net engine
 
 в корне лежат утилиты для деплоя и директории dev и src.
 Директория dev содержит стафф для разработчиков, здесь мы видим:
-- [example.js](https://github.com/gonzazoid/openhabr/blob/master/dev/example.js) - шаблон серверного скрипта, на базе которого можно писать свои скрипты.
+- [/dev/example.js](https://github.com/gonzazoid/openhabr/blob/master/dev/example.js) - шаблон серверного скрипта, на базе которого можно писать свои скрипты.
 
 Директория src содержит все исходники сайта:
 - [/src/node/](https://github.com/gonzazoid/openhabr/tree/master/src/node) - серверные скрипты и mustache-шаблоны
