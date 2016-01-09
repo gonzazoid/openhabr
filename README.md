@@ -218,3 +218,49 @@ ALTER FUNCTION public.get_hubs(integer, integer) OWNER TO openhabr;
 ```
 сохраняем это дело в виде  /src/sql/functions/get_hubs.sql, дамп базы в таком раскладе можно не сохранять, я все равно ручками добавлю при слиянии.
 Что хочу отметить - очень плохо, что мы деляем select hubs.* а в возвращаемом типе перечисляем явно все поля hubs - стоит нам добавить новое поле в hubs и мы попадаем на правку возвращаемого типа функции. Быть может есть решение этого вопроса?
+Трудно сказать, планировщику постгреса по любому надо заранее знать состав возвращаемой таблицы. Но мы можем не выбирать .*, а указать конкретные поля, мы то знаем точно, что выводим. В таком случае если в дальнейшем в таблицу hubs будут добавлены столбцы, они нам не поломают ни функцию ни вывод страницы. А если добавляемые столбцы надо будет выводить на этой странице - мы полюбому полезем править шаблон, а с него через скрипт дойдем и до хранимки. Ок, делаем правильно:
+
+```sql
+--
+-- Name: get_hubs(integer, integer); Type: FUNCTION; Schema: public; Owner: openhabr
+--
+
+DROP FUNCTION IF EXISTS get_hubs(integer, integer);
+
+CREATE FUNCTION get_hubs(_count integer, _offset integer) 
+RETURNS TABLE(id bigint
+             ,name character varying
+             ,title character varying
+             ,subscribers integer
+             ,posts integer
+             ,popular bigint[]
+             ,rating real
+             ,tag_id bigint[]
+             ,tag_title character varying[]
+             )
+    LANGUAGE sql
+    AS $$
+
+SELECT hubs.id, hubs.name, hubs.title, hubs.subscribers, hubs.posts, hubs.popular, hubs.rating, m.tag_id, m.tag_title
+FROM (
+    WITH maximums AS(
+        SELECT id, popular
+        FROM hubs
+        ORDER BY rating DESC
+        LIMIT _count
+        OFFSET _offset
+    )
+    SELECT maximums.id, array_agg(tags.id) AS tag_id, array_agg(tags.title) AS tag_title
+    FROM maximums 
+    LEFT OUTER JOIN tags ON (tags.id = ANY(maximums.popular))
+    GROUP BY maximums.id
+) m, hubs
+WHERE m.id = hubs.id
+ORDER BY rating DESC;
+
+$$;
+
+ALTER FUNCTION public.get_hubs(integer, integer) OWNER TO openhabr;
+```
+
+Совсем другое дело, не стыдно и соседям показать.
