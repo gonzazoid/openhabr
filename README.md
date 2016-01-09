@@ -55,12 +55,12 @@ console.log('hubs.server running at http://localhost:7506');
 
 Разберемся теперь со структурой сервера. Посмотрим с самого начала:
 
-<code>
+<pre>
 var patterns = {
     some_pattern: fs.readFileSync("./tpl/some_pattern.tpl", "utf-8")
    ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
 };
-</code>
+</pre>
 
 Здесь мы загружаем нужные нам при работе паттерны.  Футер есть у всех страниц, его оставляем, помимо этого нам видимо понадобится шаблон списка хабов. Ок, заменим строку 
 
