@@ -311,7 +311,7 @@ var worker = function(job){
                 reject();
                 return;
             }
-
+            //TODO - 40 перенести в config (число хабов выводимых на одной странице списка)
             var sql = "SELECT * FROM get_hubs(40, 0);"
             pgClient.query({
                 text: sql
