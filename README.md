@@ -157,7 +157,7 @@ SELECT hubs.*, m.tag_id, m.tag_title FROM (
     WITH maximums AS(
         SELECT id, popular FROM hubs ORDER BY rating DESC LIMIT 40
     )
-    SELECT maximums.id, array_agg(tags.id) as tag_id, array_agg(tags.title) as tag_title FROM maximums LEFT OUTER JOIN tags ON (tags.id = ANY(maximums.popular)) GROUP BY maximums.id
+    SELECT maximums.id, array_agg(tags.id) AS tag_id, array_agg(tags.title) AS tag_title FROM maximums LEFT OUTER JOIN tags ON (tags.id = ANY(maximums.popular)) GROUP BY maximums.id
 ) m, hubs
 WHERE m.id = hubs.id
 ORDER BY rating DESC;
