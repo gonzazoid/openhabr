@@ -34,7 +34,14 @@ openhabr.net engine
 Итак, мы хотим реализовать вывод по адресу /hubs/.
 - Откроем [/conf/nginx.conf](https://github.com/gonzazoid/openhabr/blob/master/conf/nginx.conf) Как видим, в списке локаций /hubs/ отсутствует, а значит нужна новая нода.
 - Скопируем [/dev/example.js](https://github.com/gonzazoid/openhabr/blob/master/dev/example.js) в директорию [/src/node/](https://github.com/gonzazoid/openhabr/tree/master/src/node) под именем hubs.js (логично)
-- пропишем ноду в nginx-е, добавив следующую строку: `location /hubs/ { proxy_pass http://localhost:7506/; }`. Порт берем первый свободный, некритично. В дальнейшем это будет автоматом прописываться при сборке gulp-ом, пока так, не страшно.
+- пропишем ноду в nginx-е, добавив следующие строки: 
+
+<pre>
+location /hubs/ {
+    proxy_pass http://localhost:7506/;
+}
+</pre>
+Порт берем первый свободный, некритично. В дальнейшем это будет автоматом прописываться при сборке gulp-ом, пока так, не страшно.
 - пропишем новую ноду в start и stop скриптах:
   в start добавим строку:
 
