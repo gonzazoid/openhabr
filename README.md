@@ -99,7 +99,7 @@ var patterns = {
 
 Ок, добавим в шаблон такой код:
 
-<pre>
+```javascript
     pg.connect(config.common.postgres, function (err, pgClient, done) {
 	    if(err){
             console.log(err);
@@ -121,7 +121,7 @@ var patterns = {
 	        //здесь в result.rows имеем результат запроса
 	    });
 	});
-</pre>
+```
 
 я планирую перейти на [pg-then](https://github.com/coderhaoxin/pg-then) и шаблонизировать работу с базой (но не ORM), но пока так, по колхозному, на коллбэках и ручками.
 
