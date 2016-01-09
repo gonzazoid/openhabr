@@ -147,3 +147,20 @@ var patterns = {
 
  id (bigint) | name (character varying) | title (character varying) | subscribers (integer) | posts (integer) | popular (bigint[]) | rating (real) |
 -------------|--------------------------|---------------------------|-----------------------|-----------------|------------------------|---------------|
+
+Получается нам надо сделать банальную выборку по hubs, отсортированную по rating, в порядке убывания, первые 40 записей. Подтянув попутно для popular их titles из таблицы tags.
+
+Строим sql запрос:
+
+```sql
+SELECT hubs.*, m.tag_id, m.tag_title FROM (
+    WITH maximums AS(
+        SELECT id, popular FROM hubs ORDER BY rating DESC LIMIT 40
+    )
+    SELECT maximums.id, array_agg(tags.id) as tag_id, array_agg(tags.title) as tag_title FROM maximums LEFT OUTER JOIN tags ON (tags.id = ANY(maximums.popular)) GROUP BY maximums.id
+) m, hubs
+WHERE m.id = hubs.id
+ORDER BY rating DESC;
+```
+
+Казалось бы, что может быть проще :)
