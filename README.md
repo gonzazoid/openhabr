@@ -310,22 +310,22 @@ var worker = function(job){
                 console.log(err);
                 reject();
                 return;
-                }
+            }
 
             var sql = "SELECT * FROM get_hubs(40, 0);"
             pgClient.query({
                 text: sql
-	        // ,values: argv
-	    }, function(err, result){
+                // ,values: argv
+            }, function(err, result){
                 done();
                 if(err){
                     console.log(err);
                     reject();
                     return;
                 }
-	        //здесь в result.rows имеем результат запроса
-	    });
-	});
+                //здесь в result.rows имеем результат запроса
+            });
+        });
     });
 };
 
