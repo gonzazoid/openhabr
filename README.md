@@ -18,7 +18,7 @@ openhabr.net engine
 
 - [/src/node/](https://github.com/gonzazoid/openhabr/tree/master/src/node) - серверные скрипты и mustache-шаблоны
 - [/src/sql/](https://github.com/gonzazoid/openhabr/tree/master/src/sql) - структура базы и хранимые процедуры, дамп структуры базы лежит в [/src/sql/dump.sql](https://github.com/gonzazoid/openhabr/tree/master/src/sql)
-- [/static/](https://github.com/gonzazoid/openhabr/tree/master/src/static) - все что отдается nginx-ом самостоятельно (css, шрифты, картинки, клиентские скрипты)
+- [/src/static/](https://github.com/gonzazoid/openhabr/tree/master/src/static) - все что отдается nginx-ом самостоятельно (css, шрифты, картинки, клиентские скрипты)
 
 Собственно все. Теперь перейдем на сайт [openhabr.net](http://openhabr.net/). Да, верстка вся временно позаимствована, это нехорошо, я знаю. Как руки дойдут - поменяю, а еще лучше если найдется волонтер-верстальщик, который прикрутит нормальную (не позаимствованную) верстку.
 
