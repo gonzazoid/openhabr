@@ -306,23 +306,23 @@ var worker = function(job){
         var pg = require("pg");
         var config = require("./config");
         pg.connect(config.common.postgres, function (err, pgClient, done) {
-	    if(err){
+            if(err){
                 console.log(err);
                 reject();
                 return;
-	    }
+                }
 
-        var sql = "SELECT * FROM get_hubs(40, 0);"
-        pgClient.query({
-            text: sql
-	       // ,values: argv
+            var sql = "SELECT * FROM get_hubs(40, 0);"
+            pgClient.query({
+                text: sql
+	        // ,values: argv
 	    }, function(err, result){
                 done();
-	        if(err){
+                if(err){
                     console.log(err);
                     reject();
                     return;
-	        }
+                }
 	        //здесь в result.rows имеем результат запроса
 	    });
 	});
