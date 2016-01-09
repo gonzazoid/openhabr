@@ -37,7 +37,11 @@ openhabr.net engine
 - пропишем ноду в nginx-е, добавив следующую строку: `location /hubs/ { proxy_pass http://localhost:7506/; }`. Порт берем первый свободный, некритично. В дальнейшем это будет автоматом прописываться при сборке gulp-ом, пока так, не страшно.
 - пропишем новую ноду в start и stop скриптах:
   в start добавим строку:
+
 `forever -a --minUptime 1000 --spinSleepTime 1000  -l "$logs/hubs.log"       --pidFile "$pids/hubs.pid"       start hubs.js`
+
 в stop:
+
 `forever -a -l "$logs/hubs.log"       --pidFile "$pids/hubs.pid"      stop hubs.js`
+
 Все, нода прописана, можно приступить к программированию.
