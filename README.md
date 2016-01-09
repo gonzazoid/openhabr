@@ -10,7 +10,7 @@ openhabr.net engine
 
 Ниже - курс молодого бойца для желающих поразвивать проект. Здесь - только детали реализации движка. Если интересуют подробности устройства сообщества, правила, идеи и прочее - можно посмотреть здесь http://openhabr.net/post/1/
 
-Стек проекта - nginx, node.js, postgresql, шаблонизатор - [mustache](https://github.com/janl/mustache.js)
+Стек проекта - nginx, node.js, postgresql (9.4, но конечно буду переходить на  9.5, upsert-ы же), шаблонизатор - [mustache](https://github.com/janl/mustache.js)
 
 Для начала структура проекта:
 
