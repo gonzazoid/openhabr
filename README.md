@@ -60,7 +60,7 @@ http.createServer(dispatcher).listen(7506, "localhost");
 console.log('hubs.server running at http://localhost:7506');
 </pre>
 
-Разберемся теперь со структурой сервера. Посмотрим с самого начала:
+Разберемся теперь со структурой сервера. Посмотрим наш скрипт (/src/node/hubs.js) с самого начала:
 
 <pre>
 var patterns = {
