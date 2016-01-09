@@ -62,12 +62,12 @@ console.log('hubs.server running at http://localhost:7506');
 
 Разберемся теперь со структурой сервера. Посмотрим наш скрипт (/src/node/hubs.js) с самого начала:
 
-<pre>
+```javascript
 var patterns = {
     some_pattern: fs.readFileSync("./tpl/some_pattern.tpl", "utf-8")
    ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
 };
-</pre>
+```
 
 Здесь мы загружаем нужные нам при работе паттерны.  Футер есть у всех страниц, его оставляем, помимо этого нам видимо понадобится шаблон списка хабов. Ок, заменим строку 
 
@@ -266,3 +266,69 @@ ALTER FUNCTION public.get_hubs(integer, integer) OWNER TO openhabr;
 ```
 
 Совсем другое дело, не стыдно и соседям показать.
+
+Что же, вернемся к нашему скрипту. Sql выражение у нас деградирует до следующего:
+```sql
+SELECT * FROM get_hubs(40, 0);
+```
+Запрашиваем первые 40 записей (по рейтингу). В дальнейшем можно использовать эту же функцию для пагинации.
+
+Таким образом наш скрипт принимает вид:
+
+```javascript
+"use strict";
+//просто что бы видеть, какие модули используются
+["http", "fs", "pg", "mustache", "./bike", "./config"].forEach(cV => require(cV));
+
+var fs = require("fs");
+var http = require("http");
+
+var patterns = {
+    some_pattern: fs.readFileSync("./tpl/some_pattern.tpl", "utf-8")
+   ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
+};
+
+var dispatcher = function(request, response){
+
+    var fw = require("./bike");
+
+         fw.prepare_headers({request, response})
+   .then(fw.parse_cookies, fw.err)
+   .then(fw.start_session, fw.err)
+   .then(worker, fw.err)
+   .then(fw.output, fw.err);
+};
+
+var worker = function(job){
+    console.log("worker", job);
+    return new Promise(function(resolve, reject){
+        //TODO перевести на pg-then
+        var pg = require("pg");
+        var config = require("./config");
+        pg.connect(config.common.postgres, function (err, pgClient, done) {
+	    if(err){
+                console.log(err);
+                reject();
+    	        return;
+	    }
+
+        var sql = "SELECT * FROM get_hubs(40, 0);"
+        pgClient.query({
+            text: sql
+	       // ,values: argv
+	    }, function(err, result){
+            done();
+	        if(err){
+		    console.log(err);
+                    reject();
+                    return;
+	        }
+	        //здесь в result.rows имеем результат запроса
+	    });
+	});
+    });
+};
+
+http.createServer(dispatcher).listen(7506, "localhost");
+console.log('hubs.server running at http://localhost:7506');
+```
