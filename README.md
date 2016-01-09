@@ -14,8 +14,11 @@ openhabr.net engine
 
 Для начала структура проекта:
 
-в корне лежат утилиты для деплоя и директория src - в ней все исходники сайта.
+в корне лежат утилиты для деплоя и директории dev и src.
+Директория dev содержит стафф для разработчиков, здесь мы видим:
+- [example.js](https://github.com/gonzazoid/openhabr/blob/master/dev/example.js) - шаблон серверного скрипта, на базе которого можно писать свои скрипты.
 
+Директория src содержит все исходники сайта:
 - [/src/node/](https://github.com/gonzazoid/openhabr/tree/master/src/node) - серверные скрипты и mustache-шаблоны
 - [/src/sql/](https://github.com/gonzazoid/openhabr/tree/master/src/sql) - структура базы и хранимые процедуры, дамп структуры базы лежит в [/src/sql/dump.sql](https://github.com/gonzazoid/openhabr/tree/master/src/sql)
 - [/src/static/](https://github.com/gonzazoid/openhabr/tree/master/src/static) - все что отдается nginx-ом самостоятельно (css, шрифты, картинки, клиентские скрипты)
