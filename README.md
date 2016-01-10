@@ -349,7 +349,7 @@ console.log('hubs.server running at http://localhost:7506');
 ```javascript
 var tags = {};
 for(i=0, l=tag_id.length; i<l; i++){
-    tags{tag_id[i]} = {id: tag_id[i], title: tag_title[i]};
+    tags[tag_id[i]] = {id: tag_id[i], title: tag_title[i]};
 }
 ```
 
@@ -371,7 +371,7 @@ result.rows.forEach(cv => {
     var popular = cv.popular;
     var tags = {};
     for(i=0, l=tag_id.length; i<l; i++){
-        tags{tag_id[i]} = {id: tag_id[i], title: tag_title[i]};
+        tags[tag_id[i]] = {id: tag_id[i], title: tag_title[i]};
     }
     for(i=0, l=popular.length; i<l; i++){
         popular[i] = tags[popular[i]];
@@ -386,7 +386,7 @@ result.rows.forEach(cv => {
     var popular = cv.popular;
     var tags = {};
     tag_id.forEach((cv, i) => {
-        tags{cv} = {id: cv, title: tag_title[i]};
+        tags[cv] = {id: cv, title: tag_title[i]};
     });
     popular.forEach( (cv, i) => {
         popular[i] = tags[cv];
@@ -398,7 +398,7 @@ result.rows.forEach(cv => {
 result.rows.forEach(cv => {
     var tags = {};
     cv.tag_id.forEach((cur, i) => {
-        tags{cur} = {id: cur, title: cv.tag_title[i]};
+        tags[cur] = {id: cur, title: cv.tag_title[i]};
     });
     cv.popular.forEach( (cur, i) => {
         cv.popular[i] = tags[cur];
@@ -460,7 +460,7 @@ var worker = function(job){
                 result.rows.forEach(cv => {
                     var tags = {};
                     cv.tag_id.forEach((cur, i) => {
-                        tags{cur} = {id: cur, title: cv.tag_title[i]};
+                        tags[cur] = {id: cur, title: cv.tag_title[i]};
                     });
                     cv.popular.forEach( (cur, i) => {
                         cv.popular[i] = tags[cur];
@@ -556,7 +556,7 @@ var worker = function(job){
                 result.rows.forEach(cv => {
                     var tags = {};
                     cv.tag_id.forEach((cur, i) => {
-                        tags{cur} = {id: cur, title: cv.tag_title[i]};
+                        tags[cur] = {id: cur, title: cv.tag_title[i]};
                     });
                     cv.popular.forEach( (cur, i) => {
                         cv.popular[i] = tags[cur];
