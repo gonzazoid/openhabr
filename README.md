@@ -243,7 +243,15 @@ RETURNS TABLE(id bigint
     LANGUAGE sql
     AS $$
 
-SELECT hubs.id, hubs.name, hubs.title, hubs.subscribers, hubs.posts, hubs.popular, hubs.rating, m.tag_id, m.tag_title
+SELECT hubs.id
+       ,hubs.name
+       ,hubs.title
+       ,hubs.subscribers
+       ,hubs.posts
+       ,hubs.popular
+       ,hubs.rating
+       ,m.tag_id
+       ,m.tag_title
 FROM (
     WITH maximums AS(
         SELECT id, popular
