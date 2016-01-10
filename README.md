@@ -501,7 +501,9 @@ resolve(job);
 ```
 Один момент - мы присвоили result.rows не сразу в job.response.habr.data а в job.response.habr.data.hubs потому что в job.response.habr.data могут хранится и другие данные (например сессия перед выводом переносится в job.response.habr.data.user)
 
-Собственно все! Ну а окончательно наш скрипт будет выглядеть вот так:
+Собственно все!
+
+<details><summary>Ну а окончательно наш скрипт будет выглядеть вот так:<summary>
 ```javascript
 "use strict";
 //просто что бы видеть, какие модули используются
@@ -576,5 +578,6 @@ var worker = function(job){
 http.createServer(dispatcher).listen(7506, "localhost");
 console.log('hubs.server running at http://localhost:7506');
 ```
+</details>
 
 Осталось подготовить шаблон вывода.
