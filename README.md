@@ -501,4 +501,80 @@ resolve(job);
 ```
 Один момент - мы присвоили result.rows не сразу в job.response.habr.data а в job.response.habr.data.hubs потому что в job.response.habr.data могут хранится и другие данные (например сессия перед выводом переносится в job.response.habr.data.user)
 
-Собственно все! Осталось подготовить шаблон вывода.
+Собственно все! Ну а окончательно наш скрипт будет выглядеть вот так:
+```javascript
+"use strict";
+//просто что бы видеть, какие модули используются
+["http", "fs", "pg", "mustache", "./bike", "./config"].forEach(cV => require(cV));
+
+var fs = require("fs");
+var http = require("http");
+
+var patterns = {
+    some_pattern: fs.readFileSync("./tpl/some_pattern.tpl", "utf-8")
+   ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
+};
+
+var dispatcher = function(request, response){
+
+    var fw = require("./bike");
+
+         fw.prepare_headers({request, response})
+   .then(fw.parse_cookies, fw.err)
+   .then(fw.start_session, fw.err)
+   .then(worker, fw.err)
+   .then(fw.output, fw.err);
+};
+
+var worker = function(job){
+    console.log("worker", job);
+    return new Promise(function(resolve, reject){
+        //TODO перевести на pg-then
+        var pg = require("pg");
+        var config = require("./config");
+        pg.connect(config.common.postgres, function (err, pgClient, done) {
+            if(err){
+                console.log(err);
+                reject();
+                return;
+            }
+            //TODO - 40 перенести в config (число хабов выводимых на одной странице списка)
+            var sql = "SELECT * FROM get_hubs(40, 0);"
+            pgClient.query({
+                text: sql
+                // ,values: argv
+            }, function(err, result){
+                done();
+                if(err){
+                    console.log(err);
+                    reject();
+                    return;
+                }
+                //здесь в result.rows имеем результат запроса
+                result.rows.forEach(cv => {
+                    var tags = {};
+                    cv.tag_id.forEach((cur, i) => {
+                        tags{cur} = {id: cur, title: cv.tag_title[i]};
+                    });
+                    cv.popular.forEach( (cur, i) => {
+                        cv.popular[i] = tags[cur];
+                    });
+                    delete cv.tag_title;
+                    delete cv.tag_id;
+                });
+                //растасуем данные для заполнения и вывода шаблона
+                "data" in job.response.habr || (job.response.habr.data = {});
+                job.response.habr.data.hubs = result.rows;
+                job.response.habr.pattern = patterns.hubs;
+                job.response.habr.patterns = patterns;
+                resolve(job);
+            });
+        });
+    });
+};
+
+http.createServer(dispatcher).listen(7506, "localhost");
+console.log('hubs.server running at http://localhost:7506');
+```
+
+Осталось подготовить шаблон вывода.
