@@ -502,8 +502,8 @@ resolve(job);
 Один момент - мы присвоили result.rows не сразу в job.response.habr.data а в job.response.habr.data.hubs потому что в job.response.habr.data могут хранится и другие данные (например сессия перед выводом переносится в job.response.habr.data.user)
 
 Собственно все!
-
-<details><summary>Ну а окончательно наш скрипт будет выглядеть вот так:</summary>
+Ну а окончательно наш скрипт будет выглядеть вот так:
+<details><summary>/srs/node/hubs.js</summary>
 ```javascript
 "use strict";
 //просто что бы видеть, какие модули используются
