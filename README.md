@@ -340,3 +340,140 @@ var worker = function(job){
 http.createServer(dispatcher).listen(7506, "localhost");
 console.log('hubs.server running at http://localhost:7506');
 ```
+Отлично! В result.rows имеем результат запроса, на его правильно передать шаблонизатору. Для начала сольем вместе tag_id и tag_title, так, что бы это был массив элементов {id: "", title: ""}, это позволит последовательно выводить в шаблонизаторе. Также обратите внимание - в tag_id и tag_title они идут не в том порядке нежели указано в popular, а ведь порядок в данном случае имеет значение - предполагается что теги выводятся в порядке убывания популярности (алгоритм ранжирования мы оставляем за бортом, здесь только вывод информации).
+
+Возможно есть способ собрать это все внутри sql запроса, но я, как говорится, "ниасилил" без циклов, а циклы как то в sql не хочется. Надеюсь более опытные коллеги предложат более элегантное решение.
+
+Что же, пройдемся по массиву:
+
+```javascript
+var tags = {};
+for(i=0, l=tag_id.length; i<l; i++){
+    tags{tag_id[i]} = {id: tag_id[i], title: tag_title[i]};
+}
+```
+
+На выходе имеем *объект* tags, в котором собраны теги, причем каждый тег занесен под своим id.
+
+Перенесем теперь теги в массив popular результатов запроса (для каждого хаба) и заменим в нем id тега на сам тег:
+```javascript
+for(i=0, l=popular.length; i<l; i++){
+    popular[i] = tags[popular[i]];
+}
+```
+
+Теперь можно удалить tag_id и tag_title - они уже не нужны, И! Данный код надо оформить для каждой строки из result.rows, то есть вложить в цикл. Итоговый вариант будет выглядеть так:
+
+```javascript
+result.rows.forEach(cv => {
+    var tag_id = cv.tag_id;
+    var tag_title = cv.tag_title;
+    var popular = cv.popular;
+    var tags = {};
+    for(i=0, l=tag_id.length; i<l; i++){
+        tags{tag_id[i]} = {id: tag_id[i], title: tag_title[i]};
+    }
+    for(i=0, l=popular.length; i<l; i++){
+        popular[i] = tags[popular[i]];
+    }
+});
+```
+Можно конечно и циклы заменить на forEach и map.
+```javascript
+result.rows.forEach(cv => {
+    var tag_id = cv.tag_id;
+    var tag_title = cv.tag_title;
+    var popular = cv.popular;
+    var tags = {};
+    tag_id.forEach((cv, i) => {
+        tags{cv} = {id: cv, title: tag_title[i]};
+    });
+    popular.forEach( (cv, i) => {
+        popular[i] = tags[cv];
+    });
+});
+```
+Ну и уберем лишние транзитные переменные - станет полаконичнее (главное не переусердствовать)
+```javascript
+result.rows.forEach(cv => {
+    var tags = {};
+    cv.tag_id.forEach((cur, i) => {
+        tags{cur} = {id: cur, title: cv.tag_title[i]};
+    });
+    cv.popular.forEach( (cur, i) => {
+        cv.popular[i] = tags[cur];
+    });
+});
+```
+
+Можно и дальше покуралесить, но особо нужды не вижу.
+Ок, наш скрипт приобретает такой вид:
+```javascript
+"use strict";
+//просто что бы видеть, какие модули используются
+["http", "fs", "pg", "mustache", "./bike", "./config"].forEach(cV => require(cV));
+
+var fs = require("fs");
+var http = require("http");
+
+var patterns = {
+    some_pattern: fs.readFileSync("./tpl/some_pattern.tpl", "utf-8")
+   ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
+};
+
+var dispatcher = function(request, response){
+
+    var fw = require("./bike");
+
+         fw.prepare_headers({request, response})
+   .then(fw.parse_cookies, fw.err)
+   .then(fw.start_session, fw.err)
+   .then(worker, fw.err)
+   .then(fw.output, fw.err);
+};
+
+var worker = function(job){
+    console.log("worker", job);
+    return new Promise(function(resolve, reject){
+        //TODO перевести на pg-then
+        var pg = require("pg");
+        var config = require("./config");
+        pg.connect(config.common.postgres, function (err, pgClient, done) {
+            if(err){
+                console.log(err);
+                reject();
+                return;
+            }
+            //TODO - 40 перенести в config (число хабов выводимых на одной странице списка)
+            var sql = "SELECT * FROM get_hubs(40, 0);"
+            pgClient.query({
+                text: sql
+                // ,values: argv
+            }, function(err, result){
+                done();
+                if(err){
+                    console.log(err);
+                    reject();
+                    return;
+                }
+                //здесь в result.rows имеем результат запроса
+                result.rows.forEach(cv => {
+                    var tags = {};
+                    cv.tag_id.forEach((cur, i) => {
+                        tags{cur} = {id: cur, title: cv.tag_title[i]};
+                    });
+                    cv.popular.forEach( (cur, i) => {
+                        cv.popular[i] = tags[cur];
+                    });
+                    delete cv.tag_title;
+                    delete cv.tag_id;
+                });
+            });
+        });
+    });
+};
+
+http.createServer(dispatcher).listen(7506, "localhost");
+console.log('hubs.server running at http://localhost:7506');
+```
+Ну все, данные причесаны, можно передать шаблонизатору и выводить уже пользователю.
