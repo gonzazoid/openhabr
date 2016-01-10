@@ -292,7 +292,7 @@ var fs = require("fs");
 var http = require("http");
 
 var patterns = {
-    some_pattern: fs.readFileSync("./tpl/some_pattern.tpl", "utf-8")
+    hubs: fs.readFileSync("./tpl/hubs.tpl", "utf-8")
    ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
 };
 
@@ -417,7 +417,7 @@ var fs = require("fs");
 var http = require("http");
 
 var patterns = {
-    some_pattern: fs.readFileSync("./tpl/some_pattern.tpl", "utf-8")
+    hubs: fs.readFileSync("./tpl/hubs.tpl", "utf-8")
    ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
 };
 
@@ -513,7 +513,7 @@ var fs = require("fs");
 var http = require("http");
 
 var patterns = {
-    some_pattern: fs.readFileSync("./tpl/some_pattern.tpl", "utf-8")
+    hubs: fs.readFileSync("./tpl/hubs.tpl", "utf-8")
    ,footer: fs.readFileSync("./tpl/footer.tpl", "utf-8")
 };
 
