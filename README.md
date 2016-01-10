@@ -503,7 +503,7 @@ resolve(job);
 
 Собственно все!
 Ну а окончательно наш скрипт будет выглядеть вот так:
-<details><summary>/srs/node/hubs.js</summary>
+<details><summary>/src/node/hubs.js</summary>
 ```javascript
 "use strict";
 //просто что бы видеть, какие модули используются
