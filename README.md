@@ -468,6 +468,7 @@ var worker = function(job){
                     delete cv.tag_title;
                     delete cv.tag_id;
                 });
+                //растасуем данные для заполнения и вывода шаблона
             });
         });
     });
