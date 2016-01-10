@@ -483,5 +483,22 @@ console.log('hubs.server running at http://localhost:7506');
 >- `output` - на основании подготовленных нами данных выводит всю верстку на клиента. Ожидает:
 >    - `job.response.habr.headers` - хидеры для вывода. Если переменная job.response.habr.status не указана, то выводит эти заголовки со статусом 200 Ok, иначе берет из job.response.habr.status.code и job.response.habr.status.message 
 >    - `job.response.habr.pattern` - шаблон страницы. Если не указан - вывод не осуществляется (например при редиректах)
->    - `job.response.habr.patterns` - вспомогательные шаблоны. Сюда обычно присваивается переменная patterns, в которую >грузятся все шаблоны перед стартом сервера (выше мы рассматривали ее)
+>    - `job.response.habr.patterns` - вспомогательные шаблоны. Сюда обычно присваивается переменная patterns, в которую грузятся все шаблоны перед стартом сервера (выше мы рассматривали ее)
  >   - `job.response.habr.data` - данные для заполнения шаблонов. Собственно наша работа заключается в том что бы эти данные подготовить. 
+
+- `headers` у нас подготовлен, никаких особых хидеров мы не выставляем
+- `pattern` не готов, надо прописать
+- `patterns` грузили в начале скрипта, но нам надо вернутся туда и подготовить шаблон
+- `data` ну собственно все содержимое result.rows
+
+Ок, выглядеть это будет так:
+```javascript
+"data" in job.response.habr || (job.response.habr.data = {});
+job.response.habr.data.hubs = result.rows;
+job.response.habr.pattern = patterns.hubs;
+job.response.habr.patterns = patterns;
+resolve(job);
+```
+Один момент - мы присвоили result.rows не сразу в job.response.habr.data а в job.response.habr.data.hubs потому что в job.response.habr.data могут хранится и другие данные (например сессия перед выводом переносится в job.response.habr.data.user)
+
+Собственно все! Осталось подготовить шаблон вывода.
