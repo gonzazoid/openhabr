@@ -18,6 +18,7 @@ openhabr.net engine
 
 - [/dev/] (https://github.com/gonzazoid/openhabr/blob/master/dev) стафф для разработчиков
     - [example.js](https://github.com/gonzazoid/openhabr/blob/master/dev/example.js) - шаблон серверного скрипта, на базе которого можно писать свои скрипты.
+    - [example.tpl](https://github.com/gonzazoid/openhabr/blob/master/dev/example.tpl) - типовой mustache-шаблон, "рыба" страницы.
 - [/src/](https://github.com/gonzazoid/openhabr/tree/master/src) содержит все исходники сайта
     - [node/](https://github.com/gonzazoid/openhabr/tree/master/src/node) - серверные скрипты и mustache-шаблоны
     - [sql/](https://github.com/gonzazoid/openhabr/tree/master/src/sql) - структура базы и хранимые процедуры, дамп структуры базы лежит в [/src/sql/dump.sql](https://github.com/gonzazoid/openhabr/tree/master/src/sql)
