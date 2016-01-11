@@ -592,3 +592,67 @@ console.log('hubs.server running at http://localhost:7506');
 <!-- здесь наша верстка одного хаба -->
 {{/hubs}}
 ```
+Идем на хабр (я помню, нехорошо, но я не верстальщик, вместо того что бы осуждать - помогите :)
+
+Так вот, идем и видим что та есть еще и заголовок. Верстку удобно дергать в хроме, с открытыми developers tools, на табе elements. Выделяем в верстке нужный элемент и по выделению сразу видим, что он отображает на странице. Не снимая выделения - ctr-c и верстка у нас в буфере.
+
+C заголовком наш шаблон выглядит так:
+```html
+{{#hubs}}
+    <div class="page_head">
+      <h2 class="title">Хабы</h2>
+    </div>
+    <!-- здесь наша верстка одного хаба -->
+{{/hubs}}
+```
+
+Таким же образом находим верстку всех хабов и копируем. Удаляем все хабы кроме одного, получаем что то вроде этого:
+ ```html
+<div class="hubs_list">
+    <div class="hubs_suggest">
+        <input type="text" id="hubs_suggest" autocomplete="off" placeholder="Найти хаб">
+    </div>
+    <div class="hubs_head">
+        <div class="habraindex">индекс ↓</div>
+        <div class="title">
+            <a class="dotted" href="/hubs/?order=title">название ↓</a>
+        </div>
+    </div>
+    <div class="hubs" id="hubs">
+        <div class="hub subscribed" id="hub_50">
+            <div class="habraindex">515,22</div>
+            <div class="info">
+                <div class="title">
+                    <a href="http://habrahabr.ru/hub/infosecurity/">Информационная безопасность</a>
+                    <span class="n-profiled_hub" title="Профильный хаб"></span>
+                </div>
+                <div class="buttons">
+                  <input type="button" class="btn btn_subscribe hidden subscribeHub" value="Подписаться" data-id="50">
+                  <input type="button" class="btn btn_subscribe btn_subscribed  unsubscribeHub" value="Подписан" data-id="50">
+                </div>
+                <div class="clear"></div>
+                <div class="stat">
+                    <a href="http://habrahabr.ru/hub/infosecurity/subscribers/" class="members_count">502k подписчиков</a>, <a href="http://habrahabr.ru/hub/infosecurity/posts/">5,3k публикаций</a>
+                </div>
+                <div class="common_tags">Популярные темы: <a href="http://habrahabr.ru/search/?q=%5B%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F+%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C%5D">информационная безопасность</a>, <a href="http://habrahabr.ru/search/?q=%5B%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C%5D">безопасность</a>, <a href="http://habrahabr.ru/search/?q=%5B%D0%B2%D0%B7%D0%BB%D0%BE%D0%BC%5D">взлом</a>, <a href="http://habrahabr.ru/search/?q=%5Bsecurity%5D">security</a>, <a href="http://habrahabr.ru/search/?q=%5B%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%5D">уязвимость</a>, <a href="http://habrahabr.ru/search/?q=%5B%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%5D">уязвимости</a>, <a href="http://habrahabr.ru/search/?q=%5Bgoogle%5D">google</a>, <a href="http://habrahabr.ru/search/?q=%5B%D0%B2%D0%B8%D1%80%D1%83%D1%81%D1%8B%5D">вирусы</a>, <a href="http://habrahabr.ru/search/?q=%5Bandroid%5D">android</a>, <a href="http://habrahabr.ru/search/?q=%5B%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F%5D">криптография</a>
+                </div>
+            </div>
+        </div> 
+        <div class="page-nav">
+            <ul class="next-prev">
+                <li><span>←</span>&nbsp;сюда</li>
+                <li><a title="На страницу вперед (Alt + →)" class="next" id="next_page" href="/hubs/page2/" rel="">туда</a>&nbsp;<span>→</span></li>
+            </ul>
+            <ul id="nav-pages">
+                <li><em>1</em></li>
+                <li><a href="/hubs/page2/">2</a></li>
+                <li><a href="/hubs/page3/">3</a></li>
+                <li><a href="/hubs/page4/">4</a></li>
+                <li><a href="/hubs/page5/">5</a></li>
+                <li><a href="/hubs/page6/">6</a></li>
+                <li><a href="/hubs/page7/">7</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+```
