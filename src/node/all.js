@@ -6,6 +6,7 @@ var fs = require("fs");
 //var http = require("http");
 var app = require("express")();
 var fw = require("./bike");
+var cookies = require("cookie-parser");
 
 var patterns = {
     all: fs.readFileSync("./tpl/all.tpl", "utf-8")
@@ -13,6 +14,7 @@ var patterns = {
 };
 
 app.use(fw.prepare_headers)
+   .use(cookies());
    .use(fw.start_session)
    .get("/", function(req, res){
     console.log("worker", job);

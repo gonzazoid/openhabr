@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.13.3"
+   ,"cookie-parser": "^1.4.1"
    ,"mustache": "^2.2.1"
    ,"pg":       "^4.4.3"
    ,"js-sha3":  "^0.5.1"
