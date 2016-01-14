@@ -6,6 +6,7 @@ DROP FUNCTION IF EXISTS auth(character varying, character varying, character var
 
 CREATE FUNCTION auth(_nickname character varying, _pwd character varying, _sid character varying)
     RETURNS SETOF users
+
     LANGUAGE plpgsql
 AS $_$
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # openhabr
 openhabr.net engine
 
@@ -662,3 +663,6 @@ C заголовком наш шаблон выглядит так:
     </div>
 </div>
 ```
+=======
+habr like open community's site engine
+>>>>>>> 48b8502328c2f726edae41132242da687e19b983

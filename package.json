@@ -15,7 +15,11 @@
   },
   "repository": {
     "type": "git",
+<<<<<<< HEAD
     "url": "https://github.com/gonzazoid/openhabr.git"
+=======
+    "url": "root@tests.seogearbox.net:/www/git/openhabr.net"
+>>>>>>> 48b8502328c2f726edae41132242da687e19b983
   },
   "author": "",
   "license": "MIT"

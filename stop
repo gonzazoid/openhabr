@@ -11,3 +11,8 @@ forever -a -l "$logs/register.log"  --pidFile "$pids/register.pid"   stop regist
 forever -a -l "$logs/users.log"       --pidFile "$pids/users.pid"    stop users.js
 forever -a -l "$logs/auth.log"       --pidFile "$pids/auth.pid"      stop auth.js
 forever -a -l "$logs/posts.log"       --pidFile "$pids/posts.pid"      stop posts.js
+<<<<<<< HEAD
+=======
+
+# в prod-сборке этого быть не должно. Как это сделать?
+>>>>>>> 48b8502328c2f726edae41132242da687e19b983
