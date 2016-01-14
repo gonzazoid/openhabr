@@ -17,7 +17,7 @@ app.use(fw.prepare_headers)
    .use(cookies())
    .use(fw.start_session)
    .get("/", function(req, res){
-    console.log("worker", job);
+    //console.log("worker", job);
     //TODO перевести на pg-then
     var pg = require("pg");
     var config = require("./config");
