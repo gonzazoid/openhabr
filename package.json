@@ -4,7 +4,8 @@
   "description": "habr like open community's site engine",
   "main": "index.js",
   "dependencies": {
-    "mustache": "^2.2.1"
+    "express": "^4.13.3"
+   ,"mustache": "^2.2.1"
    ,"pg":       "^4.4.3"
    ,"js-sha3":  "^0.5.1"
    ,"validator"    : "https://github.com/gonzazoid/validator.js.git"

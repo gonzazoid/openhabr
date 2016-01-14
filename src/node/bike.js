@@ -1,18 +1,14 @@
 "use strict";
 module.exports = {
-    prepare_headers: function(job){
-        //console.log(job);
-        return new Promise(function(resolve, reject){
-            "habr" in job.response || (job.response.habr = {});
-            job.response.habr.headers = {};
+    prepare_headers: function(req, res, next){
+        [
+	    ['Content-Type', 'text/html']
+           ,['Expires', 'Mon, 26 Jul 1997 05:00:00 GMT'] //Дата в прошлом 
+           ,['Cache-Control', ' no-cache, must-revalidate']// HTTP/1.1 
+           ,['Pragma', ' no-cache']
+       ].forEach(cV => res.setHeader(cV[0], cV[1]));
 
-            job.response.habr.headers['Content-Type'] = 'text/html';
-            job.response.habr.headers['Expires'] = 'Mon, 26 Jul 1997 05:00:00 GMT'; //Дата в прошлом 
-            job.response.habr.headers['Cache-Control'] = ' no-cache, must-revalidate'; // HTTP/1.1 
-            job.response.habr.headers['Pragma'] = ' no-cache';
-
-            resolve(job);
-        });
+        next();
     }
    ,parse_post: function(job){
         return new Promise(function(resolve, reject){
@@ -52,43 +48,41 @@ module.exports = {
             resolve(job);
         });
     }
-    ,start_session: function(job){
-        return new Promise(function(resolve, reject){
-            //request.cookies = parseCookies(request); 
-            if(!("id" in job.request.cookies && job.request.cookies.id.trim() != '')){
-                console.log("start session: id not found");
-                resolve(job);
-                return;
-            }
-            //тянем сессию
-            var pg = require("pg");
-            var config = require("./config");
-            pg.connect(config.common.postgres, function (err, pgClient, done) {
-	        if(err){
+    ,start_session: function(req, res, next){
+        //request.cookies = parseCookies(request); 
+        if(!("id" in req.cookies && req.cookies.id.trim() != '')){
+            console.log("start session: id not found");
+	    next();
+            return;
+        }
+        //тянем сессию
+        var pg = require("pg");
+        var config = require("./config");
+        pg.connect(config.common.postgres, function (err, pgClient, done) {
+	    if(err){
+                console.log(err);
+                res.status(500).end();
+    	        return;
+	    }
+            pgClient.query({
+                text: "SELECT * FROM users WHERE sid = $1;"
+	       ,values: [req.cookies.id]
+	    }, function(err, result){
+                if(err){
                     console.log(err);
-                    reject();
+                    res.status(500).end();
     	            return;
-	        }
-                pgClient.query({
-                    text: "SELECT * FROM users WHERE sid = $1;"
-	           ,values: [job.request.cookies.id]
-	        }, function(err, result){
-                    if(err){
-                        console.log(err);
+                }
+                done();
+                switch(true){
+	            case err:
+	                console.log(err); //не надо тут ставить break!!!
+                    case result.rows.length != 1:
                         reject();
-    	                return;
-                    }
-                    done();
-                    switch(true){
-	                case err:
-	                    console.log(err); //не надо тут ставить break!!!
-                        case result.rows.length != 1:
-                            reject();
-                            return;
-                    }
-                    job.request.user = result.rows[0];
-                    resolve(job);
-                });
+                        return;
+                }
+                req.user = result.rows[0];
+		next();
             });
         });
     }
