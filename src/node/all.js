@@ -14,7 +14,7 @@ var patterns = {
 };
 
 app.use(fw.prepare_headers)
-   .use(cookies());
+   .use(cookies())
    .use(fw.start_session)
    .get("/", function(req, res){
     console.log("worker", job);
