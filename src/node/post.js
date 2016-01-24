@@ -4,6 +4,7 @@
 
 var fs = require("fs");
 //var http = require("http");
+var app = require("express")();
 var fw = require("./bike");
 var cookies = require("cookie-parser");
 
@@ -13,15 +14,6 @@ var patterns = {
    ,footer:   fs.readFileSync("./tpl/footer.tpl", "utf-8")
 };
 
-var dispatcher = function(request, response){
-
-
-         fw.prepare_headers({request, response})
-   .then(fw.parse_cookies, fw.err)
-   .then(fw.start_session, fw.err)
-   .then(worker, fw.err)
-   .then(fw.output, fw.err);
-};
 app.use(fw.prepare_headers)
    .use(cookies())
    .use(fw.start_session)
