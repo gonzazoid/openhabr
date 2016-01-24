@@ -126,6 +126,7 @@ app.use(fw.prepare_headers)
 //{{{
        var pg = require("pg");
        var config = require("./config");
+       var mustache = require("mustache");
        //проверим action
        //если newuser - пришли данные на регистрацию
        console.log(req.body);
