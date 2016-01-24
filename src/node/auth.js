@@ -53,6 +53,7 @@ app.use(fw.prepare_headers)
 	      .end();
            return;
        }
+       console.log(req.post);
        pg.connect(config.common.postgres, function (err, pgClient, done) {
            if(err){
                console.log(err);
