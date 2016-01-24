@@ -57,9 +57,9 @@ app.use(fw.prepare_headers)
        var fw = require("./bike");
 
        console.log(req.url);
-       var res = req.url.split("/");
+       var result = req.url.split("/");
        console.log(res);
-       var nickname = res[1];
+       var nickname = result[1];
        pg.connect(config.common.postgres, function (err, pgClient, done) {
            if(err){
                console.log(err);
