@@ -137,7 +137,7 @@ app.use(fw.prepare_headers)
        data.return = "referer" in req.headers ? req.headers.referer : "/";
        "user" in req && (data.user = req.user);
        res.status(200)
-          .send(mustache.render(patterns.settings, data, patterns))
+          .send(mustache.render(patterns.auth, data, patterns))
           .end();
 //}}}
    })
