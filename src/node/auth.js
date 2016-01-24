@@ -29,7 +29,7 @@ var rndHex = function (len) {
 app.use(fw.prepare_headers)
    .use(cookies())
    .use(fw.start_session)
-   .use(bodyParser.json())
+   .use(bodyParser.urlencoded({extended:true}))
    .post("/auth/login/", function(req, res){
 //{{{
        var pg = require("pg");
