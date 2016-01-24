@@ -22,7 +22,6 @@ app.use(fw.prepare_headers)
         var pg = require("pg");
         var config = require("./config");
         var fw = require("./bike");
-        console.log(job.request.post);
         //если нет никаких данных - просто выводим список пользователей
         pg.connect(config.common.postgres, function (err, pgClient, done) {
 	    if(err){
