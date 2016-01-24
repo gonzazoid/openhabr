@@ -41,6 +41,7 @@ app.use(fw.prepare_headers)
 		    return;
 	        }
  
+                var mustache = require("mustache");
                 var data = {};
                 data.users = result.rows;
                 "user" in req && (data.user = req.user);
