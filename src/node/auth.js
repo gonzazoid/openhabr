@@ -84,7 +84,7 @@ app.use(fw.prepare_headers)
                    res.set("Location", "/");
                }
                res.set("Set-Cookie", 'id=' + result.rows[0].sid + '; path=/; HttpOnly;');
-               res.sendStatus(303);
+               res.sendStatus(303)
 	          .end();
            });
        });
@@ -118,7 +118,7 @@ app.use(fw.prepare_headers)
        }else{
            res.set("Location", "/");
        }
-       res.sendStatus(303);
+       res.sendStatus(303)
           .end();
 //}}}
    })
