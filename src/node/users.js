@@ -52,6 +52,10 @@ app.use(fw.prepare_headers)
         });
    })
    .get("^\/[a-zA-z0-9_\-]+\/$", function(req, res){
+       var pg = require("pg");
+       var config = require("./config");
+       var fw = require("./bike");
+
        console.log(req.url);
        var res = req.url.split("/");
        console.log(res);
