@@ -30,7 +30,7 @@ app.use(fw.prepare_headers)
    .use(cookies())
    .use(fw.start_session)
    .use(bodyParser.json())
-   .post("/auth/login/". function(req, res){
+   .post("/auth/login/", function(req, res){
 //{{{
        var pg = require("pg");
        var config = require("./config");
