@@ -26,9 +26,12 @@
     <div class="message html_format ">
          {{body}} 
     </div>
+{{#user}}
     <div class="reply_form_placeholder"></div>
     <div class="reply">
+        <a href="#reply" class="reply_link" onclick="return comment_show_reply_form(692288 )">ответить</a>
     </div>
+{{/user}}
   </div>
   <div class="reply_comments" id="reply_comments_8281983">
 {{#comments}}
