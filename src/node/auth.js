@@ -49,7 +49,7 @@ app.use(fw.prepare_headers)
            req.post = validator(req.body, rules);
        } catch (err) {
        console.log("bad request:\nuser:\n", req.user, "\npost:\n", req.body, "\nerror\n", err);
-           res.sendSatatus(500)
+           res.sendStatus(500)
 	      .end();
            return;
        }
