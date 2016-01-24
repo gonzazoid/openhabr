@@ -48,7 +48,7 @@ app.use(fw.prepare_headers)
        try {
            req.post = validator(req.body, rules);
        } catch (err) {
-       console.log("bad request:\nuser:\n", req.user, "\npost:\n", req.body, "\nerror\n", err);
+           console.log("bad request:\nuser:\n", req.user, "\npost:\n", req.body, "\nerror\n", err);
            res.sendStatus(500)
 	      .end();
            return;
@@ -76,7 +76,12 @@ app.use(fw.prepare_headers)
                console.log(result.rows);
                //здесь и выводим
                if(result.rows.length != 1){
-               //что то пошло не так
+                   //что то пошло не так
+		   //TODO обработать иначе кидает ошибку
+                   console.log("auth failed:\nuser:\n", req.user, "\npost:\n", req.body);
+                   res.sendStatus(500)
+	              .end();
+           return;
                }
                //response.user = result.rows[0];
                if("return" in req.post){
