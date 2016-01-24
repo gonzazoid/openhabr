@@ -137,15 +137,16 @@ app.use(fw.prepare_headers)
        data.return = "referer" in req.headers ? req.headers.referer : "/";
        "user" in req && (data.user = req.user);
        res.status(200)
-          .send(mustache(patterns.settings, data, patterns))
+          .send(mustache.render(patterns.settings, data, patterns))
           .end();
 //}}}
    })
    .get("/settings/", function(req, res){
+       var mustache = require("mustache");
        var data = {};
        "user" in req && (data.user = req.user);
        res.status(200)
-          .send(mustache(patterns.settings, data, patterns))
+          .send(mustache.render(patterns.settings, data, patterns))
           .end();
    })
 .listen(7504, "localhost", undefined,() => console.log('auth.server running at http://localhost:7504'));
