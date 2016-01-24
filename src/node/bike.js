@@ -100,8 +100,8 @@ module.exports = {
         }
         job.response.end();
     }
-   ,err: function(job){
-        job.response.writeHead(500, "Internal Server Error", {});
-        job.response.end();
+   ,err: function(res){
+        res.writeHead(500, "Internal Server Error", {});
+        res.end();
     }
 };

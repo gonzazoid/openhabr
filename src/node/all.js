@@ -25,7 +25,7 @@ app.use(fw.prepare_headers)
     pg.connect(config.common.postgres, function (err, pgClient, done) {
         if(err){
             console.log(err);
-            reject();
+            fw.err(res);
             return;
         }
 
@@ -37,7 +37,7 @@ app.use(fw.prepare_headers)
             done();
             if(err){
 	        console.log(err);
-                reject();
+                fw.err(res);
 	        return;
 	    }
 

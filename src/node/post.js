@@ -3,7 +3,9 @@
 ["http", "fs", "pg", "url", "mustache", "./bike", "./config"].forEach(cV => require(cV));
 
 var fs = require("fs");
-var http = require("http");
+//var http = require("http");
+var fw = require("./bike");
+var cookies = require("cookie-parser");
 
 var patterns = {
     article:  fs.readFileSync("./tpl/article.tpl", "utf-8")
@@ -13,7 +15,6 @@ var patterns = {
 
 var dispatcher = function(request, response){
 
-    var fw = require("./bike");
 
          fw.prepare_headers({request, response})
    .then(fw.parse_cookies, fw.err)
@@ -21,9 +22,10 @@ var dispatcher = function(request, response){
    .then(worker, fw.err)
    .then(fw.output, fw.err);
 };
-
-var worker = function(job){
-    return new Promise(function(resolve, reject){
+app.use(fw.prepare_headers)
+   .use(cookies())
+   .use(fw.start_session)
+   .get("/[0-9]+\/", function(req, res){
 
         var url = require("url");
         var pg = require("pg");
@@ -31,39 +33,39 @@ var worker = function(job){
         var fw = require("./bike");
 
         //обработаем запрос, вытащим id запрашиваемой статьи
-        var req = url.parse(job.request.url);
+        var query = url.parse(req.url);
         console.log(req);
-        if(!/^\/[0-9]+\/$/.test(req.path.trim())){
-            //возвращаем 404
-        }
         //TODO вывести в модуль роутинга, и почему post а не get? 
-        job.request.post = {};
-        job.request.post.id = req.path.trim().slice(1, -1);
+        req.get = {};
+        req.get.id = query.path.trim().slice(1, -1);
         //console.log("id: ", id);
         pg.connect(config.common.postgres, function (err, pgClient, done) {
+        //{{{ error handling
 	    if(err){
                 done();
                 console.log(err);
-                fw.err();
+                fw.err(res);
     	        return;
 	    }
-            
+        //}}} 
             var sql = "SELECT articles.*, M.hub_name, M.hub_title, M.hub_id, users.nickname, users.fullname, users.status as u_status, users.carma, users.rating as u_rating FROM articles, (SELECT I.id, array_agg(J.title) as hub_title, array_agg(J.name) as hub_name, array_agg(J.id) as hub_id FROM (SELECT * FROM articles WHERE id = $1 AND draft = false) I, hubs J WHERE J.id = ANY(i.hubs) GROUP BY I.id) M, users WHERE M.id = articles.id AND articles.author = users.id;"
             pgClient.query({
                 text: sql
-	       ,values: [job.request.post.id]
+	       ,values: [req.get.id]
 	    }, function(err, result){
+		    //{{{
                 //done();
 	        if(err){
                     done();
 		    console.log(err);
-                    fw.err();
+                    fw.err(res);
 		    return;
 	        }
                 if(result.rows.length != 1){
                     //либо статья не найдена либо найдено больше одной статьи (что станно)
                 }
                 result.rows.forEach(function(item, key, holder){
+		//{{{
                     var hubs = [];
                     var i, l;
                     if(!item.hubs.length) return;
@@ -78,6 +80,7 @@ var worker = function(job){
                             delete(item.hubs[i]);
                         }
                     }
+		//}}}
                 });
                 //console.log(result.rows);
                 var article = result.rows[0];
@@ -88,13 +91,14 @@ var worker = function(job){
                 sql = "SELECT comments.*, users.nickname FROM comments, users WHERE article_id = $1 AND comments.author = users.id ORDER BY stamp ASC;";
                 pgClient.query({
                     text: sql
-	           ,values: [job.request.post.id]
+	           ,values: [req.get.id]
 	        }, function(err, result){
+		//{{{
                     done();
 	            if(err){
                         //TODO тут бы по хорошему вывести статью, просто без комментариев
 		        console.log(err);
-                        fw.err();
+                        fw.err(res);
 		        return;
 	            }
                     //console.log(result.rows);
@@ -122,16 +126,19 @@ var worker = function(job){
                     //пробуем рекурсивный шаблон вывода
                     article.comments = by_id["0"].comments;
 
-                    "data" in job.response.habr || (job.response.habr.data = {});
-                    job.response.habr.data.article = article;
-                    job.response.habr.pattern = patterns.article;
-                    job.response.habr.patterns = patterns;
-                    resolve(job);
+                    var mustache = require("mustache");
+                    var data = {};
+                    data.article = article;
+                    "user" in req && (data.user = req.user);
+	            res.status(200)
+	               .send(mustache.render(patterns.article, data, patterns))
+	               .end();
+		       //}}}
                 });
+		//}}}
 	    });
         });
-    });
-};
+    })
 
-http.createServer(dispatcher).listen(7501, "localhost");
+.listen(7501, "localhost", undefined,() => console.log('post.server running at http://localhost:7501'));
 console.log('views.server running at http://localhost:7501');
