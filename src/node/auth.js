@@ -90,7 +90,7 @@ app.use(fw.prepare_headers)
        });
 //}}}
    })
-   .post("/logout/", function(req, res){
+   .get("/logout/", function(req, res){
 //{{{
        var pg = require("pg");
        var config = require("./config");
