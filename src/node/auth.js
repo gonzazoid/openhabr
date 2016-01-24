@@ -49,7 +49,8 @@ app.use(fw.prepare_headers)
            req.post = validator(req.body, rules);
        } catch (err) {
        console.log("bad request:\nuser:\n", req.user, "\npost:\n", req.body, "\nerror\n", err);
-           reject();
+           res.sendSatatus(500)
+	      .end();
            return;
        }
        pg.connect(config.common.postgres, function (err, pgClient, done) {
