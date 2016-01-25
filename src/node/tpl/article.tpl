@@ -8,9 +8,20 @@
 <link href="/css/posts.css" rel="stylesheet" media="all" />
 <link href="/css/main.css" rel="stylesheet" media="all" />
 
+<script type="text/javascript">
+  // global vars
+  var g_base_url = 'openhabr.net';
+  var g_show_xpanel = true;
+  var g_base_fullurl = 'http://openhabr.net/';
+  var g_is_guest = true;
+  var g_user_login = 'gearbox';
+  var g_user_id = 377385;
+  var g_user_avatar = '//openhabr.net/i/avatars/stub-user-middle.gif';   
+</script> 
+
 <script type="text/javascript" src="/js/global_main.js"></script>
 <script type="text/javascript" src="/js/company_post_show_common.js"></script>
-
+<script type="text/javascript" src="/js/shortcuts.js"></script>
 <style>
 .hub:after {
     content: ","
