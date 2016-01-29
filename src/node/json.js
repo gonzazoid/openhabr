@@ -7,6 +7,7 @@ var fs = require("fs");
 var app = require("express")();
 var fw = require("./bike");
 var cookies = require("cookie-parser");
+var bodyParser = require("body-parser");
 
 var patterns = {
 
