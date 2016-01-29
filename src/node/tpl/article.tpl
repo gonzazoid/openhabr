@@ -239,16 +239,13 @@
 
   <div class="clear"></div>
   
-
+{{#user}}
 <div class="comments_form" id="comments_form_placeholder">
               <h2 class="title"><a href="#" onclick="return comment_show_form()">Написать комментарий</a></h2>
               <form action="/json/comment/" method="post" id="comments_form">
 
                 <div id="preview_placeholder" class="hidden html_format"></div>
-                <input type="hidden" name="ts" value="1454076538">
-                <input type="hidden" name="tt" value="2">
-                <input type="hidden" name="ti" value="23688">
-                <input type="hidden" name="comment_id" value="0">
+                <input type="hidden" name="ti" value="{{номер статьи}}">
                 <input type="hidden" name="parent_id" value="0">
 
                 <div class="editor">
@@ -535,8 +532,7 @@
                 </div>
               </form>
             </div> 
-
-
+{{/user}}
       </div>
     </div>
 {{>footer}}
