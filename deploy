@@ -21,11 +21,11 @@ cp -R node_modules ./node/
 cp -R build/static ./
 
 #также, если изменились конфиги - перезапустить соотв. службы
-df=$(diff "/usr/local/etc/nginx/openhabr.config" "/conf/nginx.config" | wc -L | sed 's/^[ \t]*//;s/[ \t]*$//')
+df=$(diff "/usr/local/etc/nginx/openhabr.conf" "conf/nginx.conf" | wc -L | sed 's/^[ \t]*//;s/[ \t]*$//')
 echo "nginx config diff: $df"
 if [ "$df" != "0" ]
 then
-cp "/conf/nginx.config"  "/usr/local/etc/nginx/openhabr.config"
+cp "conf/nginx.conf"  "/usr/local/etc/nginx/openhabr.conf"
 service nginx restart
 fi
 
