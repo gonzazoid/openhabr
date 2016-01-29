@@ -240,11 +240,301 @@
   <div class="clear"></div>
   
 
-          <div class="comments-form__placeholder form-placeholder hidden" id="moderated_placeholder">
-            <h3 class="form-placeholder__title">Ваш комментарий отправлен на модерацию</h3>
-            <p class="form-placeholder__text">Комментарий будет виден другим пользователям в&nbsp;случае, если он&nbsp;будет одобрен автором публикации или одним из&nbsp;модераторов ресурса.</p>
-            <button type="button" class="btn btn_medium btn_grey js-hide_placeholder">Продолжить</button>
-          </div>
+<div class="comments_form" id="comments_form_placeholder">
+              <h2 class="title"><a href="#" onclick="return comment_show_form()">Написать комментарий</a></h2>
+              <form action="/json/comment/" method="post" id="comments_form">
+
+                <div id="preview_placeholder" class="hidden html_format"></div>
+                <input type="hidden" name="ts" value="1454076538">
+                <input type="hidden" name="tt" value="2">
+                <input type="hidden" name="ti" value="23688">
+                <input type="hidden" name="comment_id" value="0">
+                <input type="hidden" name="parent_id" value="0">
+
+                <div class="editor">
+                  <div class="panel">
+                      <div class="wysiwyg_wrapper">
+	<div class="can_use_html"><a href="#html_help" onclick="$(this).parents('.wysiwyg_wrapper').find('.help_holder').toggleClass('hidden');return false;">html-теги</a></div>
+	<a class="btn" title="Жирный" onclick="return habraWYG.insertTagWithText(this, 'b');" href="#" tabindex="-1"><span class="g-icon g-icon-bold"></span></a>
+	<a class="btn" title="Курсив" onclick="return habraWYG.insertTagWithText(this, 'i');" href="#" tabindex="-1"><span class="g-icon g-icon-italic"></span></a>
+	<a class="btn" title="Подчёркнутый" onclick="return habraWYG.insertTagWithText(this, 'u');" href="#" tabindex="-1"><span class="g-icon g-icon-underline"></span></a>
+	<a class="btn" title="Зачёркнутый" onclick="return habraWYG.insertTagWithText(this, 's');" href="#" tabindex="-1"><span class="g-icon g-icon-strike"></span></a>
+	<a class="btn" title="Цитата" onclick="return habraWYG.insertTagWithText(this, 'blockquote');" href="#" tabindex="-1"><span class="g-icon g-icon-quote"></span></a>
+	<div class="btn btn-dropdown">
+		<span class="g-icon g-icon-list"></span>
+		<select name="list" onchange="habraWYG.insertList(this);" onclick="return false;" tabindex="-1">
+			<option value="" class="title">Список:</option>
+			<option value="ul">UL LI</option>
+			<option value="ol">OL LI</option>
+		</select>
+	</div>
+	<a class="btn" title="Пользователь" onclick="return habraWYG.insertUser(this);" href="#" tabindex="-1"><span class="g-icon g-icon-users"></span></a>
+	<a class="btn" title="Вставить ссылку" onclick="return habraWYG.insertLink(this);" href="#" tabindex="-1"><span class="g-icon g-icon-link"></span></a>
+	<a class="btn" title="Вставить изображение" onclick="return habraWYG.insertImage(this);" href="#" tabindex="-1"><span class="g-icon g-icon-images"></span></a>
+	<a class="btn" title="Вставить видео" onclick="return habraWYG.insertTagWithText(this, 'video');" href="#" tabindex="-1"><span class="g-icon g-icon-video"></span></a>
+	<a class="btn" title="Вставить твит" onclick="return habraWYG.insertTagWithText(this, 'twitter');" href="#" tabindex="-1"><span class="g-icon g-icon-twitter"></span></a>
+	<a class="btn" title="Вставить спойлер" onclick="return habraWYG.insertSpoiler(this);" href="#" tabindex="-1"><span class="g-icon g-icon-spoiler"></span></a>
+	<div class="btn btn-dropdown">
+		<span class="g-icon g-icon-code"></span>
+		<select class="with-title" name="source" title="Используйте этот тэг для вставки кода" onchange="habraWYG.insertSource(this);" tabindex="-1">
+			<option value="" class="title">Source:</option>
+            <option value="code">Code</option>
+			<option value="bash">Bash</option>
+			<option value="cs">C#</option>
+			<option value="cpp">C++</option>
+			<option value="css">CSS</option>
+			<option value="diff">Diff</option>
+			<option value="html">HTML</option>
+			<option value="xml">XML</option>
+			<option value="java">Java</option>
+			<option value="javascript">JavaScript</option>
+			<option value="php">PHP</option>
+			<option value="perl">Perl</option>
+			<option value="python">Python</option>
+			<option value="ruby">Ruby</option>
+			<option value="sql">SQL</option>
+			<option value="1c">1C</option>
+			<option value="actionscript">ActionScript</option>
+			<option value="apache">Apache</option>
+			<option value="axapta">Axapta</option>
+			<option value="cmake">CMake</option>
+			<option value="coffeescript">CoffeeScript</option>
+			<option value="dos">DOS</option>
+			<option value="delphi">Delphi</option>
+			<option value="django">Django</option>
+			<option value="erlang">Erlang</option>
+			<option value="erlang_repl">Erlang REPL</option>
+      <option value="glsl">GLSL</option>
+			<option value="go">Go</option>
+			<option value="haskell">Haskell</option>
+			<option value="lisp">Lisp</option>
+			<option value="lua">Lua</option>
+			<option value="mel">MEL</option>
+			<option value="markdown">Markdown</option>
+			<option value="matlab">Matlab</option>
+			<option value="nginx">Nginx</option>
+			<option value="objectivec">Objective C</option>
+			<option value="rust">Rust</option>
+			<option value="scala">Scala</option>
+			<option value="smalltalk">Smalltalk</option>
+			<option value="tex">TeX</option>
+			<option value="vbscript">VBScript</option>
+			<option value="vhdl">VHDL</option>
+			<option value="vala">Vala</option>
+		</select>
+	</div>
+
+
+	<div class="clear"></div>
+
+		<div class="help_holder hidden">
+          <h4>Теги</h4>
+					<dl class="block_semi">
+						<dt>&lt;cut&gt;</dt>
+						<dd class="description">Используется только в текстах публикаций, скрывает под кат часть текста, следующую за тегом (будет написано «Читать дальше»).</dd>
+					</dl>
+					<dl class="block_semi">
+
+						<dt>&lt;cut text="Подробности" /&gt;</dt>
+						<dd class="description">Так можно превратить надпись «Читать дальше» в любой текст.</dd>
+					</dl>
+					<dl class="block_semi">
+						<dt>&lt;source lang="Язык"&gt;&lt;/source&gt;</dt>
+						<dd class="description">Подсвечивает исходный код (на выбор:
+						Bash,  C#,  C++,  CSS,  Diff,  HTML, XML,  Ini,  Java,  JavaScript,  PHP,  Perl,  Python,  Ruby,  SQL,
+						1C,  AVR Assembler,  ActionScript,  Apache,  Axapta,  CMake,  CoffeeScript,  DOS, .bat,  Delphi,  Django,  Erlang,  Erlang REPL,  Go,  Haskell,  Lisp,  Lua,  MEL,  Markdown,  Matlab,  Nginx,  Objective C,  Parser3,  Python profile,  RenderMan,  Rust,  Scala,  Smalltalk,  TeX,  VBScript,  VHDL,  Vala
+						).</dd>
+					</dl>
+					<dl class="block_semi">
+						<dt>&lt;video&gt;http://...&lt;/video&gt;</dt>
+
+						<dd class="description">Добавляет в публикацию видео со следующих хостингов: YouTube, RuTube, Google video, Vimeo, Я.Видео, Ivideon и Видео@Mail.ru<br>Вставляйте между тегами только прямую ссылку на видеоролик.</dd>
+					</dl>
+					<dl class="block_semi">
+						<dt>&lt;twitter&gt;http://...&lt;/twitter&gt;</dt>
+
+						<dd class="description">Добавляет в публикацию твит. Необходимо указать полную ссылку на твит. Например: &lt;twitter&gt;https://twitter.com/habrahabr/status/522334394175213568&lt;/twitter&gt;</dd>
+					</dl>
+
+					<dl class="block_semi">
+						<dt>&lt;slideshow&gt;http://...&lt;/slideshow&gt;</dt>
+
+						<dd class="description">Вставка интерактивного слайд-шоу. Пока поддерживается только сервис Slideshare.net.</dd>
+					</dl>
+
+					<dl class="block_semi">
+						<dt>@username</dt>
+
+						<dd class="description">
+							Выводит имя пользователя в тексте и отправляет пользователю уведомление о том, что его упомянули в публикации/комментарии.
+							Вы можете использовать конструкцию <b>@username</b>, где <b>username</b> — это имя пользователя.
+						</dd>
+					</dl>
+
+					<dl class="block_semi">
+						<dt>&lt;spoiler title="Заголовок"&gt;Содержимое&lt;/spoiler&gt;</dt>
+
+						<dd class="description">Вставка спойлера (разворачиваемый блок информации).</dd>
+					</dl>
+
+
+
+
+					<h4>Стандартные</h4>
+					<table class="wide">
+						<tbody><tr>
+							<td>
+
+								<dl class="block_semi">
+									<dt>&lt;h1&gt;&lt;/h1&gt;<br>
+										...<br>
+										&lt;h6&gt;&lt;/h6&gt;
+									</dt>
+									<dd class="description">Заголовки разного уровня.</dd>
+								</dl>
+								<dl class="block_semi">
+
+									<dt>&lt;img src="" /&gt;</dt>
+									<dd class="description">Вставка изображения, в атрибуте src нужно указывать полный путь к изображению. Возможно выравнивание картинки атрибутом align.</dd>
+								</dl>
+								<dl class="block_semi">
+									<dt>&lt;a href="http://..."&gt;Ссылка&lt;/a&gt;</dt>
+
+									<dd class="description">Вставка ссылки, в атрибуте href указывается желаемый интернет-адрес или якорь (anchor) для навигации по странице.</dd>
+								</dl>
+								<dl class="block_semi">
+									<dt>&lt;anchor&gt;Example1&lt;/anchor&gt;</dt>
+
+									<dd class="description">Тег для указания якоря. Для вызова используйте тег вставки ссылок (&lt;a href="#Example1"&gt;Текст&lt;/a&gt;).</dd>
+								</dl>
+								<dl class="block_semi">
+									<dt>&lt;b&gt;&lt;/b&gt;<br>
+										&lt;strong&gt;&lt;/strong&gt;</dt>
+									<dd class="description">Выделение важного текста, на странице выделяется жирным начертанием.</dd>
+								</dl>
+								<dl class="block_semi">
+
+									<dt>&lt;i&gt;&lt;/i&gt;<br>
+										&lt;em&gt;&lt;/em&gt;</dt>
+									<dd class="description">Выделение важного текста, на странице выделяется курсивом.</dd>
+								</dl>
+								<dl class="block_semi">
+									<dt>
+										&lt;s&gt;&lt;/s&gt;<br>
+										&lt;strike&gt;&lt;/strike&gt;
+									</dt>
+									<dd class="description">Текст между этими тегами будет отображаться как зачеркнутый.</dd>
+								</dl>
+
+								<dl class="block_semi">
+									<dt>
+										&lt;u&gt;&lt;/u&gt;
+									</dt>
+									<dd class="description">Текст между этими тегами будет отображаться как подчеркнутый.</dd>
+								</dl>
+
+
+							</td>
+
+							<td width="5%"></td>
+
+							<td>
+							<dl class="block_semi">
+								<dt>
+									&lt;hr /&gt;
+								</dt>
+								<dd class="description">Тег для вставки горизонтальной линии.</dd>
+							</dl>
+								<dl class="block_semi">
+									<dt>
+										&lt;blockquote&gt;&lt;/blockquote&gt;
+									</dt>
+									<dd class="description">Используйте этот тег для выделения цитат.</dd>
+
+								</dl>
+								<dl class="block_semi">
+									<dt>
+										&lt;table&gt;&lt;/table&gt;<br>
+										&lt;th&gt;&lt;/th&gt;<br>
+										&lt;td&gt;&lt;/td&gt;<br>
+
+										&lt;tr&gt;&lt;/tr&gt;
+									</dt>
+									<dd class="description">Набор тегов для создания таблицы. Тег &lt;td&gt; обозначает ячейку таблицы, тег &lt;th&gt; - ячейку в заголовке, &lt;tr&gt; - строчку таблицы. Все содержимое таблицы помещайте в тег &lt;table&gt;.</dd>
+
+								</dl>
+								<dl class="block_semi">
+									<dt>
+										&lt;sup&gt;&lt;/sup&gt;<br>
+										&lt;sub&gt;&lt;/sub&gt;
+									</dt>
+									<dd class="description">Текст, заключенный в тег &lt;sup&gt; отображается в виде верхнего индекса, &lt;sub&gt; - в виде нижнего.</dd>
+
+								</dl>
+								<dl class="block_semi">
+									<dt>
+										&lt;abbr title="" &gt;&lt;/abbr&gt;<br>
+										&lt;acronym title="" &gt;&lt;/acronym&gt;
+									</dt>
+
+									<dd class="description">Тегом &lt;abbr&gt; выделяется аббревиатура, в атрибуте title указывайте её расшифровку. Используйте тег &lt;acronym&gt; для устоявшихся аббревиатур.</dd>
+								</dl>
+								<dl class="block_semi">
+									<dt>
+										&lt;pre&gt;&lt;/pre&gt;
+
+									</dt>
+									<dd class="description">Текст в теге &lt;pre&gt; не форматируется автоматически.</dd>
+								</dl>
+								<dl class="block_semi">
+									<dt>
+										&lt;nobr&gt;&lt;/nobr&gt;<br>
+
+										&lt;br clear="all|left||right" /&gt;
+									</dt>
+									<dd class="description">Текст, помещенный в тег &lt;nobr&gt;, не переносится на странице; для принудительного переноса текста используйте тег &lt;br /&gt;; для аккуратного выравнивания изображений используйте атрибут clear="all|left||right" в теге &lt;br /&gt;.</dd>
+								</dl>
+
+								<dl class="block_semi">
+									<dt>
+										&lt;ul&gt;&lt;/ul&gt;<br>
+										&lt;li&gt;&lt;/li&gt;
+									</dt>
+									<dd class="description">Ненумерованный список; каждый элемент списка задается тегом &lt;li&gt;, набор элементов списка помещайте в тег &lt;ul&gt;.</dd>
+
+								</dl>
+								<dl class="block_semi">
+									<dt>
+										&lt;ol&gt;&lt;/ol&gt;<br>
+										&lt;li&gt;&lt;/li&gt;
+									</dt>
+									<dd class="description">Нумерованный список; каждый элемент списка задается тегом &lt;li&gt;, набор элементов списка помещайте в тег &lt;ol&gt;.</dd>
+
+								</dl>
+							</td>
+						</tr>
+
+					</tbody></table>
+
+					<div class="close_html"><a href="#html_help_close" onclick="$(this).parents('.wysiwyg_wrapper').find('.help_holder').toggleClass('hidden');return false;">закрыть</a></div>
+
+		</div>
+</div>
+                  </div>
+                  <div class="text-holder">
+                    <textarea cols="30" rows="10" name="text" id="comment_text"></textarea>
+                  </div>
+                  <span id="error_text" class="error"></span>
+                </div>
+                <div class="buttons">
+                  <input type="button" class="preview disableble" value="Предпросмотр" disabled="disabled" onclick="comment_preview(this.form, this)">
+                  <input type="button" class="submit disableble" value="Написать" disabled="disabled" onclick="comment_send(this.form, this)">
+                  <input type="button" class="edit hidden disableble" value="Сохранить" disabled="disabled" onclick="comment_update(this.form, this)">
+                  
+                  <span class="time_left" title="Оставшееся время редактирования комментария"></span>
+                </div>
+              </form>
+            </div> 
 
 
       </div>
