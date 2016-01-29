@@ -241,7 +241,9 @@
   
 {{#user}}
 <div class="comments_form" id="comments_form_placeholder">
+{{#article.comments_count}}
               <h2 class="title"><a href="#" onclick="return comment_show_form()">Написать комментарий</a></h2>
+{{/article.comments_count}}
               <form action="/json/comment/" method="post" id="comments_form">
 
                 <div id="preview_placeholder" class="hidden html_format"></div>
