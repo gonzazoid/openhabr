@@ -17,7 +17,7 @@ app.use(fw.prepare_headers)
    .use(cookies())
    .use(fw.start_session)
    .use(bodyParser.urlencoded({extended:true}))
-   .get("/comment/", function(req, res){
+   .post("/comment/", function(req, res){
         console.log(req);
     })
 
