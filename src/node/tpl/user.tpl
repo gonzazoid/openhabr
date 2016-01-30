@@ -73,7 +73,7 @@
                 <span class="stats__counters stats__counters_big">
                   <strong class="counter">199</strong>
                 </span>
-                <span class="stats__value todo">Публикации</span>
+                <span class="stats__value">Публикации</span>
             </span></a>
           </li>
           <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
