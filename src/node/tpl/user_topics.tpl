@@ -45,7 +45,7 @@
         
       </div>
         <div class="author-info__specialization">
-         {{profile.u_status}} 
+         {{profile.status}} 
         </div>
     </div>
   </div>
