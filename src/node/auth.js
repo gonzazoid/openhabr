@@ -1,13 +1,13 @@
 "use strict";
 //просто что бы видеть, какие модули используются
 ["http", "fs", "pg", "querystring", "url", "mustache", "validator", "js-sha3", "./bike", "./config"].forEach(cV => require(cV));
-
-var app = require("express")();
+var express = require("express";
+var app = express();
 //var http = require("http");
 var fs = require("fs");
 var fw = require("./bike");
-var cookies = require("cookie-parser");
-var bodyParser = require("body-parser");
+//var cookies = require("cookie-parser");
+//var bodyParser = require("body-parser");
 
 var patterns = {
     auth    : fs.readFileSync("./tpl/auth.tpl", "utf-8")
@@ -27,7 +27,7 @@ var rndHex = function (len) {
 };
 
 app.use(fw.prepare_headers)
-   .use(cookies())
+   .use(express.cookieParser())
    .use(fw.start_session)
    .use(bodyParser.urlencoded({extended:true}))
    .post("/auth/login/", function(req, res){
