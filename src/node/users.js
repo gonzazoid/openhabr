@@ -142,7 +142,7 @@ app.use(fw.prepare_headers)
                 pgClient.query({
                     //{{{
                     text: sql
-                    values: [result[0].id]
+                    values: [result.rows[0].id]
                 }, function(err, result){
                     done();
                     if(err){
