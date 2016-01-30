@@ -62,7 +62,7 @@
       </div>
 
       <div class="user-rating" title="Рейтинг пользователя">
-        <div class="user-rating__value">{{profile.u_rating}}</div>
+        <div class="user-rating__value">{{profile.rating}}</div>
         <div class="user-rating__label">рейтинг</div>
       </div>
 
