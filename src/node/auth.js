@@ -6,8 +6,8 @@ var app = express();
 //var http = require("http");
 var fs = require("fs");
 var fw = require("./bike");
-//var cookies = require("cookie-parser");
-//var bodyParser = require("body-parser");
+var cookies = require("cookie-parser");
+var bodyParser = require("body-parser");
 
 var patterns = {
     auth    : fs.readFileSync("./tpl/auth.tpl", "utf-8")
@@ -27,7 +27,7 @@ var rndHex = function (len) {
 };
 
 app.use(fw.prepare_headers)
-   .use(express.cookieParser())
+   .use(cookies())
    .use(fw.start_session)
    .use(bodyParser.urlencoded({extended:true}))
    .post("/auth/login/", function(req, res){
