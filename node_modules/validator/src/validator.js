@@ -88,7 +88,7 @@ var cache = Object.create(null);
                 chunks.forEach(cv => flags[cv] = "");
                 var required = true;
                 for (var flag in flags) {
-                    if (flags[flag] === 'notRequired') {
+                    if (flag === 'notRequired') {
                         required = false;
                         break;
                     }
@@ -97,7 +97,7 @@ var cache = Object.create(null);
                     throw new Error("there are no target for rule " + key);
                 }
             }
-            if(targets[key]){
+            if(key in targets){
                 cache[key] = targets[key];
                 delete targets[key];
 	    }
