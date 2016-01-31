@@ -21,6 +21,7 @@ app.use(fw.prepare_headers)
         console.log(req);
 	req.post = req.body;
 
+        var pg = require("pg");
        pg.connect(config.common.postgres, function (err, pgClient, done) {
            if(err){
                console.log(err);
