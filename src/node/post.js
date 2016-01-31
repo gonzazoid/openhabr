@@ -111,9 +111,13 @@ app.use(fw.prepare_headers)
                         by_id[result.rows[i].id] = result.rows[i];
                     }
                     //ok, догружаем
-		    console.log("comments:", by_id);
+		    //console.log("comments:", by_id);
                     for(i=0, l=result.rows.length; i<l; i++){
-                        by_id[result.rows[i].reply_to].comments.push(result.rows[i]);
+			if(result.rows[i].reply_to in by_id){
+                            by_id[result.rows[i].reply_to].comments.push(result.rows[i]);
+			}else{
+                            //TODO это не нормально, коммент с каким то кривым предком
+			}
                     }
                     //ok, в by_id["0"] имеем все дерево комментов
                     //пробуем рекурсивный шаблон вывода
