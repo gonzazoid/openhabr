@@ -15,6 +15,7 @@ DECLARE
 BEGIN
 
     INSERT INTO comments ("article_id", "author", "reply_to", "body") VALUES (_post_id, _user_id, _parent_id, _text);
+    UPDATE articles SET comments_count = comments_count + 1 WHERE id = _post_id;
     result = true;
 
 RETURN result;
