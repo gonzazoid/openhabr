@@ -58,9 +58,11 @@ var cache = Object.create(null);
         for(var key in rules){
     
             if(key in targets){
-                for(rule in rules[key]){
+                for(var rule in rules[key]){
                     if(rule === "flags"){
-                        var flags = rules[key][rule].split(',');
+                        var chunks = rules[key][rule].split(',');
+                        var flags = {};
+                        chunks.forEach(cv => flags[cv] = "");
                         for(var flag in flags){
                             if(flags[flag] in handlers){
                                 handlers[flags[flag]](targets[key]);
@@ -81,7 +83,9 @@ var cache = Object.create(null);
             }
             else{
                 //throw если явно не указан notRequired
-                var flags = rules[key]['flags'].split(',');
+                var chunks = rules[key]['flags'].split(',');
+                var flags = {};
+                chunks.forEach(cv => flags[cv] = "");
                 var required = true;
                 for (var flag in flags) {
                     if (flags[flag] === 'notRequired') {
