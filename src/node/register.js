@@ -48,8 +48,8 @@ app.use(fw.prepare_headers)
              "nickname" : {"flags": "required", "type": "string"}
             ,"sword"    : {"flags": "required", "type": "string"}
             ,"mailbox"  : {"flags": "required", "type": "string"}
-            ,"promo"    : {"flags": "required", "type": "string"}
-            ,"submit"   : {"flags": "required", "type": "string"}
+            ,"promo"    : {"flags": "notRequired", "type": "string"}
+            ,"submit"   : {"flags": "notRequired", "type": "string"}
        };
        try {
            req.post = validator(req.body, rules);
