@@ -28,7 +28,6 @@ var rndHex = function (len) {
 };
 app.use(fw.prepare_headers)
    .use(cookies())
-   .use(fw.start_session)
    .use(bodyParser.urlencoded({extended:true}))
    .get("/", function(req, res){
        var mustache = require("mustache");
