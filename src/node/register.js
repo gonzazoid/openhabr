@@ -4,6 +4,7 @@
 var express = require("express");
 var app = express();
 var fs = require("fs");
+var fw = require("./bike");
 //var http = require("http");
 var cookies = require("cookie-parser");
 var bodyParser = require("body-parser");
