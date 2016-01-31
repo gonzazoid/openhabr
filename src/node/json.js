@@ -54,6 +54,7 @@ app.use(fw.prepare_headers)
                       .end();
                }
            });
+       });
     })
 
 .listen(7506, "localhost", undefined,() => console.log('comment.server running at http://localhost:7506'));
