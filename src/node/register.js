@@ -38,6 +38,7 @@ app.use(fw.prepare_headers)
           .end();
    })
    .post("/newuser", function(req, res){
+       var mustache = require("mustache");
        var pg = require("pg");
        var config = require("./config");
        var sha3 = require("js-sha3").sha3_512;
