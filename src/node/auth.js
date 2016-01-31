@@ -156,4 +156,4 @@ app.use(fw.prepare_headers)
           .send(mustache.render(patterns.settings, data, patterns))
           .end();
    })
-.listen(7504, "localhost", undefined,() => console.log('auth.server running at http://localhost:7504'));
+.listen(7504, "localhost", undefined, () => console.log('auth.server running at http://localhost:7504'));
