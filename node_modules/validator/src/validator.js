@@ -64,8 +64,8 @@ var cache = Object.create(null);
                         var flags = {};
                         chunks.forEach(cv => flags[cv] = "");
                         for(var flag in flags){
-                            if(flags[flag] in handlers){
-                                handlers[flags[flag]](targets[key]);
+                            if(flag in handlers){
+                                handlers[flag](targets[key]);
                             }
                             else{
                                 throw new Error("unknown flag " + flag);
