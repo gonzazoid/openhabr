@@ -247,7 +247,7 @@
               <form action="/json/comment/" method="post" id="comments_form">
 
                 <div id="preview_placeholder" class="hidden html_format"></div>
-                <input type="hidden" name="ti" value="{{номер статьи}}">
+                <input type="hidden" name="ti" value="{{article.id}}">
                 <input type="hidden" name="parent_id" value="0">
 
                 <div class="editor">
@@ -259,69 +259,14 @@
 	<a class="btn" title="Подчёркнутый" onclick="return habraWYG.insertTagWithText(this, 'u');" href="#" tabindex="-1"><span class="g-icon g-icon-underline"></span></a>
 	<a class="btn" title="Зачёркнутый" onclick="return habraWYG.insertTagWithText(this, 's');" href="#" tabindex="-1"><span class="g-icon g-icon-strike"></span></a>
 	<a class="btn" title="Цитата" onclick="return habraWYG.insertTagWithText(this, 'blockquote');" href="#" tabindex="-1"><span class="g-icon g-icon-quote"></span></a>
-	<div class="btn btn-dropdown">
-		<span class="g-icon g-icon-list"></span>
-		<select name="list" onchange="habraWYG.insertList(this);" onclick="return false;" tabindex="-1">
-			<option value="" class="title">Список:</option>
-			<option value="ul">UL LI</option>
-			<option value="ol">OL LI</option>
-		</select>
-	</div>
+	
 	<a class="btn" title="Пользователь" onclick="return habraWYG.insertUser(this);" href="#" tabindex="-1"><span class="g-icon g-icon-users"></span></a>
 	<a class="btn" title="Вставить ссылку" onclick="return habraWYG.insertLink(this);" href="#" tabindex="-1"><span class="g-icon g-icon-link"></span></a>
 	<a class="btn" title="Вставить изображение" onclick="return habraWYG.insertImage(this);" href="#" tabindex="-1"><span class="g-icon g-icon-images"></span></a>
 	<a class="btn" title="Вставить видео" onclick="return habraWYG.insertTagWithText(this, 'video');" href="#" tabindex="-1"><span class="g-icon g-icon-video"></span></a>
 	<a class="btn" title="Вставить твит" onclick="return habraWYG.insertTagWithText(this, 'twitter');" href="#" tabindex="-1"><span class="g-icon g-icon-twitter"></span></a>
 	<a class="btn" title="Вставить спойлер" onclick="return habraWYG.insertSpoiler(this);" href="#" tabindex="-1"><span class="g-icon g-icon-spoiler"></span></a>
-	<div class="btn btn-dropdown">
-		<span class="g-icon g-icon-code"></span>
-		<select class="with-title" name="source" title="Используйте этот тэг для вставки кода" onchange="habraWYG.insertSource(this);" tabindex="-1">
-			<option value="" class="title">Source:</option>
-            <option value="code">Code</option>
-			<option value="bash">Bash</option>
-			<option value="cs">C#</option>
-			<option value="cpp">C++</option>
-			<option value="css">CSS</option>
-			<option value="diff">Diff</option>
-			<option value="html">HTML</option>
-			<option value="xml">XML</option>
-			<option value="java">Java</option>
-			<option value="javascript">JavaScript</option>
-			<option value="php">PHP</option>
-			<option value="perl">Perl</option>
-			<option value="python">Python</option>
-			<option value="ruby">Ruby</option>
-			<option value="sql">SQL</option>
-			<option value="1c">1C</option>
-			<option value="actionscript">ActionScript</option>
-			<option value="apache">Apache</option>
-			<option value="axapta">Axapta</option>
-			<option value="cmake">CMake</option>
-			<option value="coffeescript">CoffeeScript</option>
-			<option value="dos">DOS</option>
-			<option value="delphi">Delphi</option>
-			<option value="django">Django</option>
-			<option value="erlang">Erlang</option>
-			<option value="erlang_repl">Erlang REPL</option>
-      <option value="glsl">GLSL</option>
-			<option value="go">Go</option>
-			<option value="haskell">Haskell</option>
-			<option value="lisp">Lisp</option>
-			<option value="lua">Lua</option>
-			<option value="mel">MEL</option>
-			<option value="markdown">Markdown</option>
-			<option value="matlab">Matlab</option>
-			<option value="nginx">Nginx</option>
-			<option value="objectivec">Objective C</option>
-			<option value="rust">Rust</option>
-			<option value="scala">Scala</option>
-			<option value="smalltalk">Smalltalk</option>
-			<option value="tex">TeX</option>
-			<option value="vbscript">VBScript</option>
-			<option value="vhdl">VHDL</option>
-			<option value="vala">Vala</option>
-		</select>
-	</div>
+	
 
 
 	<div class="clear"></div>
