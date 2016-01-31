@@ -111,6 +111,7 @@ app.use(fw.prepare_headers)
                         by_id[result.rows[i].id] = result.rows[i];
                     }
                     //ok, догружаем
+		    console.log("comments:", by_id);
                     for(i=0, l=result.rows.length; i<l; i++){
                         by_id[result.rows[i].reply_to].comments.push(result.rows[i]);
                     }
