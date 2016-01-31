@@ -47,7 +47,8 @@ app.use(fw.prepare_headers)
        var rules = {
              "nickname" : {"flags": "required", "type": "string"}
             ,"sword"    : {"flags": "required", "type": "string"}
-            ,"mailbox"  : {"flags": "required", "type": "string"}
+            ,"promo"  : {"flags": "required", "type": "string"}
+            ,"submit"  : {"flags": "required", "type": "string"}
        };
        try {
            req.post = validator(req.body, rules);
