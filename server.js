@@ -68,6 +68,6 @@ if (app.get('env') === 'development') {
   });
 }
 
-app.listen(app.get('port'), '0.0.0.0', () => {
+app.listen(app.get('port'), config.ip, () => {
   debug(`Express server listening on port ${app.get('port')} in ${app.get('env')} mode`);
 });
