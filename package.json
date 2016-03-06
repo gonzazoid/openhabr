@@ -9,14 +9,19 @@
     "body-parser": "^1.14.2",
     "consolidate": "^0.14.0",
     "cookie-parser": "^1.4.1",
+    "debug": "^2.2.0",
     "express": "^4.13.3",
     "js-sha3": "^0.5.1",
+    "morgan": "^1.7.0",
     "mustache": "^2.2.1",
     "pg": "^4.4.3",
+    "pg-then": "^1.2.1",
+    "serve-favicon": "^2.3.0",
     "validator": "gonzazoid/validator.js"
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "cross-env": "^1.0.7",
     "mocha": "^2.4.5",
     "rimraf": "^2.5.2"
   },
