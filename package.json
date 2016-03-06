@@ -4,17 +4,26 @@
   "description": "habr like open community's site engine",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.13.3"
-   ,"cookie-parser": "^1.4.1"
-   ,"body-parser": "^1.14.2"
-   ,"mustache": "^2.2.1"
-   ,"pg":       "^4.4.3"
-   ,"js-sha3":  "^0.5.1"
-   ,"validator"    : "https://github.com/gonzazoid/validator.js.git"
+    "body-parser": "^1.14.2",
+    "consolidate": "^0.14.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.3",
+    "js-sha3": "^0.5.1",
+    "mustache": "^2.2.1",
+    "pg": "^4.4.3",
+    "validator": "gonzazoid/validator.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-register": "^6.6.5",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "rimraf": "^2.5.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/*.spec.js --compilers js:babel-register",
+    "start": "cross-env NODE_ENV=development nodemon index.js",
+    "start:prod": "cross-env NODE_ENV=production node index.js",
+    "slate": "rimraf node_modules && npm install"
   },
   "repository": {
     "type": "git",
