@@ -4,11 +4,15 @@ import logger       from 'morgan';
 import path         from 'path';
 import favicon      from 'serve-favicon';
 import bodyParser   from 'body-parser';
+import pg           from 'pg';
+import session      from 'express-session';
+import pgS          from 'connect-pg-simple';
 import cookieParser from 'cookie-parser';
 import cons         from 'consolidate';
 import routes       from './routes';
 import config       from './config';
 
+const pgSession = pgS(session);
 const debug = deb('app');
 
 const app = express();
@@ -33,6 +37,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
+app.use(session({
+  store: new pgSession({
+    pg,
+    conString : config.postgresURL,
+    tableName : 'session'
+  }),
+  secret: config.secret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+  }
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
