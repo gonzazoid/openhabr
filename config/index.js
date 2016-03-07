@@ -2,7 +2,8 @@
 const config = {
   postgresURL: process.env.POSTGRES_URL || 'postgres://ordnung:atilla0453@localhost/habr',
   ip: process.env.IP || '127.0.0.1',
-  port: process.env.PORT || 7000
+  port: process.env.PORT || 7000,
+  secret:  process.env.SECRET || '12345'
 };
 
 export default config;
