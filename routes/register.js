@@ -1,6 +1,6 @@
-import pg        from 'pg-then';
-import config    from '../config';
-import validator from 'validator';
+import pg                   from 'pg-then';
+import config               from '../config';
+import validator            from 'validator';
 import { sha3_512 as sha3 } from 'js-sha3';
 
 const data = {};
