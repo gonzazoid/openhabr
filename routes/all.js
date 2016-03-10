@@ -48,3 +48,7 @@ export function root(req, res) {
   };
   res.render('all', data);
 };
+
+export function redirect(req, res) {
+  res.redirect('/all');
+}
