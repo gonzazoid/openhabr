@@ -72,7 +72,9 @@ ${err}
         footer: 'footer'
       };
       if (result.rows[0].adduser) {
-        req.session.user = post.nickname;
+        req.session.user = {
+          nickname: post.nickname
+        };
         res.render('congratulations', data);
       } else {
         // что то пошло не так - просим повторить заново (логин либо почта уже есть в системе)
