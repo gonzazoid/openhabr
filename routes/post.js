@@ -19,7 +19,6 @@ export default (req, res) => {
       }
       result.rows.forEach((item, key, holder) => {
         const hubs = [];
-        let l;
         if (!item.hubs.length) return;
         for (let i = 0, l = item.hub_id.length; i < l; i++) {
           hubs[item.hub_id[i]] = {
