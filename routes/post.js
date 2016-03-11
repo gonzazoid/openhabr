@@ -37,23 +37,17 @@ export default (req, res) => {
         }
       });
       article = result.rows[0];
-    })
-    .catch(err => {
-      console.error(err);
-    });
-
-  // сли есть комментарии - вытащим их (в дальнейшем надо перевести на queue, пока тянем последовательно
-  // ли отрисовку комментов сделать на клиенте? С точки зрения производительности - да, а вот с точки зрения индексации
-  // учше все таки комменты отдавать статикой
-  // k, сделаем и так и так
-  sql = 'SELECT comments.*, users.nickname FROM comments, users WHERE article_id = $1 AND comments.author = users.id ORDER BY stamp ASC;';
-
-  pool
-    .query({
-      text: sql,
-      values: [req.params.id]
-    })
-    .then(result => {
+      // если есть комментарии - вытащим их (в дальнейшем надо перевести на queue, пока тянем последовательно
+      // ли отрисовку комментов сделать на клиенте? С точки зрения производительности - да, а вот с точки зрения индексации
+      // учше все таки комменты отдавать статикой
+      // k, сделаем и так и так
+      const sql = 'SELECT comments.*, users.nickname FROM comments, users WHERE article_id = $1 AND comments.author = users.id ORDER BY stamp ASC;';
+      return pool
+        .query({
+          text: sql,
+          values: [req.params.id]
+        });
+    }).then(result => {
       // console.log(result.rows);
       // ок, выстроим дерево
       // коммент - объект вида "{id: "", body: "", author: "", comments: []}
