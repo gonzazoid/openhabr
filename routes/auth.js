@@ -56,7 +56,7 @@ ${req.body}
 error
 ${err}
 `);
-    res.sendStatus(500).end();
+    throw new Error(err);
   }
 
   console.log(post);
@@ -87,7 +87,7 @@ ${req.body}
       res.redirect(post.return ? post.return : '/');
     })
     .catch(err => {
-      console.error(err);
+      throw new Error(err);
     });
 
   res.render('posts', {
@@ -100,6 +100,7 @@ ${req.body}
 
 export function logout(req, res) {
   req.session.destroy(err => {
+    if (err) throw new Error(err);
     res.redirect('/');
   });
 }

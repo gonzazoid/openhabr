@@ -17,7 +17,7 @@ export function root(req, res) {
       res.render('users', data);
     })
     .catch(err => {
-      console.error(err);
+      throw new Error(err);
     });
 }
 
@@ -53,7 +53,7 @@ export function getUser(req, res) {
       res.render('user', data);
     })
     .catch(err => {
-      console.error(err);
+      throw new Error(err);
     });
 }
 
@@ -105,6 +105,6 @@ export function getTopics(req, res) {
       res.render('user_topics', data);
     })
     .catch(err => {
-      console.error(err);
+      throw new Error(err);
     });
 }

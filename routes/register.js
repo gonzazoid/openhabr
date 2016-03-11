@@ -53,7 +53,7 @@ ${req.body}
 error
 ${err}
 `);
-    res.sendStatus(500).end();
+    throw new Error(err);
   }
 
   const sql = 'select * from adduser($1, $2, $3, $4);';
@@ -82,6 +82,6 @@ ${err}
       }
     })
     .catch(err => {
-      console.error(err);
+      throw new Error(err);
     });
 }

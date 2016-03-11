@@ -31,14 +31,14 @@ pool
       callback();
     }, err => {
       if (err) {
-        console.error(err);
+        throw new Error(err);
       } else {
         data.articles = result.rows;
       }
     });
   })
   .catch(err => {
-    console.error(err);
+    throw new Error(err);
   });
 
 export function root(req, res) {
@@ -47,7 +47,7 @@ export function root(req, res) {
     footer: 'footer'
   };
   res.render('all', data);
-};
+}
 
 export function redirect(req, res) {
   res.redirect('/all');
