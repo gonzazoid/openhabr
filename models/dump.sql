@@ -10,31 +10,17 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
--- Name: plv8; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plv8 WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plv8; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plv8 IS 'PL/JavaScript (v8) trusted procedural language';
 
 
 SET search_path = public, pg_catalog;
@@ -91,7 +77,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: openhabr; Tablespace:
 --
 
 CREATE TABLE users (
@@ -141,7 +127,7 @@ CREATE FUNCTION get_user_by_name(_nickname character varying) RETURNS TABLE(id b
 SELECT users.*, m.medal_title, m.medal_description
 FROM(
     SELECT users.id, array_agg(medals.title) AS medal_title, array_agg(medals.description) AS medal_description
-    FROM users, medals 
+    FROM users, medals
     WHERE nickname = _nickname AND medals.id = ANY(users.medals)
     GROUP BY users.id
 ) m, users
@@ -181,7 +167,7 @@ CREATE SEQUENCE articles_id
 ALTER TABLE articles_id OWNER TO openhabr;
 
 --
--- Name: articles; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: articles; Type: TABLE; Schema: public; Owner: openhabr; Tablespace:
 --
 
 CREATE TABLE articles (
@@ -234,7 +220,7 @@ CREATE SEQUENCE comments_id
 ALTER TABLE comments_id OWNER TO openhabr;
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: comments; Type: TABLE; Schema: public; Owner: openhabr; Tablespace:
 --
 
 CREATE TABLE comments (
@@ -273,7 +259,7 @@ CREATE SEQUENCE hubs_id
 ALTER TABLE hubs_id OWNER TO openhabr;
 
 --
--- Name: hubs; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: hubs; Type: TABLE; Schema: public; Owner: openhabr; Tablespace:
 --
 
 CREATE TABLE hubs (
@@ -314,7 +300,7 @@ CREATE SEQUENCE medals_id
 ALTER TABLE medals_id OWNER TO openhabr;
 
 --
--- Name: medals; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: medals; Type: TABLE; Schema: public; Owner: openhabr; Tablespace:
 --
 
 CREATE TABLE medals (
@@ -341,7 +327,7 @@ CREATE SEQUENCE tags_id
 ALTER TABLE tags_id OWNER TO openhabr;
 
 --
--- Name: tags; Type: TABLE; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: tags; Type: TABLE; Schema: public; Owner: openhabr; Tablespace:
 --
 
 CREATE TABLE tags (
@@ -353,7 +339,7 @@ CREATE TABLE tags (
 ALTER TABLE tags OWNER TO openhabr;
 
 --
--- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace:
 --
 
 ALTER TABLE ONLY articles
@@ -361,7 +347,7 @@ ALTER TABLE ONLY articles
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace:
 --
 
 ALTER TABLE ONLY comments
@@ -369,7 +355,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: hubs_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: hubs_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace:
 --
 
 ALTER TABLE ONLY hubs
@@ -377,7 +363,7 @@ ALTER TABLE ONLY hubs
 
 
 --
--- Name: medals_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: medals_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace:
 --
 
 ALTER TABLE ONLY medals
@@ -385,7 +371,7 @@ ALTER TABLE ONLY medals
 
 
 --
--- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace:
 --
 
 ALTER TABLE ONLY tags
@@ -393,7 +379,7 @@ ALTER TABLE ONLY tags
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: openhabr; Tablespace:
 --
 
 ALTER TABLE ONLY users
