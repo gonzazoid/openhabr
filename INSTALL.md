@@ -23,7 +23,7 @@ node.js установлен
     sudo -u postgres psql < node_modules/connect-pg-simple/table.sql
     ```
 4. **настройки**  
-Доступные настройки можно увидеть [здесь](https://github.com/gonzazoid/openhabr/config/index.js)  
+Доступные настройки можно увидеть [здесь](https://github.com/gonzazoid/openhabr/blob/master/config/index.js)  
 Они задаются через переменные окружения.  
 Например, чтобы поменять параметры подключения к postresql, достаточно ввести в терминале  
 `export POSTGRES_URL=postgres://ordnung:atilla0453@localhost/habr` и перезапустить приложение  
