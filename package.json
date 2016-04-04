@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "mocha test/*.spec.js --compilers js:babel-register",
-    "start": "forever -a --minUptime 1000 --spinSleepTime 1000  -l index.log --pidFile index.pid start index.js",
+    "start": "forever -a --minUptime 1000 --spinSleepTime 1000  -l ./index.log --pidFile ./index.pid start ./index.js",
     "start:prod": "cross-env NODE_ENV=production node index.js",
     "slate": "rimraf node_modules && npm install"
   },
